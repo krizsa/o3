@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:a="http://ajax.org/2005/aml" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+       <title>Ajax.org Platform Elements</title>
+       <script src="trunk/apf.js"></script>
+	   <script src="o3.js"></script>
+       <style>
+        .box{
+            border : 1px solid gray;
+            background : #f1f1f1;
+        }
+        .box2{
+            border:1px solid gray;
+        }
+        
+        .box2 span{
+            padding : 5px;
+        }
+        </style>
+    </head>
+    <body>
+        <a:skin src="skins.xml" />
+        
+        <a:appsettings debug="0" />
+
+        <a:vbox class="box" width="400">
+            <strong>O3 Plugin Settings</strong>
+            <a:hbox skin="basic" class="box2">
+                <span flex="6">Authorization</span>
+                <span flex="4">Domain Components</span>
+            </a:hbox>
+            <a:hbox height="200">
+                <a:list id="lstDomains" mode="check" skin="checklist" model="mdlDomains" flex="6" each="[domain]" caption="[@name]" checked="[@check]" />
+                <a:vbox flex="4">
+                    <a:label caption="[{lstDomains.selected}::@name]" />
+                    <a:list mode="check" skin="checklist" model="{lstDomains.selected}" flex="1" each="[item]" caption="[@caption]" checked="[@check]" />
+                </a:vbox>
+            </a:hbox>
+            <a:hbox edge="5" pack="end">
+                <a:button onclick="saveSettings()">Done</a:button>
+            </a:hbox>    
+        </a:vbox>
+        
+        <a:model id="mdlDomains"> 
+            <data>
+            </data>
+        </a:model>
+        
+		<a:script>//<!--
+				var o3obj;
+				// creating an o3 instance, we need the UID and the name of the product
+				// the o3.js file will take care of all the details
+				o3obj = o3.create("AAAAAAAA-1111-BBBB-1111-CCCCCCCCCCCC", { 
+					oninstallprompt : function(){ alert("can't find o3 plugin");}    
+				} );
+
+				var ComponentMap = {
+					fs: "File System",
+					barcode: "Barcode",
+					http: "Http Client",
+					image: "Image",
+					process: "Process",
+					protocol: "o3 protocol",
+					screen: "Screen",
+					window: "Window",
+					xml: "Xml",
+					blobl: "Blob (binary container)",
+					socket: "TCP Socket",
+					zip: "Zip",
+					rsa: "RSA Encryption",
+					md5: "MD5 Hash",
+					sha1: "SHA1 Hash",
+				};
+
+				var DomainData = {};		
+				
+				var settings = o3obj.settings,
+					elems = settings.match(/[\w\.]+\([\w\=\,]+\);/g);
+				
+				function addSite(str){
+					var name = str.match(/[\w\.]+/)[0],
+						components = str.match(/[\w]+\=[\d]+/g),
+						xml = '',
+						e,comp,val;
+					
+					DomainData[name] = [];
+					
+					xml += '<domain name="' + name + '" check="1">';
+					for (var i=0; i<components.length; i++) {
+						comp = components[i];
+						e = comp.indexOf('=');
+						val = comp.substring(e+1);
+						comp = comp.substring(0,e);
+						DomainData[name].push(comp);
+						comp = ComponentMap[comp] ? ComponentMap[comp] : comp;								
+						xml += '<item caption="' + comp + '" check="' + (val == 1 ? "true" : "false") + '" />';
+					}	
+					
+					xml += '</domain>';
+					mdlDomains.appendXml(xml);
+					
+					//<domain name="http://ajax.org" check="1">
+					//	<item caption="Local Disk Access" check="1" />
+					//	<item caption="webcam &amp; microphone" check="" />
+					//	<item caption="Hardware acceleration" check="1" />
+					//</domain>
+
+				}
+
+				
+				for (var i=0; elems && i < elems.length; i++) {
+					addSite(elems[i]);
+				}
+							
+				function saveSettings() {
+					var domainNodes = mdlDomains.getXml().childNodes,
+						componentNodes,
+						dnode,cnode,components,
+						newSettings = {}, f, s=[];
+					
+					for (var i=0; i<domainNodes.length; i++) {
+						dnode = domainNodes[i];
+						if (dnode.nodeName != "domain")
+							continue;
+						componentNodes = dnode.childNodes;
+						components = newSettings[dnode.getAttribute("name")] = [];
+						for (var j=0; j<componentNodes.length; j++) {
+							cnode = componentNodes[j];
+							alert(cnode.getAttribute("check"));
+							components.push(DomainData[dnode.getAttribute("name")][j] 
+								+ '=' + (cnode.getAttribute("check")=="true" ? "1" : "0"));
+						}	
+					}
+					for (var v in newSettings)
+						s.push(v,'(',newSettings[v].join(','),',);');
+					alert(s.join(''));
+					o3obj.settings = s.join('');
+					//o3obj.exit();
+				}	
+		//-->
+		</a:script>
+    </body>
+</html>

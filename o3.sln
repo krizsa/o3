@@ -1,0 +1,345 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{475BCB3E-DE6D-4860-B1E2-9AE4B00D4BC7}"
+	ProjectSection(SolutionItems) = preProject
+		include\Buf.h = include\Buf.h
+		include\cBufStream.h = include\cBufStream.h
+		include\cMgr.h = include\cMgr.h
+		include\cO3.h = include\cO3.h
+		include\config.h = include\config.h
+		include\crypto.h = include\crypto.h
+		include\cScr.h = include\cScr.h
+		include\cScrBuf.h = include\cScrBuf.h
+		include\cStream.h = include\cStream.h
+		include\cStream_posix.h = include\cStream_posix.h
+		include\cStream_win32.h = include\cStream_win32.h
+		include\cStreamBase.h = include\cStreamBase.h
+		include\cSys.h = include\cSys.h
+		include\cSys_posix.h = include\cSys_posix.h
+		include\cSys_win32.h = include\cSys_win32.h
+		include\cSysBase.h = include\cSysBase.h
+		include\cUnk.h = include\cUnk.h
+		include\debug.h = include\debug.h
+		include\iAlloc.h = include\iAlloc.h
+		include\iBuf.h = include\iBuf.h
+		include\iCtx.h = include\iCtx.h
+		include\iFs.h = include\iFs.h
+		include\iHttp.h = include\iHttp.h
+		include\iImage.h = include\iImage.h
+		include\iMgr.h = include\iMgr.h
+		include\iScr.h = include\iScr.h
+		include\iStream.h = include\iStream.h
+		include\iSys.h = include\iSys.h
+		include\iUnk.h = include\iUnk.h
+		include\o3.h = include\o3.h
+		include\pub_key.h = include\pub_key.h
+		include\tList.h = include\tList.h
+		include\tMap.h = include\tMap.h
+		include\tools.h = include\tools.h
+		include\tools_atomic.h = include\tools_atomic.h
+		include\tools_atomic_apple.h = include\tools_atomic_apple.h
+		include\tools_atomic_linux.h = include\tools_atomic_linux.h
+		include\tools_atomic_win32.h = include\tools_atomic_win32.h
+		include\tools_axhost.h = include\tools_axhost.h
+		include\tools_chr.h = include\tools_chr.h
+		include\tools_glue.h = include\tools_glue.h
+		include\tools_glue_idispatch.h = include\tools_glue_idispatch.h
+		include\tools_math.h = include\tools_math.h
+		include\tools_mem.h = include\tools_mem.h
+		include\tools_str.h = include\tools_str.h
+		include\tools_win32.h = include\tools_win32.h
+		include\tools_zip.h = include\tools_zip.h
+		include\tScrVec.h = include\tScrVec.h
+		include\tScrVec_scr.h = include\tScrVec_scr.h
+		include\tStr.h = include\tStr.h
+		include\tVec.h = include\tVec.h
+		include\types.h = include\types.h
+		include\types_posix.h = include\types_posix.h
+		include\types_win32.h = include\types_win32.h
+		include\Var.h = include\Var.h
+	EndProjectSection
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sh", "hosts\sh\sh.vcproj", "{A909D85D-3EB5-433B-8C13-2A698B6E354D}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "plugin", "hosts\plugin\plugin.vcproj", "{54048B17-8201-4503-AAC7-B8652228519D}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ssb", "hosts\ssb\ssb.vcproj", "{93E2AEBD-1B72-4158-A668-5E2A52AE5806}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "installer", "hosts\installer\installer.vcproj", "{9791C227-C0E7-45D1-93C9-BF65862F4032}"
+	ProjectSection(ProjectDependencies) = postProject
+		{54048B17-8201-4503-AAC7-B8652228519D} = {54048B17-8201-4503-AAC7-B8652228519D}
+	EndProjectSection
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", "{E190BAD3-A698-45AF-9B6C-95E03D776584}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rsa", "rsa", "{1E12F863-6944-45C0-A3DD-7E64B9532857}"
+	ProjectSection(SolutionItems) = preProject
+		modules\rsa\cRSA.h = modules\rsa\cRSA.h
+		modules\rsa\rsa.h = modules\rsa\rsa.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "md5", "md5", "{22467238-3D1B-424A-81B4-AEA3EC165CA8}"
+	ProjectSection(SolutionItems) = preProject
+		modules\md5\cMD5Hash.h = modules\md5\cMD5Hash.h
+		modules\md5\md5.h = modules\md5\md5.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sha1", "sha1", "{28B2F03A-5DE2-492C-95A8-E2AE60088A89}"
+	ProjectSection(SolutionItems) = preProject
+		modules\sha1\cSHA1Hash.h = modules\sha1\cSHA1Hash.h
+		modules\sha1\sha1.h = modules\sha1\sha1.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "zip", "zip", "{6F09CF9A-A76C-46E5-8E9F-27D87E8D21E3}"
+	ProjectSection(SolutionItems) = preProject
+		modules\zip\cZip.h = modules\zip\cZip.h
+		modules\zip\zip.h = modules\zip\zip.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mouse", "mouse", "{23C091E1-AB2D-4717-A363-87CA16EF5776}"
+	ProjectSection(SolutionItems) = preProject
+		modules\mouse\cMouse_apple.h = modules\mouse\cMouse_apple.h
+		modules\mouse\cMouse_win32.h = modules\mouse\cMouse_win32.h
+		modules\mouse\cMouseBase.h = modules\mouse\cMouseBase.h
+		modules\mouse\mouse.h = modules\mouse\mouse.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "keyboard", "keyboard", "{A8762AAF-280A-4AAE-9C1C-D1340A722C67}"
+	ProjectSection(SolutionItems) = preProject
+		modules\keyboard\cKeyboard_apple.h = modules\keyboard\cKeyboard_apple.h
+		modules\keyboard\cKeyboard_win32.h = modules\keyboard\cKeyboard_win32.h
+		modules\keyboard\cKeyboardBase.h = modules\keyboard\cKeyboardBase.h
+		modules\keyboard\keyboard.h = modules\keyboard\keyboard.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "barcode", "barcode", "{94EA4682-D388-4350-A393-7E4C3E9D4C9B}"
+	ProjectSection(SolutionItems) = preProject
+		modules\barcode\barcode.h = modules\barcode\barcode.h
+		modules\barcode\cBarcode.h = modules\barcode\cBarcode.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "blob", "blob", "{105022F9-C1ED-4C91-B23F-796EB57C1590}"
+	ProjectSection(SolutionItems) = preProject
+		modules\blob\blob.h = modules\blob\blob.h
+		modules\blob\cBlob.h = modules\blob\cBlob.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "console", "console", "{796EF190-D884-4ACE-920B-FDA78CB93F02}"
+	ProjectSection(SolutionItems) = preProject
+		modules\console\cConsole_posix.h = modules\console\cConsole_posix.h
+		modules\console\cConsole_win32.h = modules\console\cConsole_win32.h
+		modules\console\console.h = modules\console\console.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fs", "fs", "{8C1A15EF-1C23-4E0E-A9A3-AF09ABA4E791}"
+	ProjectSection(SolutionItems) = preProject
+		modules\fs\cFs_posix.h = modules\fs\cFs_posix.h
+		modules\fs\cFs_win32.h = modules\fs\cFs_win32.h
+		modules\fs\cFsBase.h = modules\fs\cFsBase.h
+		modules\fs\fs.h = modules\fs\fs.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "http", "http", "{2217265D-2D1A-4124-8587-DFC040BD0DF6}"
+	ProjectSection(SolutionItems) = preProject
+		modules\http\cHttp.h = modules\http\cHttp.h
+		modules\http\http.h = modules\http\http.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "image", "image", "{3291A127-D034-4318-837F-ED5BFC5345DD}"
+	ProjectSection(SolutionItems) = preProject
+		modules\image\cImage.h = modules\image\cImage.h
+		modules\image\cImage_CSS_colors.h = modules\image\cImage_CSS_colors.h
+		modules\image\cImage_CSS_colors_generator.html = modules\image\cImage_CSS_colors_generator.html
+		modules\image\image.h = modules\image\image.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{A2F968D8-AC92-4230-8A6A-FC4D66E95B5C}"
+	ProjectSection(SolutionItems) = preProject
+		modules\js\cJs_posix.h = modules\js\cJs_posix.h
+		modules\js\cJs_win32.h = modules\js\cJs_win32.h
+		modules\js\cJsBase.h = modules\js\cJsBase.h
+		modules\js\js.h = modules\js\js.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "process", "process", "{8C8977B7-DE9F-42AC-8A51-BAF51AE309D6}"
+	ProjectSection(SolutionItems) = preProject
+		modules\process\cProcess_posix.h = modules\process\cProcess_posix.h
+		modules\process\cProcess_win32.h = modules\process\cProcess_win32.h
+		modules\process\cProcessBase.h = modules\process\cProcessBase.h
+		modules\process\process.h = modules\process\process.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "protocol", "protocol", "{20608736-CD2E-4D2D-905F-CC0204DA1F45}"
+	ProjectSection(SolutionItems) = preProject
+		modules\protocol\cProtocol_win32.h = modules\protocol\cProtocol_win32.h
+		modules\protocol\cProtocolIE.h = modules\protocol\cProtocolIE.h
+		modules\protocol\protocol.h = modules\protocol\protocol.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "resource", "resource", "{3985CEAE-9545-4BF3-91FB-9908740BB7AE}"
+	ProjectSection(SolutionItems) = preProject
+		modules\resource\cResource_win32.h = modules\resource\cResource_win32.h
+		modules\resource\cResourceBuilder.h = modules\resource\cResourceBuilder.h
+		modules\resource\cResourceBuilder_win32.h = modules\resource\cResourceBuilder_win32.h
+		modules\resource\resource.h = modules\resource\resource.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "screen", "screen", "{DDC1F7B1-B9AE-4918-BA85-8026BF9C7E6D}"
+	ProjectSection(SolutionItems) = preProject
+		modules\screen\cScreen_apple.h = modules\screen\cScreen_apple.h
+		modules\screen\cScreen_win32.h = modules\screen\cScreen_win32.h
+		modules\screen\cScreenBase.h = modules\screen\cScreenBase.h
+		modules\screen\screen.h = modules\screen\screen.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "socket", "socket", "{8D061411-89E5-45F6-BC10-4F74C455D1F3}"
+	ProjectSection(SolutionItems) = preProject
+		modules\socket\cSocket_libevent.h = modules\socket\cSocket_libevent.h
+		modules\socket\cSocket_posix.h = modules\socket\cSocket_posix.h
+		modules\socket\cSocket_win32.h = modules\socket\cSocket_win32.h
+		modules\socket\cSocketBase.h = modules\socket\cSocketBase.h
+		modules\socket\socket.h = modules\socket\socket.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{FC32EDB0-FE72-4D45-B506-5C442C72EF60}"
+	ProjectSection(SolutionItems) = preProject
+		modules\tools\cTools_win32.h = modules\tools\cTools_win32.h
+		modules\tools\tools.h = modules\tools\tools.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{4DBF85A4-C905-483B-8B3A-A350A264ED21}"
+	ProjectSection(SolutionItems) = preProject
+		modules\test\cTest1.h = modules\test\cTest1.h
+		modules\test\scr_cTest1.h = modules\test\scr_cTest1.h
+		modules\test\test.h = modules\test\test.h
+		modules\test\test_Buf.h = modules\test\test_Buf.h
+		modules\test\test_Str.h = modules\test\test_Str.h
+		modules\test\test_tList.h = modules\test\test_tList.h
+		modules\test\test_tMap.h = modules\test\test_tMap.h
+		modules\test\test_tVec.h = modules\test\test_tVec.h
+		modules\test\test_Var.h = modules\test\test_Var.h
+		modules\test\test_WStr.h = modules\test\test_WStr.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "window", "window", "{DB2F3141-7810-49FA-AEC1-223F94C5C175}"
+	ProjectSection(SolutionItems) = preProject
+		modules\window\cButton.h = modules\window\cButton.h
+		modules\window\cButton_win32.h = modules\window\cButton_win32.h
+		modules\window\cStaticCtrl.h = modules\window\cStaticCtrl.h
+		modules\window\cStaticCtrl_win32.h = modules\window\cStaticCtrl_win32.h
+		modules\window\cWindow.h = modules\window\cWindow.h
+		modules\window\cWindow_apple.h = modules\window\cWindow_apple.h
+		modules\window\cWindow_win32.h = modules\window\cWindow_win32.h
+		modules\window\cWindowBase.h = modules\window\cWindowBase.h
+		modules\window\window.h = modules\window\window.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{DC9D04B9-6E24-4A7E-97D7-65EB0CCDB82A}"
+	ProjectSection(SolutionItems) = preProject
+		modules\xml\cXml.h = modules\xml\cXml.h
+		modules\xml\cXmlAttr.h = modules\xml\cXmlAttr.h
+		modules\xml\cXmlCDATASection.h = modules\xml\cXmlCDATASection.h
+		modules\xml\cXmlCharacterData.h = modules\xml\cXmlCharacterData.h
+		modules\xml\cXmlComment.h = modules\xml\cXmlComment.h
+		modules\xml\cXmlDocument.h = modules\xml\cXmlDocument.h
+		modules\xml\cXmlElement.h = modules\xml\cXmlElement.h
+		modules\xml\cXmlNamedNodeMap.h = modules\xml\cXmlNamedNodeMap.h
+		modules\xml\cXmlNode.h = modules\xml\cXmlNode.h
+		modules\xml\cXmlNodeArray.h = modules\xml\cXmlNodeArray.h
+		modules\xml\cXmlNodeList.h = modules\xml\cXmlNodeList.h
+		modules\xml\cXmlText.h = modules\xml\cXmlText.h
+		modules\xml\iXml.h = modules\xml\iXml.h
+		modules\xml\xml.h = modules\xml\xml.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fastxml", "fastxml", "{FB7D1463-CE62-4924-8A29-F4310CF44326}"
+	ProjectSection(SolutionItems) = preProject
+		modules\fastxml\cFastXml.h = modules\fastxml\cFastXml.h
+		modules\fastxml\cFastXmlAttr.h = modules\fastxml\cFastXmlAttr.h
+		modules\fastxml\cFastXmlCDATASection.h = modules\fastxml\cFastXmlCDATASection.h
+		modules\fastxml\cFastXmlCharacterData.h = modules\fastxml\cFastXmlCharacterData.h
+		modules\fastxml\cFastXmlComment.h = modules\fastxml\cFastXmlComment.h
+		modules\fastxml\cFastXmlDocument.h = modules\fastxml\cFastXmlDocument.h
+		modules\fastxml\cFastXmlElement.h = modules\fastxml\cFastXmlElement.h
+		modules\fastxml\cFastXmlNamedNodeMap.h = modules\fastxml\cFastXmlNamedNodeMap.h
+		modules\fastxml\cFastXmlNode.h = modules\fastxml\cFastXmlNode.h
+		modules\fastxml\cFastXmlNodeList.h = modules\fastxml\cFastXmlNodeList.h
+		modules\fastxml\cFastXmlNodeSet.h = modules\fastxml\cFastXmlNodeSet.h
+		modules\fastxml\cFastXmlText.h = modules\fastxml\cFastXmlText.h
+		modules\fastxml\fastxml.h = modules\fastxml\fastxml.h
+		modules\fastxml\iFastXml.h = modules\fastxml\iFastXml.h
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A909D85D-3EB5-433B-8C13-2A698B6E354D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A909D85D-3EB5-433B-8C13-2A698B6E354D}.Debug|Win32.Build.0 = Debug|Win32
+		{A909D85D-3EB5-433B-8C13-2A698B6E354D}.Release|Win32.ActiveCfg = Release|Win32
+		{A909D85D-3EB5-433B-8C13-2A698B6E354D}.Release|Win32.Build.0 = Release|Win32
+		{54048B17-8201-4503-AAC7-B8652228519D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{54048B17-8201-4503-AAC7-B8652228519D}.Debug|Win32.Build.0 = Debug|Win32
+		{54048B17-8201-4503-AAC7-B8652228519D}.Release|Win32.ActiveCfg = Release|Win32
+		{54048B17-8201-4503-AAC7-B8652228519D}.Release|Win32.Build.0 = Release|Win32
+		{93E2AEBD-1B72-4158-A668-5E2A52AE5806}.Debug|Win32.ActiveCfg = Debug|Win32
+		{93E2AEBD-1B72-4158-A668-5E2A52AE5806}.Debug|Win32.Build.0 = Debug|Win32
+		{93E2AEBD-1B72-4158-A668-5E2A52AE5806}.Release|Win32.ActiveCfg = Release|Win32
+		{93E2AEBD-1B72-4158-A668-5E2A52AE5806}.Release|Win32.Build.0 = Release|Win32
+		{9791C227-C0E7-45D1-93C9-BF65862F4032}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9791C227-C0E7-45D1-93C9-BF65862F4032}.Debug|Win32.Build.0 = Debug|Win32
+		{9791C227-C0E7-45D1-93C9-BF65862F4032}.Release|Win32.ActiveCfg = Release|Win32
+		{9791C227-C0E7-45D1-93C9-BF65862F4032}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1E12F863-6944-45C0-A3DD-7E64B9532857} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{22467238-3D1B-424A-81B4-AEA3EC165CA8} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{28B2F03A-5DE2-492C-95A8-E2AE60088A89} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{6F09CF9A-A76C-46E5-8E9F-27D87E8D21E3} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{23C091E1-AB2D-4717-A363-87CA16EF5776} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{A8762AAF-280A-4AAE-9C1C-D1340A722C67} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{94EA4682-D388-4350-A393-7E4C3E9D4C9B} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{105022F9-C1ED-4C91-B23F-796EB57C1590} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{796EF190-D884-4ACE-920B-FDA78CB93F02} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{8C1A15EF-1C23-4E0E-A9A3-AF09ABA4E791} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{2217265D-2D1A-4124-8587-DFC040BD0DF6} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{3291A127-D034-4318-837F-ED5BFC5345DD} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{A2F968D8-AC92-4230-8A6A-FC4D66E95B5C} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{8C8977B7-DE9F-42AC-8A51-BAF51AE309D6} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{20608736-CD2E-4D2D-905F-CC0204DA1F45} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{3985CEAE-9545-4BF3-91FB-9908740BB7AE} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{DDC1F7B1-B9AE-4918-BA85-8026BF9C7E6D} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{8D061411-89E5-45F6-BC10-4F74C455D1F3} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{FC32EDB0-FE72-4D45-B506-5C442C72EF60} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{4DBF85A4-C905-483B-8B3A-A350A264ED21} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{DB2F3141-7810-49FA-AEC1-223F94C5C175} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{DC9D04B9-6E24-4A7E-97D7-65EB0CCDB82A} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+		{FB7D1463-CE62-4924-8A29-F4310CF44326} = {E190BAD3-A698-45AF-9B6C-95E03D776584}
+	EndGlobalSection
+EndGlobal

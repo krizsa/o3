@@ -1,0 +1,11 @@
+#!/bin/bash
+cp -rf ../../plugin/build/Release/npplugin.plugin npplugin.plugin
+pax -wf Archive.pax npplugin.plugin
+gzip -f Archive.pax
+mkbom npplugin.plugin Archive.bom
+cp Archive.bom Archive.pax.gz Installer.mpkg/Contents/Packages/o3.pkg/Contents
+mkdir o3plugin-osx32
+cp -a Installer.mpkg o3plugin-osx32/o3plugin-osx32.mpkg
+rm o3plugin-osx32.dmg
+hdiutil create -fs HFS+ -srcFolder o3plugin-osx32 o3plugin-osx32.dmg
+rm -rf o3plugin-osx32

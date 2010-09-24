@@ -1,0 +1,32 @@
+Ajax.org Binary O3 C++ components for NodeJS 
+
+This is an autobuild repo from ajaxorg/o3, please clone with --depth 1 for fastest download
+git clone git://github.com/ajaxorg/o3node.git --depth 1
+
+After git clone you can require modules in node like this:
+var xml = require('o3node/xml')
+
+This repo contains pre-built O3 binary modules built against NodeJS 0.2.2 for:
+- Linux 32 bit (built on ubuntu hardy)
+- Osx 64 bit (built on snow leopard 10.6.2)
+- Windows 32 bit (built on windows 7 with cygwin)
+If you want to compile these binaries yourself please look at ajaxorg/o3 on github
+
+Make sure you have node installed!
+If you are on windows, or want binaries you can get our pre-build node binaries here:
+git clone git://github.com/ajaxorg/nodebin.git --depth 1
+You can also install Cygwin and compile node on it yourself:
+ http://github.com/ry/node/wiki/Building-node.js-on-Cygwin-%28Windows%29
+Don't forget to install libxml for cygwin! 
+
+----- O3 XML DOM Module ------
+
+To run the tests:
+
+node o3node/xml/test/test.js
+
+To run the example:
+
+node o3node/xml/examples/example.js
+
+No documentation yet, but the API *should* conform to the XML DOM Level 1 specification. The example should be a good starting point (if you find any mistakes, please fork,fix and let us know!).

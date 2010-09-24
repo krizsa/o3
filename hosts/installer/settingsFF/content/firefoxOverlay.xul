@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://o3/skin/overlay.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://o3/locale/o3.dtd">
+<overlay id="o3-overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script src="overlay.js"/>
+  <stringbundleset id="stringbundleset">
+    <stringbundle id="o3-strings" src="chrome://o3/locale/o3.properties"/>
+  </stringbundleset>
+
+  <menupopup id="menu_ToolsPopup">
+    <menuitem id="o3-hello" label="&o3.label;" 
+              oncommand="o3.onMenuItemCommand(event);"/>
+  </menupopup>
+  <popup id="contentAreaContextMenu">
+    <menuitem id="context-o3" label="&o3Context.label;"
+              accesskey="&o3Context.accesskey;"
+              insertafter="context-stop"
+              oncommand="o3.onMenuItemCommand(event)"/>
+  </popup>
+</overlay>

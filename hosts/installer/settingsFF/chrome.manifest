@@ -1,0 +1,4 @@
+content	o3	content/
+locale	o3	en-US	locale/en-US/
+skin	o3	classic/1.0	skin/
+overlay	chrome://browser/content/browser.xul	chrome://o3/content/firefoxOverlay.xul

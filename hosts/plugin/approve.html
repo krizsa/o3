@@ -1,0 +1,112 @@
+<html<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml"	xml:lang="en">
+
+	<head>
+        <script type="text/javascript" src="o3.js"></script>        
+	</head>
+	<body>
+		<form id=settings name=settings>		
+		</form>
+		<br></br>
+		<button type="button" onclick="writeSettings()">Save settings</button>
+	
+	</body>
+	<script>
+		var o3obj;
+		
+		// creating an o3 instance, we need the UID and the name of the product
+        // the o3.js file will take care of all the details
+        o3obj = o3.create("AAAAAAAA-1111-BBBB-1111-CCCCCCCCCCCC", { 
+            oninstallprompt : function(){ alert("can't find o3 plugin");}    
+        } );
+		
+		function parseSettings(str) {
+
+			var matches = str.match(/[\w]*=[0-9]*\n/g),
+				settings = {},eq,m;
+			if(!matches)
+				return settings;
+				
+			for (var i=0; i<matches.length; i++) {
+				m = matches[i];
+				eq = m.indexOf('=');
+				settings[m.substring(0,eq)] = m.substring(eq+1);
+			}
+			return settings;
+		}
+
+		function settingsFile() {
+				var url = '',
+					m,					
+					dname,
+					params = getParams();
+				
+				if (params && params['domain'])
+					dname = params['domain'];
+				
+				//m = url.match(/:\/\/[-.a-zA-Z0-9]*\//);		
+				//if (!m) {
+				//	alert("domain not found"); 
+				//}
+				//dname = m[0].substring(2,m[0].length-2);
+				//if (dname.length == 0)
+				//	dname = 'localhost';			
+				var sdir = o3obj.settingsDir,
+					sfile = sdir.get(dname);
+				
+			return sfile;		
+		}
+		
+		function readSettings() {
+				
+				var	html = '\n<br>components: </br>',
+					file = settingsFile(),
+					settingsStr = file ? file.data : '',					
+					settings = parseSettings(settingsStr),
+					form = document.getElementById('settings');
+					
+				for (var comp in settings) {
+					html += comp + '<input type="checkbox" name="' + comp + '"' 
+						+ (parseInt(settings[comp])>0 ? 'checked="yes"' : '') + '/>\n';			
+				}				
+				
+				form.innerHTML = html + form.innerHTML;
+		}
+		
+		function serializeSettings(settings) {
+			var str=[];
+			for(var i in settings) {
+				str.push(i,'=',settings[i],'\n');
+			}
+			return str.join('');
+		}
+		
+		function writeSettings() {
+			var newSettings = {}, 
+				f, 
+				s=[],
+				form = document.getElementById('settings');
+			
+			for (var i=0; i<form.length; i++){
+				f = form[i];
+				newSettings[f.name] = f.checked ? 1 : 0;
+			}
+			settingsFile().data = serializeSettings(newSettings);
+		}
+		
+		function getParams() {
+			var idx = document.URL.indexOf('?');
+			if (idx != -1) {
+				var tempParams = new Object();
+				var pairs = document.URL.substring(idx+1,document.URL.length).split('&');
+				for (var i=0; i<pairs.length; i++) {
+					nameVal = pairs[i].split('=');
+					tempParams[nameVal[0]] = nameVal[1];		
+				}
+				return tempParams;
+			}
+		}
+		
+		readSettings();
+	</script>
+</html>	

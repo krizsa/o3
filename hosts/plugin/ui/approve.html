@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:a="http://ajax.org/2005/aml" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+       <title>Ajax.org Platform Elements</title>
+       <script src="apf_release.js"></script>
+	   <script src="o3.js"></script>
+       <style>
+        .box{
+            border : 1px solid gray;
+            background : #f1f1f1;
+        }
+        .box2{
+            border:1px solid gray;
+        }
+        
+        .box2 span{
+            padding : 5px;
+        }
+        </style>
+    </head>
+    <body>
+		<a:skin src="skins.xml" />
+        
+        <a:appsettings debug="0" />
+        
+        <a:window width="456" height="235" center="true" visible="true" resizable="true">
+            <a:vbox anchors="20 20 0 20">
+                <a:hbox edge="0 0 10 0" align="start">
+                    <a:img width="60" height="60" margin="0 10 0 0" />
+                    <div flex="1">
+                        <strong>Allow this website to use the O3 plugin?</strong><br />
+                        This website makes extensive use of the O3 plugin by Ajax.or but 
+                        needs your authorisation to run. This will happen only once.
+                    </div>
+                </a:hbox>
+                <a:divider>Component details</a:divider>
+                <a:list id="lstComponents" flex="1" margin="10 0 0 0" skin="checklist" 
+                  model   = "mdlComponents" 
+                  mode    = "check" 
+                  each    = "[item]" 
+                  caption = "[@caption]" 
+                  checked = "[@check]" />
+                <a:hbox pack="end" padding="10" edge="10 0 10 0">
+                    <a:button>Deny</a:button>
+                    <a:button onclick="writeSettings(lstComponents)" default="true">Allow</a:button>
+                </a:hbox>
+            </a:vbox>
+        </a:window>
+        
+        <a:model id="mdlComponents">
+			<components>
+			</components>			
+        </a:model>
+		
+		<a:script>//<!--
+			var o3obj;
+		
+			// creating an o3 instance, we need the UID and the name of the product
+			// the o3.js file will take care of all the details
+			o3obj = o3.create('8A66ECAC-63FD-4AFA-9D42-3034D18C88F4', { 
+				oninstallprompt : function(){ alert("can't find o3 plugin");},    
+				product : 'O3Demo'
+			} );
+
+			var ComponentMap = {
+				fs: "File System",
+				barcode: "Barcode",
+				http: "Http Client",
+				image: "Image",
+				process: "Process",
+				protocol: "o3 protocol",
+				screen: "Screen",
+				window: "Window",
+				xml: "Xml",
+				blobl: "Blob (binary container)",
+				socket: "TCP Socket",
+				zip: "Zip",
+				rsa: "RSA Encryption",
+				md5: "MD5 Hash",
+				sha1: "SHA1 Hash",
+			};
+			
+			var componentList = [];
+					
+			function parseSettings(str) {
+
+				var matches = str.match(/[\w]*=[0-9]*\n/g),
+					settings = {},eq,m;
+				if(!matches)
+					return settings;
+					
+				for (var i=0; i<matches.length; i++) {
+					m = matches[i];
+					eq = m.indexOf('=');
+					settings[m.substring(0,eq)] = m.substring(eq+1);
+				}
+				return settings;
+			}
+
+			function settingsFile() {
+					var url = '',
+						m,					
+						dname,
+						params = getParams();
+					
+					if (params && params['domain'])
+						dname = params['domain'];
+										
+					var sdir = o3obj.settingsDir,
+						sfile = sdir.get(dname);
+					
+				return sfile;		
+			}
+
+			function readSettings() {
+					var	file = settingsFile(),					
+						settingsStr = file ? file.data : '',					
+						settings = parseSettings(settingsStr),
+						xml = "",
+						desc;
+
+					for (var comp in settings) {
+						componentList.push(comp);
+						desc = ComponentMap[comp] ? ComponentMap[comp] : comp;
+						xml +=	'<item caption=\"' + desc + '\" check="1" />';
+					}		
+					
+					mdlComponents.appendXml(xml);
+				
+			}
+
+			function serializeSettings(settings) {
+				var str=[];
+				for(var i in settings) {
+					str.push(i,'=',settings[i],'\n');
+				}
+				return str.join('');
+			}
+
+			function writeSettings(list) {
+
+				list.selectAll();
+				var elems = list.getSelection();
+				var newSettings = {};
+					
+				for (var i=0; i<elems.length; i++){
+					newSettings[componentList[i]] 
+						= (elems[i].getAttribute("check")=="1") ? 1 : 0;
+				}
+				settingsFile().data = serializeSettings(newSettings);
+			}
+
+			function getParams() {
+				var idx = document.URL.indexOf('?'),
+					idx2;
+					
+				if (idx != -1) {
+					var tempParams = new Object();
+					var subs = document.URL.substring(idx+1,document.URL.length);
+					idx2 = subs.indexOf('#');
+					if (idx2 != -1)
+						subs = subs.substring(0,idx2);
+
+					var pairs = subs.split('&');
+					for (var i=0; i<pairs.length; i++) {
+						nameVal = pairs[i].split('=');
+						tempParams[nameVal[0]] = nameVal[1];		
+					}
+					return tempParams;
+				}
+			}		
+			
+			readSettings();
+		//-->
+		</a:script>
+    </body>				
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "O3Demo",
+  "version": "0.9",
+  "description": "Ajax.org helper plugin.",
+  "permissions": [
+    "http://www.ajax.org/*"
+  ],
+  "options_page": "http://www.ajax.org/o3test/win/v0_9/settings.html"
+}
