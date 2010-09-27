@@ -19,19 +19,19 @@
 #define O3_C_KEYBOARD1_H
 
 #ifdef O3_APPLE
-#include "cKeyboard1_apple.h"
+#include "cKeyboard_apple.h"
 #endif // O3_APPLE
 #ifdef O3_WIN32
 #include "tools_glue.h"
-#include "cKeyboard1_win32.h"
+#include "cKeyboard_win32.h"
 #endif // O3_WIN32
 
 #ifdef O3_WITH_GLUE
 #ifdef O3_APPLE
-#include "cKeyboard1_apple_glue.h"
+#include "cKeyboard_apple_glue.h"
 #endif // O3_APPLE
 #ifdef O3_WIN32
-#include "cKeyboard1_win32_glue.h"
+#include "cKeyboard_win32_glue.h"
 #endif // O3_WIN32
 #endif // O3_WITH_GLUE 
 

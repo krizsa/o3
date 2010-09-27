@@ -524,23 +524,23 @@ struct cCtx : cMgr, iCtx {
 		m_loop = g_sys->createMessageLoop();
 		m_o3 = o3_new(cO3)(this, 0, 0, 0);
 
-        addExtTraits(cFs1::extTraits());
+        addExtTraits(cFs::extTraits());
 
 //		addExtTraits(cWindow1::extTraits());
 
-        addExtTraits(cWindow1::extTraits());
-        addExtTraits(cMouse1::extTraits());
-        addExtTraits(cKeyboard1::extTraits());
+        addExtTraits(cWindow::extTraits());
+        addExtTraits(cMouse::extTraits());
+        addExtTraits(cKeyboard::extTraits());
 
 //		addExtTraits(cSocket1::extTraits());
-		addExtTraits(cHttp1::extTraits());
+		addExtTraits(cHttp::extTraits());
 //		addExtTraits(cProcess1::extTraits());
 //		addExtTraits(cImage1::extTraits());
 //		addExtTraits(cScan1::extTraits());
 //		addExtTraits(cBarcode1::extTraits());
-	    addFactory("fs", &cFs1::rootDir);
-		addFactory("http", &cHttp1::factory);	
-	    addFactory("settingsDir", &cFs1::settingsDir);
+	    addFactory("fs", &cFs::rootDir);
+		addFactory("http", &cHttp::factory);	
+	    addFactory("settingsDir", &cFs::settingsDir);
 	}
 	
 	~cCtx()

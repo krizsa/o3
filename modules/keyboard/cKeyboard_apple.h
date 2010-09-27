@@ -15,24 +15,25 @@
  * this library; if not, write to the Free Software Foundation, Inc., 51
  * Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
-#ifndef O3_C_KEYBOARD1_APPLE_H
-#define O3_C_KEYBOARD1_APPLE_H
+#ifndef O3_C_KEYBOARD_APPLE_H
+#define O3_C_KEYBOARD_APPLE_H
 
 #include <ApplicationServices/ApplicationServices.h>
+#include "cKeyboardBase.h"
 
 namespace o3 {
 
-struct cKeyboard1 : cKeyboard1Base {
+struct cKeyboard : cKeyboardBase {
     static o3_ext("cO3") o3_get siScr keyboard(iCtx* ctx)
     {
         static Var keyboard = ctx->value("keyboard");
         
         if (keyboard.type() == Var::TYPE_VOID)
-            keyboard = ctx->setValue("keyboard", o3_new(cKeyboard1)());
+            keyboard = ctx->setValue("keyboard", o3_new(cKeyboard)());
         return keyboard.toScr();
     }
     
-    o3_begin_class(cKeyboard1Base)
+    o3_begin_class(cKeyboardBase)
     o3_end_class()
     
     o3_glue_gen()
@@ -80,4 +81,4 @@ struct cKeyboard1 : cKeyboard1Base {
 
 } // namespace o3
 
-#endif // O3_C_KEYBOARD1_APPLE_H
+#endif // O3_C_KEYBOARD_APPLE_H

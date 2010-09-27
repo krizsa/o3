@@ -1,0 +1,119 @@
+// !$*UTF8*$!
+{
+	089C1669FE841209C02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeTarget = 8D01CCC60486CAD60068D4B7 /* plugin */;
+		addToTargets = (
+			8D01CCC60486CAD60068D4B7 /* plugin */,
+		);
+		codeSenseManager = F93DBCD612475EC400FACB9B /* Code sense */;
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					208,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					168,
+					60,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 307279798;
+			PBXWorkspaceStateSaveDate = 307279798;
+		};
+		perUserProjectItems = {
+			F93DBCFE1247649B00FACB9B = F93DBCFE1247649B00FACB9B /* PBXTextBookmark */;
+			F93DBD1C1250B76200FACB9B = F93DBD1C1250B76200FACB9B /* PBXTextBookmark */;
+		};
+		sourceControlManager = F93DBCD512475EC400FACB9B /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	8D01CCC60486CAD60068D4B7 /* plugin */ = {
+		activeExec = 0;
+	};
+	F93DBCD512475EC400FACB9B /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	F93DBCD612475EC400FACB9B /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	F93DBCE812475FB400FACB9B /* cO3.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = cO3.h;
+		path = /Users/ejpbruel/Projects/o3/hosts/plugin/../../include/cO3.h;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {386, 8624}}";
+			sepNavSelRange = "{840, 30}";
+			sepNavVisRange = "{780, 140}";
+		};
+	};
+	F93DBCFE1247649B00FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBCE812475FB400FACB9B /* cO3.h */;
+		name = "cO3.h: 23";
+		rLen = 30;
+		rLoc = 840;
+		rType = 0;
+		vrLen = 137;
+		vrLoc = 758;
+	};
+	F93DBD1C1250B76200FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBD1D1250B76200FACB9B /* cO3.h */;
+		name = "cO3.h: 23";
+		rLen = 30;
+		rLoc = 840;
+		rType = 0;
+		vrLen = 137;
+		vrLoc = 758;
+	};
+	F93DBD1D1250B76200FACB9B /* cO3.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = cO3.h;
+		path = /Users/ejpbruel/Projects/o3/hosts/plugin/../../include/cO3.h;
+		sourceTree = "<absolute>";
+	};
+}

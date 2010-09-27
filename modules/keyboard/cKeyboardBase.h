@@ -15,12 +15,12 @@
  * this library; if not, write to the Free Software Foundation, Inc., 51
  * Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
-#ifndef O3_C_KEYBOARD1_BASE_H
-#define O3_C_KEYBOARD1_BASE_H
+#ifndef O3_C_KEYBOARD_BASE_H
+#define O3_C_KEYBOARD_BASE_H
 
 namespace o3 {
 
-struct cKeyboard1Base : cScr {
+struct cKeyboardBase : cScr {
     o3_begin_class(cScr)
     o3_end_class()
     
@@ -39,4 +39,4 @@ struct cKeyboard1Base : cScr {
 
 } // namespace o3
 
-#endif // O3_C_KEYBOARD1_BASE_H
+#endif // O3_C_KEYBOARD_BASE_H

@@ -19,6 +19,7 @@
 #define O3_C_MOUSE1_APPLE_H
 
 #include <ApplicationServices/ApplicationServices.h>
+#include "cMouseBase.h"
 
 namespace o3 {
 
