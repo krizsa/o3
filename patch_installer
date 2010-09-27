@@ -1,0 +1,11 @@
+#!/bin/bash
+cd hosts/installer/osx
+cp -rf ../../..//build/Release/npplugin.plugin npplugin.plugin
+pax -wf Archive.pax npplugin.plugin
+gzip -f Archive.pax
+mkbom npplugin.plugin Archive.bom
+mv Archive.bom Archive.pax.gz Installer.mpkg/Contents/Packages/o3.pkg/Contents
+mkdir temp
+cp -rf Installer.mpkg temp/o3plugin.mpkg
+hdiutil create -fs HFS+ -srcFolder temp o3plugin.dmg
+rm -rf temp
