@@ -11,6 +11,8 @@
 		F93DBD281250B7EA00FACB9B /* plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = F93DBD271250B7EA00FACB9B /* plugin.mm */; };
 		F93DBFA51250CAB500FACB9B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93DBFA41250CAB500FACB9B /* Cocoa.framework */; };
 		F93DBFFA1250D21C00FACB9B /* plugin.r in Rez */ = {isa = PBXBuildFile; fileRef = F93DBFF91250D21C00FACB9B /* plugin.r */; };
+		F93DC0071250DB5200FACB9B /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93DC0061250DB5200FACB9B /* ApplicationServices.framework */; };
+		F93DC00C1250DB5900FACB9B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93DC00B1250DB5900FACB9B /* AppKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		F93DBD271250B7EA00FACB9B /* plugin.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = plugin.mm; path = hosts/plugin/plugin.mm; sourceTree = "<group>"; };
 		F93DBFA41250CAB500FACB9B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F93DBFF91250D21C00FACB9B /* plugin.r */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.rez; name = plugin.r; path = hosts/plugin/plugin.r; sourceTree = "<group>"; };
+		F93DC0061250DB5200FACB9B /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		F93DC00B1250DB5900FACB9B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,8 +30,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1445F12F117F354E00C5F36F /* libcurl.dylib in Frameworks */,
+				F93DC0071250DB5200FACB9B /* ApplicationServices.framework in Frameworks */,
+				F93DC00C1250DB5900FACB9B /* AppKit.framework in Frameworks */,
 				F93DBFA51250CAB500FACB9B /* Cocoa.framework in Frameworks */,
+				1445F12F117F354E00C5F36F /* libcurl.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,7 +47,6 @@
 				089C167CFE841241C02AAC07 /* Resources */,
 				089C1671FE841209C02AAC07 /* Frameworks */,
 				19C28FB4FE9D528D11CA2CBB /* Products */,
-				F93DBFA41250CAB500FACB9B /* Cocoa.framework */,
 			);
 			name = npplugin;
 			sourceTree = "<group>";
@@ -50,6 +55,9 @@
 			isa = PBXGroup;
 			children = (
 				1445F12E117F354E00C5F36F /* libcurl.dylib */,
+				F93DBFA41250CAB500FACB9B /* Cocoa.framework */,
+				F93DC0061250DB5200FACB9B /* ApplicationServices.framework */,
+				F93DC00B1250DB5900FACB9B /* AppKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

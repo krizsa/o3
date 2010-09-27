@@ -13,7 +13,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					208,
+					460,
 					20,
 					48,
 					43,
@@ -35,7 +35,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					168,
+					420,
 					60,
 					20,
 					48,
@@ -58,6 +58,50 @@
 		perUserProjectItems = {
 			F93DBCFE1247649B00FACB9B = F93DBCFE1247649B00FACB9B /* PBXTextBookmark */;
 			F93DBD1C1250B76200FACB9B = F93DBD1C1250B76200FACB9B /* PBXTextBookmark */;
+			F93DBFAE1250CBE500FACB9B /* PBXTextBookmark */ = F93DBFAE1250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFAF1250CBE500FACB9B /* PBXTextBookmark */ = F93DBFAF1250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFB11250CBE500FACB9B /* PBXTextBookmark */ = F93DBFB11250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFB31250CBE500FACB9B /* PBXTextBookmark */ = F93DBFB31250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFB41250CBE500FACB9B /* PBXTextBookmark */ = F93DBFB41250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFB61250CBE500FACB9B /* PBXTextBookmark */ = F93DBFB61250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFB81250CBE500FACB9B /* PBXTextBookmark */ = F93DBFB81250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFBA1250CBE500FACB9B /* PBXTextBookmark */ = F93DBFBA1250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFBC1250CBE500FACB9B /* PBXTextBookmark */ = F93DBFBC1250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFBE1250CBE500FACB9B /* PBXTextBookmark */ = F93DBFBE1250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFC01250CBE500FACB9B /* PBXTextBookmark */ = F93DBFC01250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFC11250CBE500FACB9B /* PBXTextBookmark */ = F93DBFC11250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFC31250CBE500FACB9B /* PBXTextBookmark */ = F93DBFC31250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFC51250CBE500FACB9B /* PBXTextBookmark */ = F93DBFC51250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFC71250CBE500FACB9B /* PBXTextBookmark */ = F93DBFC71250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFC91250CBE500FACB9B /* PBXTextBookmark */ = F93DBFC91250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFCB1250CBE500FACB9B /* PBXTextBookmark */ = F93DBFCB1250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFCC1250CBE500FACB9B /* PBXTextBookmark */ = F93DBFCC1250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFCE1250CBE500FACB9B /* PBXTextBookmark */ = F93DBFCE1250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFD01250CBE500FACB9B /* PBXTextBookmark */ = F93DBFD01250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFD21250CBE500FACB9B /* PBXTextBookmark */ = F93DBFD21250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFD41250CBE500FACB9B /* PBXTextBookmark */ = F93DBFD41250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFD61250CBE500FACB9B /* PBXTextBookmark */ = F93DBFD61250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFD81250CBE500FACB9B /* PBXTextBookmark */ = F93DBFD81250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFDA1250CBE500FACB9B /* PBXTextBookmark */ = F93DBFDA1250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFDC1250CBE500FACB9B /* PBXTextBookmark */ = F93DBFDC1250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFDE1250CBE500FACB9B /* PBXTextBookmark */ = F93DBFDE1250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFE01250CBE500FACB9B /* PBXTextBookmark */ = F93DBFE01250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFE21250CBE500FACB9B /* PBXTextBookmark */ = F93DBFE21250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFE41250CBE500FACB9B /* PBXTextBookmark */ = F93DBFE41250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFE61250CBE500FACB9B /* PBXTextBookmark */ = F93DBFE61250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFE81250CBE500FACB9B /* PBXTextBookmark */ = F93DBFE81250CBE500FACB9B /* PBXTextBookmark */;
+			F93DBFEF1250CE8800FACB9B /* PBXTextBookmark */ = F93DBFEF1250CE8800FACB9B /* PBXTextBookmark */;
+			F93DBFF21250CE9300FACB9B /* PBXTextBookmark */ = F93DBFF21250CE9300FACB9B /* PBXTextBookmark */;
+			F93DBFF41250CF9C00FACB9B /* PBXTextBookmark */ = F93DBFF41250CF9C00FACB9B /* PBXTextBookmark */;
+			F93DBFF61250D11600FACB9B /* PBXTextBookmark */ = F93DBFF61250D11600FACB9B /* PBXTextBookmark */;
+			F93DBFFE1250D28900FACB9B /* PBXTextBookmark */ = F93DBFFE1250D28900FACB9B /* PBXTextBookmark */;
+			F93DBFFF1250D28900FACB9B /* PBXTextBookmark */ = F93DBFFF1250D28900FACB9B /* PBXTextBookmark */;
+			F93DC0001250D28900FACB9B /* PBXTextBookmark */ = F93DC0001250D28900FACB9B /* PBXTextBookmark */;
+			F93DC0011250D28900FACB9B /* PBXTextBookmark */ = F93DC0011250D28900FACB9B /* PBXTextBookmark */;
+			F93DC0021250D28900FACB9B /* PBXTextBookmark */ = F93DC0021250D28900FACB9B /* PBXTextBookmark */;
+			F93DC0031250D28900FACB9B /* PBXTextBookmark */ = F93DC0031250D28900FACB9B /* PBXTextBookmark */;
+			F93DC0051250D8C400FACB9B /* PBXTextBookmark */ = F93DC0051250D8C400FACB9B /* PBXTextBookmark */;
+			F93DC0E31250DBAE00FACB9B /* PBXTextBookmark */ = F93DC0E31250DBAE00FACB9B /* PBXTextBookmark */;
 		};
 		sourceControlManager = F93DBCD512475EC400FACB9B /* Source Control */;
 		userBuildSettings = {
@@ -115,5 +159,631 @@
 		name = cO3.h;
 		path = /Users/ejpbruel/Projects/o3/hosts/plugin/../../include/cO3.h;
 		sourceTree = "<absolute>";
+	};
+	F93DBD271250B7EA00FACB9B /* plugin.mm */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {638, 882}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{996, 471}";
+		};
+	};
+	F93DBFAE1250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBCE812475FB400FACB9B /* cO3.h */;
+		name = "cO3.h: 23";
+		rLen = 30;
+		rLoc = 840;
+		rType = 0;
+		vrLen = 140;
+		vrLoc = 780;
+	};
+	F93DBFAF1250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFB01250CBE500FACB9B /* cStream.h */;
+		name = "cStream.h: 30";
+		rLen = 32;
+		rLoc = 968;
+		rType = 0;
+		vrLen = 589;
+		vrLoc = 541;
+	};
+	F93DBFB01250CBE500FACB9B /* cStream.h */ = {
+		isa = PBXFileReference;
+		name = cStream.h;
+		path = /Users/ejpbruel/Projects/o3/include/cStream.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFB11250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFB21250CBE500FACB9B /* keyboard.h */;
+		name = "keyboard.h: 34";
+		rLen = 0;
+		rLoc = 1090;
+		rType = 0;
+		vrLen = 635;
+		vrLoc = 541;
+	};
+	F93DBFB21250CBE500FACB9B /* keyboard.h */ = {
+		isa = PBXFileReference;
+		name = keyboard.h;
+		path = /Users/ejpbruel/Projects/o3/modules/keyboard/keyboard.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFB31250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBD271250B7EA00FACB9B /* plugin.mm */;
+		name = "plugin.mm: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 926;
+		vrLoc = 0;
+	};
+	F93DBFB41250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFB51250CBE500FACB9B /* cMouse_apple_glue.h */;
+		name = "cMouse_apple_glue.h: 15";
+		rLen = 144;
+		rLoc = 216;
+		rType = 0;
+		vrLen = 699;
+		vrLoc = 0;
+	};
+	F93DBFB51250CBE500FACB9B /* cMouse_apple_glue.h */ = {
+		isa = PBXFileReference;
+		name = cMouse_apple_glue.h;
+		path = /Users/ejpbruel/Projects/o3/modules/mouse/cMouse_apple_glue.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFB61250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFB71250CBE500FACB9B /* np_plugin.h */;
+		name = "np_plugin.h: 536";
+		rLen = 0;
+		rLoc = 14062;
+		rType = 0;
+		vrLen = 796;
+		vrLoc = 13483;
+	};
+	F93DBFB71250CBE500FACB9B /* np_plugin.h */ = {
+		isa = PBXFileReference;
+		name = np_plugin.h;
+		path = /Users/ejpbruel/Projects/o3/hosts/plugin/np_plugin.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFB81250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFB91250CBE500FACB9B /* cKeyboard_apple_glue.h */;
+		name = "cKeyboard_apple_glue.h: 6";
+		rLen = 0;
+		rLoc = 102;
+		rType = 0;
+		vrLen = 713;
+		vrLoc = 0;
+	};
+	F93DBFB91250CBE500FACB9B /* cKeyboard_apple_glue.h */ = {
+		isa = PBXFileReference;
+		name = cKeyboard_apple_glue.h;
+		path = /Users/ejpbruel/Projects/o3/modules/keyboard/cKeyboard_apple_glue.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFBA1250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFBB1250CBE500FACB9B /* cFs_posix.h */;
+		name = "cFs_posix.h: 25";
+		rLen = 0;
+		rLoc = 895;
+		rType = 0;
+		vrLen = 916;
+		vrLoc = 37;
+	};
+	F93DBFBB1250CBE500FACB9B /* cFs_posix.h */ = {
+		isa = PBXFileReference;
+		name = cFs_posix.h;
+		path = /Users/ejpbruel/Projects/o3/modules/fs/cFs_posix.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFBC1250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFBD1250CBE500FACB9B /* cMouse_apple.h */;
+		name = "cMouse_apple.h: 23";
+		rLen = 0;
+		rLoc = 896;
+		rType = 0;
+		vrLen = 966;
+		vrLoc = 0;
+	};
+	F93DBFBD1250CBE500FACB9B /* cMouse_apple.h */ = {
+		isa = PBXFileReference;
+		name = cMouse_apple.h;
+		path = /Users/ejpbruel/Projects/o3/modules/mouse/cMouse_apple.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFBE1250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "error: expected class-name before '{' token";
+		fRef = F93DBFBF1250CBE500FACB9B /* cKeyboard_apple.h */;
+		rLen = 1;
+		rLoc = 25;
+		rType = 1;
+	};
+	F93DBFBF1250CBE500FACB9B /* cKeyboard_apple.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = cKeyboard_apple.h;
+		path = /Users/ejpbruel/Projects/o3/modules/keyboard/cKeyboard_apple.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFC01250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBCE812475FB400FACB9B /* cO3.h */;
+		name = "cO3.h: 23";
+		rLen = 30;
+		rLoc = 840;
+		rType = 0;
+		vrLen = 140;
+		vrLoc = 780;
+	};
+	F93DBFC11250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFC21250CBE500FACB9B /* cStream.h */;
+		name = "cStream.h: 30";
+		rLen = 32;
+		rLoc = 968;
+		rType = 0;
+		vrLen = 589;
+		vrLoc = 541;
+	};
+	F93DBFC21250CBE500FACB9B /* cStream.h */ = {
+		isa = PBXFileReference;
+		name = cStream.h;
+		path = /Users/ejpbruel/Projects/o3/include/cStream.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFC31250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFC41250CBE500FACB9B /* keyboard.h */;
+		name = "keyboard.h: 22";
+		rLen = 29;
+		rLoc = 829;
+		rType = 0;
+		vrLen = 967;
+		vrLoc = 0;
+	};
+	F93DBFC41250CBE500FACB9B /* keyboard.h */ = {
+		isa = PBXFileReference;
+		name = keyboard.h;
+		path = /Users/ejpbruel/Projects/o3/modules/keyboard/keyboard.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFC51250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFC61250CBE500FACB9B /* np_plugin.h */;
+		name = "np_plugin.h: 542";
+		rLen = 40;
+		rLoc = 14279;
+		rType = 0;
+		vrLen = 702;
+		vrLoc = 13957;
+	};
+	F93DBFC61250CBE500FACB9B /* np_plugin.h */ = {
+		isa = PBXFileReference;
+		name = np_plugin.h;
+		path = /Users/ejpbruel/Projects/o3/hosts/plugin/np_plugin.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFC71250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFC81250CBE500FACB9B /* keyboard.h */;
+		name = "keyboard.h: 34";
+		rLen = 0;
+		rLoc = 1090;
+		rType = 0;
+		vrLen = 635;
+		vrLoc = 541;
+	};
+	F93DBFC81250CBE500FACB9B /* keyboard.h */ = {
+		isa = PBXFileReference;
+		name = keyboard.h;
+		path = /Users/ejpbruel/Projects/o3/modules/keyboard/keyboard.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFC91250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFCA1250CBE500FACB9B /* cFs_posix.h */;
+		name = "cFs_posix.h: 27";
+		rLen = 23;
+		rLoc = 912;
+		rType = 0;
+		vrLen = 843;
+		vrLoc = 292;
+	};
+	F93DBFCA1250CBE500FACB9B /* cFs_posix.h */ = {
+		isa = PBXFileReference;
+		name = cFs_posix.h;
+		path = /Users/ejpbruel/Projects/o3/modules/fs/cFs_posix.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFCB1250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBD271250B7EA00FACB9B /* plugin.mm */;
+		name = "plugin.mm: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 926;
+		vrLoc = 0;
+	};
+	F93DBFCC1250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFCD1250CBE500FACB9B /* cFs_posix.h */;
+		name = "cFs_posix.h: 40";
+		rLen = 0;
+		rLoc = 1226;
+		rType = 0;
+		vrLen = 493;
+		vrLoc = 812;
+	};
+	F93DBFCD1250CBE500FACB9B /* cFs_posix.h */ = {
+		isa = PBXFileReference;
+		name = cFs_posix.h;
+		path = /Users/ejpbruel/Projects/o3/modules/fs/cFs_posix.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFCE1250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFCF1250CBE500FACB9B /* np_plugin.h */;
+		name = "np_plugin.h: 543";
+		rLen = 0;
+		rLoc = 14354;
+		rType = 0;
+		vrLen = 699;
+		vrLoc = 13957;
+	};
+	F93DBFCF1250CBE500FACB9B /* np_plugin.h */ = {
+		isa = PBXFileReference;
+		name = np_plugin.h;
+		path = /Users/ejpbruel/Projects/o3/hosts/plugin/np_plugin.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFD01250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFD11250CBE500FACB9B /* cMouse_apple_glue.h */;
+		name = "cMouse_apple_glue.h: 15";
+		rLen = 144;
+		rLoc = 216;
+		rType = 0;
+		vrLen = 699;
+		vrLoc = 0;
+	};
+	F93DBFD11250CBE500FACB9B /* cMouse_apple_glue.h */ = {
+		isa = PBXFileReference;
+		name = cMouse_apple_glue.h;
+		path = /Users/ejpbruel/Projects/o3/modules/mouse/cMouse_apple_glue.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFD21250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFD31250CBE500FACB9B /* cKeyboard_apple.h */;
+		name = "cKeyboard_apple.h: 31";
+		rLen = 0;
+		rLoc = 1194;
+		rType = 0;
+		vrLen = 834;
+		vrLoc = 762;
+	};
+	F93DBFD31250CBE500FACB9B /* cKeyboard_apple.h */ = {
+		isa = PBXFileReference;
+		name = cKeyboard_apple.h;
+		path = /Users/ejpbruel/Projects/o3/modules/keyboard/cKeyboard_apple.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFD41250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFD51250CBE500FACB9B /* cMouse_apple.h */;
+		name = "cMouse_apple.h: 37";
+		rLen = 31;
+		rLoc = 1240;
+		rType = 0;
+		vrLen = 684;
+		vrLoc = 889;
+	};
+	F93DBFD51250CBE500FACB9B /* cMouse_apple.h */ = {
+		isa = PBXFileReference;
+		name = cMouse_apple.h;
+		path = /Users/ejpbruel/Projects/o3/modules/mouse/cMouse_apple.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFD61250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFD71250CBE500FACB9B /* np_plugin.h */;
+		name = "np_plugin.h: 533";
+		rLen = 0;
+		rLoc = 13984;
+		rType = 0;
+		vrLen = 785;
+		vrLoc = 13592;
+	};
+	F93DBFD71250CBE500FACB9B /* np_plugin.h */ = {
+		isa = PBXFileReference;
+		name = np_plugin.h;
+		path = /Users/ejpbruel/Projects/o3/hosts/plugin/np_plugin.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFD81250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFD91250CBE500FACB9B /* cKeyboard_apple_glue.h */;
+		name = "cKeyboard_apple_glue.h: 7";
+		rLen = 28;
+		rLoc = 103;
+		rType = 0;
+		vrLen = 717;
+		vrLoc = 0;
+	};
+	F93DBFD91250CBE500FACB9B /* cKeyboard_apple_glue.h */ = {
+		isa = PBXFileReference;
+		name = cKeyboard_apple_glue.h;
+		path = /Users/ejpbruel/Projects/o3/modules/keyboard/cKeyboard_apple_glue.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFDA1250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFDB1250CBE500FACB9B /* cKeyboard_apple.h */;
+		name = "cKeyboard_apple.h: 35";
+		rLen = 34;
+		rLoc = 1244;
+		rType = 0;
+		vrLen = 1044;
+		vrLoc = 876;
+	};
+	F93DBFDB1250CBE500FACB9B /* cKeyboard_apple.h */ = {
+		isa = PBXFileReference;
+		name = cKeyboard_apple.h;
+		path = /Users/ejpbruel/Projects/o3/modules/keyboard/cKeyboard_apple.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFDC1250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFDD1250CBE500FACB9B /* np_plugin.h */;
+		name = "np_plugin.h: 536";
+		rLen = 0;
+		rLoc = 14062;
+		rType = 0;
+		vrLen = 796;
+		vrLoc = 13483;
+	};
+	F93DBFDD1250CBE500FACB9B /* np_plugin.h */ = {
+		isa = PBXFileReference;
+		name = np_plugin.h;
+		path = /Users/ejpbruel/Projects/o3/hosts/plugin/np_plugin.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFDE1250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFDF1250CBE500FACB9B /* cFs_posix.h */;
+		name = "cFs_posix.h: 41";
+		rLen = 19;
+		rLoc = 1228;
+		rType = 0;
+		vrLen = 580;
+		vrLoc = 914;
+	};
+	F93DBFDF1250CBE500FACB9B /* cFs_posix.h */ = {
+		isa = PBXFileReference;
+		name = cFs_posix.h;
+		path = /Users/ejpbruel/Projects/o3/modules/fs/cFs_posix.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFE01250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFE11250CBE500FACB9B /* cKeyboard_apple.h */;
+		name = "cKeyboard_apple.h: 36";
+		rLen = 19;
+		rLoc = 1278;
+		rType = 0;
+		vrLen = 1044;
+		vrLoc = 876;
+	};
+	F93DBFE11250CBE500FACB9B /* cKeyboard_apple.h */ = {
+		isa = PBXFileReference;
+		name = cKeyboard_apple.h;
+		path = /Users/ejpbruel/Projects/o3/modules/keyboard/cKeyboard_apple.h;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {638, 1232}}";
+			sepNavSelRange = "{3258, 0}";
+			sepNavVisRange = "{0, 1013}";
+		};
+	};
+	F93DBFE21250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFE31250CBE500FACB9B /* cKeyboard_apple_glue.h */;
+		name = "cKeyboard_apple_glue.h: 6";
+		rLen = 0;
+		rLoc = 102;
+		rType = 0;
+		vrLen = 713;
+		vrLoc = 0;
+	};
+	F93DBFE31250CBE500FACB9B /* cKeyboard_apple_glue.h */ = {
+		isa = PBXFileReference;
+		name = cKeyboard_apple_glue.h;
+		path = /Users/ejpbruel/Projects/o3/modules/keyboard/cKeyboard_apple_glue.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFE41250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFE51250CBE500FACB9B /* cFs_posix.h */;
+		name = "cFs_posix.h: 25";
+		rLen = 0;
+		rLoc = 895;
+		rType = 0;
+		vrLen = 916;
+		vrLoc = 37;
+	};
+	F93DBFE51250CBE500FACB9B /* cFs_posix.h */ = {
+		isa = PBXFileReference;
+		name = cFs_posix.h;
+		path = /Users/ejpbruel/Projects/o3/modules/fs/cFs_posix.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFE61250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFE71250CBE500FACB9B /* cMouse_apple.h */;
+		name = "cMouse_apple.h: 23";
+		rLen = 0;
+		rLoc = 896;
+		rType = 0;
+		vrLen = 966;
+		vrLoc = 0;
+	};
+	F93DBFE71250CBE500FACB9B /* cMouse_apple.h */ = {
+		isa = PBXFileReference;
+		name = cMouse_apple.h;
+		path = /Users/ejpbruel/Projects/o3/modules/mouse/cMouse_apple.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFE81250CBE500FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFE91250CBE500FACB9B /* cKeyboard_apple.h */;
+		name = "cKeyboard_apple.h: 22";
+		rLen = 13;
+		rLoc = 886;
+		rType = 0;
+		vrLen = 1013;
+		vrLoc = 0;
+	};
+	F93DBFE91250CBE500FACB9B /* cKeyboard_apple.h */ = {
+		isa = PBXFileReference;
+		name = cKeyboard_apple.h;
+		path = /Users/ejpbruel/Projects/o3/modules/keyboard/cKeyboard_apple.h;
+		sourceTree = "<absolute>";
+	};
+	F93DBFEF1250CE8800FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFE11250CBE500FACB9B /* cKeyboard_apple.h */;
+		name = "cKeyboard_apple.h: 85";
+		rLen = 0;
+		rLoc = 3258;
+		rType = 0;
+		vrLen = 1013;
+		vrLoc = 0;
+	};
+	F93DBFF21250CE9300FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFE11250CBE500FACB9B /* cKeyboard_apple.h */;
+		name = "cKeyboard_apple.h: 85";
+		rLen = 0;
+		rLoc = 3258;
+		rType = 0;
+		vrLen = 1013;
+		vrLoc = 0;
+	};
+	F93DBFF41250CF9C00FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFE11250CBE500FACB9B /* cKeyboard_apple.h */;
+		name = "cKeyboard_apple.h: 84";
+		rLen = 0;
+		rLoc = 3231;
+		rType = 0;
+		vrLen = 992;
+		vrLoc = 0;
+	};
+	F93DBFF61250D11600FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFE11250CBE500FACB9B /* cKeyboard_apple.h */;
+		name = "cKeyboard_apple.h: 85";
+		rLen = 0;
+		rLoc = 3258;
+		rType = 0;
+		vrLen = 1013;
+		vrLoc = 0;
+	};
+	F93DBFF91250D21C00FACB9B /* plugin.r */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {638, 367}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 208}";
+		};
+	};
+	F93DBFFE1250D28900FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFE11250CBE500FACB9B /* cKeyboard_apple.h */;
+		name = "cKeyboard_apple.h: 85";
+		rLen = 0;
+		rLoc = 3258;
+		rType = 0;
+		vrLen = 1013;
+		vrLoc = 0;
+	};
+	F93DBFFF1250D28900FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFF91250D21C00FACB9B /* plugin.r */;
+		name = "plugin.r: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 208;
+		vrLoc = 0;
+	};
+	F93DC0001250D28900FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBD271250B7EA00FACB9B /* plugin.mm */;
+		name = "plugin.mm: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 451;
+		vrLoc = 1016;
+	};
+	F93DC0011250D28900FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFE11250CBE500FACB9B /* cKeyboard_apple.h */;
+		name = "cKeyboard_apple.h: 85";
+		rLen = 0;
+		rLoc = 3258;
+		rType = 0;
+		vrLen = 1013;
+		vrLoc = 0;
+	};
+	F93DC0021250D28900FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFF91250D21C00FACB9B /* plugin.r */;
+		name = "plugin.r: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 208;
+		vrLoc = 0;
+	};
+	F93DC0031250D28900FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBD271250B7EA00FACB9B /* plugin.mm */;
+		name = "plugin.mm: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 471;
+		vrLoc = 996;
+	};
+	F93DC0051250D8C400FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBD271250B7EA00FACB9B /* plugin.mm */;
+		name = "plugin.mm: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 471;
+		vrLoc = 996;
+	};
+	F93DC0E31250DBAE00FACB9B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBD271250B7EA00FACB9B /* plugin.mm */;
+		name = "plugin.mm: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 471;
+		vrLoc = 996;
 	};
 }
