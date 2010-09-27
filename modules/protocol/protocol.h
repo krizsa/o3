@@ -20,7 +20,7 @@
 
 #ifdef O3_WIN32
 #include "cProtocol_win32.h"
-#include "protocolIE.h"
+#include "cProtocolIE.h"
 #endif // O3_WIN32
 
 #ifdef O3_WITH_GLUE

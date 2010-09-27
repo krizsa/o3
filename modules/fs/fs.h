@@ -18,6 +18,8 @@
 #ifndef O3_C_FS1_H
 #define O3_C_FS1_H
 
+#include "cFsBase.h" 
+
 #ifdef O3_POSIX
 #include "cFs_posix.h"
 #endif // O3_POSIX
@@ -26,6 +28,7 @@
 #endif // O3_WIN32
 
 #ifdef O3_WITH_GLUE
+#include "cFsBase_glue.h"
 #ifdef O3_POSIX
 #include "cFs_posix_glue.h"
 #endif

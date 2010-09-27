@@ -200,7 +200,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "resource", "resource", "{3985CEAE-9545-4BF3-91FB-9908740BB7AE}"
 	ProjectSection(SolutionItems) = preProject
 		modules\resource\cResource_win32.h = modules\resource\cResource_win32.h
-		modules\resource\cResourceBuilder.h = modules\resource\cResourceBuilder.h
 		modules\resource\cResourceBuilder_win32.h = modules\resource\cResourceBuilder_win32.h
 		modules\resource\resource.h = modules\resource\resource.h
 	EndProjectSection

@@ -18,6 +18,8 @@
 #ifndef O3_C_SCREEN1_H
 #define O3_C_SCREEN1_H
 
+#include "cScreenBase.h"
+
 #ifdef O3_APPLE
 #include "cScreen_apple.h"
 #endif // O3_APPLE
@@ -26,6 +28,7 @@
 #endif // O3_WIN32
 
 #ifdef O3_WITH_GLUE
+#include "cScreenBase_glue.h"
 #ifdef O3_APPLE
 #include "cScreen_apple_glue.h"
 #endif // O3_APPLE

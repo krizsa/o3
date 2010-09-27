@@ -18,6 +18,8 @@
 #ifndef O3_C_MOUSE1_H
 #define O3_C_MOUSE1_H
 
+#include "cMouseBase.h"
+
 #ifdef O3_APPLE
 #include "cMouse_apple.h"
 #endif // O3_APPLE
@@ -27,6 +29,7 @@
 #endif // O3_WIN32
 
 #ifdef O3_WITH_GLUE
+#include "cMouseBase_glue.h"
 #ifdef O3_APPLE
 #include "cMouse_apple_glue.h"
 #endif // O3_APPLE

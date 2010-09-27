@@ -18,6 +18,8 @@
 #ifndef O3_C_SOCKET1_H
 #define O3_C_SOCKET1_H
 
+#include "cSocketBase.h"
+
 #ifdef O3_WITH_LIBEVENT
 #include "cSocket_libevent.h"
 #elif defined O3_POSIX
@@ -27,6 +29,7 @@
 #endif // O3_WIN32
 
 #ifdef O3_WITH_GLUE
+#include "cSocketBase_glue.h"
 #ifdef O3_WITH_LIBEVENT
 #include "cSocket_libevent_glue.h"
 #elif defined O3_POSIX

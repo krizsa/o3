@@ -18,6 +18,8 @@
 #ifndef O3_C_KEYBOARD1_H
 #define O3_C_KEYBOARD1_H
 
+#include "cKeyboardBase.h"
+
 #ifdef O3_APPLE
 #include "cKeyboard_apple.h"
 #endif // O3_APPLE
@@ -27,6 +29,7 @@
 #endif // O3_WIN32
 
 #ifdef O3_WITH_GLUE
+#include "cKeyboardBase_glue.h"
 #ifdef O3_APPLE
 #include "cKeyboard_apple_glue.h"
 #endif // O3_APPLE

@@ -18,6 +18,8 @@
 #ifndef O3_C_PROCESS1_H
 #define O3_C_PROCESS1_H
 
+#include "cProcessBase.h"
+
 #ifdef O3_POSIX
 #include "cProcess_posix.h"
 #endif // O3_POSIX

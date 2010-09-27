@@ -18,7 +18,6 @@
 #ifndef O3_C_FS1_WIN32_H
 #define O3_C_FS1_WIN32_H
 
-#include "cFsBase.h"
 #include "tools_glue.h"
 #include <shlwapi.h>
 
