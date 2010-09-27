@@ -25,7 +25,7 @@
 #include <mshtmdid.h>
 #include <olectl.h>
 #include "tools_glue_idispatch.h"
-#include "HostIE.h"
+#include "tools_axhost.h"
 #include "protocol/protocol.h"
 
 DEFINE_GUID(IID_IJAxCtrl, 0xddbbe8d1, 0x8ee4, 0x4037, 0x81, 
@@ -182,14 +182,14 @@ namespace o3 {
 			siScr root = o3_new(cO3)(m_ctx, 0,0,0);          
 
             m_bridge = o3_new(CDispBridge)(siCtx1(m_ctx),root) ;
-			m_proto_factory = o3_new(ProtocolIE)(m_ctx);
-			ProtocolIE::registerProtocol(m_proto_factory.ptr());
+			m_proto_factory = o3_new(cProtocolIE)(m_ctx);
+			cProtocolIE::registerProtocol(m_proto_factory.ptr());
         }
         
         virtual ~CJAxCtrl()
 		{          
 			if (m_proto_factory) {
-				ProtocolIE::unregisterProtocol(m_proto_factory.ptr());
+				cProtocolIE::unregisterProtocol(m_proto_factory.ptr());
 				m_proto_factory = 0;
 			}
 
@@ -445,7 +445,7 @@ namespace o3 {
         HRESULT STDMETHODCALLTYPE CJAxCtrl::Close(DWORD dwSaveOption){
 			
 			if (m_proto_factory) {
-				ProtocolIE::unregisterProtocol(m_proto_factory.ptr());
+				cProtocolIE::unregisterProtocol(m_proto_factory.ptr());
 				m_proto_factory = 0;
 			}
 

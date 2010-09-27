@@ -20,8 +20,10 @@
 
 #ifdef O3_WIN32
 #include "cResource_win32.h"
+#include "cResourceBuilder_win32.h"
 #ifdef O3_WITH_GLUE
 #include "cResource_win32_glue.h"
+#include "cResourceBuilder_win32_glue.h"
 #endif
 #endif // O3_WIN32
 

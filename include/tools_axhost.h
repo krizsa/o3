@@ -311,8 +311,8 @@ namespace o3 {
 
         bool initProtocol()
         {
-			m_proto_factory = o3_new(ProtocolIE)(m_ctx);
-			ProtocolIE::registerProtocol(m_proto_factory.ptr());
+			m_proto_factory = o3_new(cProtocolIE)(m_ctx);
+			cProtocolIE::registerProtocol(m_proto_factory.ptr());
 
             return true;
         }

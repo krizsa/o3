@@ -66,7 +66,7 @@
 				AdditionalDependencies="libcurld.lib wldap32.lib ws2_32.lib libxml2d.lib urlmon.lib"
 				OutputFile="$(OutDir)\npplugin.dll"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="../../deps"
+				AdditionalLibraryDirectories="../../deps/win32lib"
 				ModuleDefinitionFile="plugin.def"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(TargetDir)intermediate\$(TargetName).pdb"
@@ -146,7 +146,7 @@
 				AdditionalDependencies="libcurl.lib wldap32.lib Ws2_32.lib urlmon.lib"
 				OutputFile="$(OutDir)\npplugin.dll"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="../../deps"
+				AdditionalLibraryDirectories="../../deps/win32lib"
 				ModuleDefinitionFile="plugin.def"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(TargetDir)intermediate\$(TargetName).pdb"
@@ -196,11 +196,11 @@
 			>
 		</File>
 		<File
-			RelativePath=".\plugin.mm"
+			RelativePath=".\plugin.def"
 			>
 		</File>
 		<File
-			RelativePath=".\plugin.def"
+			RelativePath=".\plugin.mm"
 			>
 		</File>
 		<File
