@@ -52,7 +52,7 @@ namespace o3 {
         {        
         }
 
-        mscom_begin(ProtocolIE)
+        mscom_begin(cProtocolIE)
             mscom_add_interface(IProtocolIE)
 			mscom_add_interface(IInternetProtocol)
 			mscom_add_interface(IInternetProtocolRoot)
@@ -103,7 +103,7 @@ namespace o3 {
         HRESULT STDMETHODCALLTYPE CreateInstance( IUnknown __RPC_FAR* /*pUnkOuter*/, 
             REFIID riid, void __RPC_FAR *__RPC_FAR *ppvObject)
 	    {
-            ProtocolIE* instance = o3_new(ProtocolIE)(m_protocol_handler);
+            cProtocolIE* instance = o3_new(cProtocolIE)(m_protocol_handler);
 
 		    if( instance->QueryInterface( riid, ppvObject ) != S_OK )
 		    {

@@ -20,12 +20,12 @@
 
 namespace o3 {
 
-struct cResourceBuilder1 : cScr
+struct cResourceBuilder : cScr
 {
-    cResourceBuilder1()
+    cResourceBuilder()
     {}
 
-    virtual ~cResourceBuilder1()
+    virtual ~cResourceBuilder()
     {}
 
     o3_begin_class(cScr)
@@ -38,7 +38,7 @@ struct cResourceBuilder1 : cScr
     // new resource builder
     static o3_ext("cO3") o3_fun siScr resourceBuilder()
     {
-        return o3_new(cResourceBuilder1)();
+        return o3_new(cResourceBuilder)();
     }
 
     // add a file or a whole directory (recursive) to the resource builder

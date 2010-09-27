@@ -56,36 +56,36 @@ int main(int argc, char **argv) {
     cSys sys;
 
     siMgr mgr = o3_new(cMgr)();
-    siCtx ctx = o3_new(cJs1)(mgr, --argc, ++argv,0,true);
+    siCtx ctx = o3_new(cJs)(mgr, --argc, ++argv,0,true);
    
     
     //mgr->addExtTraits(cCanvas1::extTraits());
-    mgr->addExtTraits(cFs1::extTraits());
-    mgr->addExtTraits(cHttp1::extTraits());
-    mgr->addExtTraits(cBlob1::extTraits());
-    mgr->addExtTraits(cConsole1::extTraits());
+    mgr->addExtTraits(cFs::extTraits());
+    mgr->addExtTraits(cHttp::extTraits());
+    mgr->addExtTraits(cBlob::extTraits());
+    mgr->addExtTraits(cConsole::extTraits());
     mgr->addExtTraits(cFastXml::extTraits());
     //mgr->addExtTraits(cJs1::extTraits());
-    mgr->addExtTraits(cSocket1::extTraits());
-    mgr->addExtTraits(cResource1::extTraits());
-    mgr->addExtTraits(cResourceBuilder1::extTraits());
-    mgr->addExtTraits(cScreen1::extTraits());
-	mgr->addExtTraits(cProcess1::extTraits());
-	//mgr->addExtTraits(cTest1::extTraits());
+    mgr->addExtTraits(cSocket::extTraits());
+    mgr->addExtTraits(cResource::extTraits());
+    mgr->addExtTraits(cResourceBuilder::extTraits());
+    mgr->addExtTraits(cScreen::extTraits());
+	mgr->addExtTraits(cProcess::extTraits());
+	//mgr->addExtTraits(cTest::extTraits());
 
-	mgr->addExtTraits(cImage1::extTraits());
-	//mgr->addExtTraits(cBarcode1::extTraits());
-	//mgr->addExtTraits(cScan1::extTraits());
+	mgr->addExtTraits(cImage::extTraits());
+	//mgr->addExtTraits(cBarcode::extTraits());
+	//mgr->addExtTraits(cScan::extTraits());
 
-	mgr->addExtTraits(cRSA1::extTraits());
-	mgr->addExtTraits(cSHA1Hash1::extTraits());
-	mgr->addExtTraits(cMD5Hash1::extTraits());
-	mgr->addExtTraits(cZip1::extTraits());
+	mgr->addExtTraits(cRSA::extTraits());
+	mgr->addExtTraits(cSHA1Hash::extTraits());
+	mgr->addExtTraits(cMD5Hash::extTraits());
+	mgr->addExtTraits(cZip::extTraits());
 	mgr->addExtTraits(cFastXml::extTraits());
-	mgr->addExtTraits(cXml2::extTraits());
+	mgr->addExtTraits(cXml::extTraits());
 
-	mgr->addFactory("fs", &cFs1::rootDir);
-	mgr->addFactory("http", &cHttp1::factory);
+	mgr->addFactory("fs", &cFs::rootDir);
+	mgr->addFactory("http", &cHttp::factory);
 
     WSADATA wsd;
     WSAStartup(MAKEWORD(2,2), &wsd);
@@ -100,7 +100,7 @@ int main(int argc, char **argv) {
 
 		if (buf.size() > 0) {
 			ctx->eval(Str(buf));
-			if (((cJs1*)ctx.ptr())->scriptError())
+			if (((cJs*)ctx.ptr())->scriptError())
 				return -1;
 		}
 
@@ -127,7 +127,7 @@ int main(int argc, char **argv) {
 		}		
 		
 		ctx->eval(script);
-		if (((cJs1*)ctx.ptr())->scriptError())
+		if (((cJs*)ctx.ptr())->scriptError())
 			ret = -1;
 		
 
