@@ -189,8 +189,9 @@ namespace o3 {
         virtual o3_fun siXmlNode2 replaceChild(iCtx* ctx, iXmlNode2* new_child,
                 iXmlNode2* old_child, siEx* ex = 0) {
             o3_trace3 trace;
-			if (!new_child || !new_child)
+			if (!new_child || !new_child) {
 				return siXmlNode2();
+            }
 
             cXmlNode* new_child2 = (cXmlNode*) new_child;
             cXmlNode* old_child2 = (cXmlNode*) old_child;

@@ -52,7 +52,7 @@ namespace o3 {
             xmlXPathObjectPtr res = selectNodesInternal(
                 selection, siXmlDocument2(ctxt), ctx);
             if (!res || !res->nodesetval)
-                return siXmlNode2();
+                return o3_new(cXmlNodeArray)(this);
             cXmlNodeArray* nodes = o3_new(cXmlNodeArray)(m_owner_node ? m_owner_node : this);
             nodes->m_nodes = res->nodesetval;
             nodes->m_xpath_obj = res;
