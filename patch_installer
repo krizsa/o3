@@ -5,7 +5,9 @@ pax -wf Archive.pax npplugin.plugin
 gzip -f Archive.pax
 mkbom npplugin.plugin Archive.bom
 mv Archive.bom Archive.pax.gz Installer.mpkg/Contents/Packages/o3.pkg/Contents
+rm -rf npplugin.plugin
 mkdir temp
 cp -rf Installer.mpkg temp/o3plugin.mpkg
+rm -f o3plugin.dmg
 hdiutil create -fs HFS+ -srcFolder temp o3plugin.dmg
 rm -rf temp

@@ -15,7 +15,6 @@
  * this library; if not, write to the Free Software Foundation, Inc., 51
  * Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
-#define O3_PLUGIN
 #include <npapi.h>
 #include <npfunctions.h>
 
@@ -522,7 +521,6 @@ struct cCtx : cMgr, iCtx {
 
 		m_root = path;
 		m_loop = g_sys->createMessageLoop();
-		m_o3 = o3_new(cO3)(this, 0, 0, 0);
 
         addExtTraits(cFs::extTraits());
 
@@ -541,6 +539,8 @@ struct cCtx : cMgr, iCtx {
 	    addFactory("fs", &cFs::rootDir);
 		addFactory("http", &cHttp::factory);	
 	    addFactory("settingsDir", &cFs::settingsDir);
+        
+        m_o3 = o3_new(cO3)(this, 0, 0, 0);
 	}
 	
 	~cCtx()

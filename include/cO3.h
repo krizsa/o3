@@ -110,6 +110,7 @@ struct cLoadProgress : cScr {
 	}
 };
 
+o3_cls(cO3);
 struct cO3 : cScr {
     tVec<Str>   m_args;
     tVec<Str>   m_envs;
@@ -123,11 +124,12 @@ struct cO3 : cScr {
 	siEvent		m_change_event;
 	siMutex		m_mutex;
 
+    siFs    m_plugin;
+    siScr   m_oninstall;
 	o3_prop siScr	m_onapprove;
 	o3_prop siScr	m_ondone;
 	o3_prop siScr	m_onprogress;
 	o3_prop siScr	m_onfail;
-
 
     cO3(iCtx* ctx, int /*argc*/, char** argv, char** envp)
 		: m_loading(false)
@@ -270,7 +272,6 @@ struct cO3 : cScr {
 		return url; 
 	}
 
-	
 	void onDone(iUnk*)
 	{
 		m_loading = false;
@@ -307,6 +308,11 @@ struct cO3 : cScr {
 		Delegate(siCtx(m_ctx), m_onfail)(
 			siScr(this));	
 	}
+
+    void onInstall(iUnk*)
+    {
+        Delegate(siCtx(m_ctx), m_oninstall)(siScr(this));
+    }
 
 	// read the settings, checks it against m_to_approve
 	// marks the component to be approved in the settings file with '2'
@@ -615,7 +621,20 @@ error:
 			ctx->loop()->post(Delegate(this, &cO3::onNotification),o3_cast this);
 	}
 
+    
+    o3_get siScr oninstall()
+    {
+        return m_oninstall;
+    }
 
+    o3_set siScr setOninstall(iCtx* ctx, iScr* oninstall)
+    {
+        siFs fs = ctx->mgr()->factory("fs")(0);
+        
+        m_plugin = fs->get("/Library/Internet Plug-Ins/npplugin.plugin");
+        m_plugin->setOnchange(ctx, Delegate(ctx, oninstall));
+        return m_oninstall = oninstall;
+    }
 };
 
 }
