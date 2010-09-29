@@ -91,6 +91,7 @@ namespace o3 {
 		};
 
 		struct CentralDir{
+			size_t offset; // the offset of the zip file in the fstream
 			tMap<Str, CentralHeader> headers;
 			EndOfCentralDir end_header;
 		};
@@ -166,7 +167,7 @@ namespace o3 {
  
 		siEx parseCentralHeaders(iStream* src, CentralDir& cd)
 		{
-			src->setPos(cd.end_header.central_dir_addr);
+			src->setPos(cd.end_header.central_dir_addr + cd.offset);
 			CentralHeader ch;
 			size_t pos;
 			for (int i=0; i < cd.end_header.records_in_central_total; i++) {
@@ -212,7 +213,8 @@ namespace o3 {
 		siEx readCentral(iStream* src, CentralDir& central_dir)
 		{
 			siEx err;
-			 
+			
+			central_dir.offset = src->pos();
 			if (err = findCentralDirEnd(src, central_dir.end_header))
 				return err;
 			 
@@ -248,7 +250,7 @@ namespace o3 {
 			if (!src || !dest)
 				return o3_new(cEx)("invalid file stream");
 			 
-			src->setPos(ch.offset_of_file_header);
+			src->setPos(ch.offset_of_file_header + central_dir.offset);
 			LocalHeader lh;
 			o3_zip_read(&lh.signature,4);
 			if (lh.signature != LH_SIGNATURE)

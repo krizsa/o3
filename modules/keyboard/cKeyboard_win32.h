@@ -22,8 +22,8 @@ namespace o3 {
 
 #include <winuser.h>
 
-struct cKeyboard1 : cKeyboard1Base {
-	o3_begin_class(cKeyboard1)
+struct cKeyboard : cKeyboardBase {
+	o3_begin_class(cKeyboard)
 	o3_end_class()
 
 	o3_glue_gen()
