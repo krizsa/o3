@@ -94,7 +94,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="call &quot;../../tools/win32/o3.exe&quot; build_resources.js debug"
+				CommandLine="call &quot;../../tools/win32/node.exe&quot; build_resources.js debug"
 			/>
 		</Configuration>
 		<Configuration
@@ -175,7 +175,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="call &quot;../../tools/win32/o3.exe&quot; build_resources.js release"
+				CommandLine="call &quot;../../tools/win32/node.exe&quot; build_resources.js release"
 			/>
 		</Configuration>
 	</Configurations>

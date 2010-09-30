@@ -48,18 +48,18 @@ int WINAPI WinMain(HINSTANCE hi, HINSTANCE hp, LPSTR arg, int show)
     {// scope the local vars
         
         siMgr mgr = o3_new(cMgr)();    
-        mgr->addExtTraits(cFs1::extTraits());
-        mgr->addExtTraits(cBlob1::extTraits());
-        mgr->addExtTraits(cJs1::extTraits());
-        mgr->addExtTraits(cResource1::extTraits());
-        mgr->addExtTraits(cResourceBuilder1::extTraits());
-        mgr->addExtTraits(cScreen1::extTraits());
-        mgr->addExtTraits(cWindow1::extTraits());
-        mgr->addExtTraits(cButton1::extTraits());
-        mgr->addExtTraits(cStaticCtrl1::extTraits());
-        mgr->addExtTraits(cTools1::extTraits());
-        mgr->addExtTraits(cProcess1::extTraits());
-        mgr->addExtTraits(cZip1::extTraits());
+        mgr->addExtTraits(cFs::extTraits());
+        mgr->addExtTraits(cBlob::extTraits());
+        mgr->addExtTraits(cJs::extTraits());
+        mgr->addExtTraits(cResource::extTraits());
+        mgr->addExtTraits(cResourceBuilder::extTraits());
+        mgr->addExtTraits(cScreen::extTraits());
+        mgr->addExtTraits(cWindow::extTraits());
+        mgr->addExtTraits(cButton::extTraits());
+        mgr->addExtTraits(cStaticCtrl::extTraits());
+        mgr->addExtTraits(cTools::extTraits());
+        mgr->addExtTraits(cProcess::extTraits());
+        mgr->addExtTraits(cZip::extTraits());
 		mgr->addExtTraits(cUnzip1::extTraits());
 		char x[MAX_PATH];
         GetModuleFileNameA(0, x, MAX_PATH);
@@ -69,7 +69,7 @@ int WINAPI WinMain(HINSTANCE hi, HINSTANCE hp, LPSTR arg, int show)
         args[1] = arg;
 		args[2] = 0;
 
-        siCtx js = o3_new(cJs1)(mgr, 2, args, 0, true);
+        siCtx js = o3_new(cJs)(mgr, 2, args, 0, true);
         Buf buf = ((cSys*)g_sys)->resource("installer.js");
         Str script(buf);
         Var rval;
@@ -77,7 +77,7 @@ int WINAPI WinMain(HINSTANCE hi, HINSTANCE hp, LPSTR arg, int show)
         Str err = rval.toStr();
 		Var exitCode = js->value("exitCode");
         ret = exitCode.toInt32();
-		((cJs1*)js.ptr())->tear();
+		((cJs*)js.ptr())->tear();
     }
     
     //CoUninitialize(); 

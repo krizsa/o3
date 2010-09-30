@@ -19,6 +19,7 @@
 #define O3_C_SYS_WIN32_H
 
 #include "tools_win32.h"
+#include "tools_zip.h"
 #include <lib_zlib.h>
 #include <Winsock2.h>
 
@@ -623,24 +624,26 @@ namespace o3 {
         };
 
         static const size_t     rsc_magic_num = 12344321;
-        tMap<Str, Position>     m_files;        // map of appended resource files
+        //tMap<Str, Position>     m_files;        // map of appended resource files
         size_t                  m_start_addr;   // start of the resource section in the file
         siStream                m_stream;       // self
+		zip_tools::CentralDir*	m_central_dir;
 
         cSys()
         {
 			CoInitializeEx(NULL, COINIT_APARTMENTTHREADED);
             g_sys = this;
             g_sys->addRef();
+			m_central_dir = o3_new(zip_tools::CentralDir)();
             initResource();
         }
 
         virtual ~cSys()
         {
             // every o3 component must be deleted before this destructor returns
-            m_files.clear();
             m_stream = 0;
-            m_weak = 0;
+			o3_delete(m_central_dir); 
+            m_weak = 0;			
 			CoUninitialize(); 
         }
 
@@ -753,31 +756,21 @@ namespace o3 {
             return;
 
           error:
-            m_files.clear();
             m_start_addr = 0;
             m_stream = 0;
         }
 
         virtual tVec<Str> resourcePaths() 
         {
-            tVec<Str> list;
-            tMap<Str, Position>::Iter it = m_files.begin();
-            for (; it != m_files.end(); ++it) {
-                list.push((*it).key);
-            }
-            return list;        
+            return zip_tools::listCentralDir(*m_central_dir);    
         }
 
         virtual Buf resource(const char* path)
         {
-            Buf data;
-            Position pos;
-            tMap<Str, Position>::Iter it = m_files.find(path);
-            if (it != m_files.end()) {
-                pos = (*it).val;
-                data = unzipResource(pos.start, pos.size);
-            }
-            return data;        
+			cBufStream* buf_stream = o3_new(cBufStream)();
+			siStream stream(buf_stream);
+			zip_tools::readFileFromZip(path, m_stream, stream,*m_central_dir);
+			return buf_stream->buf();   
         }
 
         private: 
@@ -828,34 +821,10 @@ namespace o3 {
 
             m_stream->setPos(m_start_addr);                        
 
-            for(;;) 
-            {
-                // read in size of tnext path
-                if ( sizeof(size_t) != m_stream->read( (void*)&name_len, sizeof(size_t)) )
-                    return false;
+			siEx error = zip_tools::readCentral(
+				m_stream, *m_central_dir);
 
-                // if we found the trailing 0 then no more files left
-                if (!name_len)
-                    return true;
-
-                // read in next path
-                name.reserve(name_len);
-                if (name_len != m_stream->read( name.ptr(), name_len ))
-                    return false;
-                name.resize(name_len);
-
-                // read in next start pos
-                if ( sizeof(size_t) != m_stream->read( (void*)&start, sizeof(size_t)) )
-                    return false;            
-
-                // read in the corresponding size
-                if ( sizeof(size_t) != m_stream->read( (void*)&size, sizeof(size_t)) )
-                    return false;            
-
-                // add entry to the map
-                m_files[name] = Position(start, size);    
-
-            } 
+			return !error;
         }
     };
 

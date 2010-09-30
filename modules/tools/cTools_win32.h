@@ -22,9 +22,9 @@
 
 namespace o3 {
 
-struct cTools1 : cScr{
-    cTools1(){}
-    virtual ~cTools1(){}
+struct cTools : cScr{
+    cTools(){}
+    virtual ~cTools(){}
 
     o3_begin_class(cScr)
     o3_end_class()

@@ -146,7 +146,8 @@ var FileHandler = {
                 glueFile,            
                 data = readFile(file);
 
-            if (data.indexOf('o3_glue_gen()') == -1 || name == "cScr.h") {
+            if (data.indexOf('o3_glue_gen()') == -1 || name == 'cScr.h' 
+				|| name.indexOf('.h') == -1) {
 				//Reporter.log('no need to gen glue for: ',name,'\n');
 				return false;
             }

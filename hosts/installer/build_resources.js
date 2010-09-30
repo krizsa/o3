@@ -16,44 +16,73 @@
  * Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
  
-var mode = o3.args.length > 1 ? o3.args[1] : false;
-var src = [];
-src.push(
-	o3.cwd.get("installer_header.bmp"),
-	o3.cwd.get("installer_left.bmp"),
-	mode ? o3.cwd.get("../../build/" + mode + "/plugin/npplugin.dll")
-		: o3.cwd.get("../plugin/npplugin.dll"),
-	o3.cwd.get("installer.js"),
-	o3.cwd.get("install.ico"),
-	o3.cwd.get("o3settings.crx"),
-	o3.cwd.get("o3.xpi")
-	//o3.cwd.get("lnkmaker.vbs"),
-	//o3.cwd.get("../plugin/approve.html"),
-	//o3.cwd.get("../plugin/settings.html"),
-	//o3.cwd.get("../plugin/settings_impl.html"),
-	//o3.cwd.get("../../samples/o3.js")
+var mode = process.argv.length > 2 ? process.argv[2] : false;
+var args = [];
+args.push(
+	"-j",
+	"resource.zip",
+	"installer_header.bmp",
+	"installer_left.bmp",
+	mode ?"../../build/" + mode + "/plugin/npplugin.dll"
+		: "../plugin/npplugin.dll",
+	"installer.js",
+	"install.ico",
+	"o3settings.crx",
+	"o3.xpi"
 );
+
+var tgt = mode ? "../../build/" + mode + "/installer/o3plugin.exe" 
+	: "o3plugin.exe";
 	
-var tgt = mode ? o3.cwd.get("../../build/" + mode + "/installer/o3plugin.exe") 
-	: o3.cwd.get("o3plugin.exe");
+var sys   = require('sys'),
+	fs = require('fs'),
+	s = require('child_process'),
+    child;	
 
-function checkFile(file) {    
-    if (!file.exists) {
-        o3.print("file not found: " + file.path);
-        return false;
+var p = s.spawn("../../tools/win32/zip", args);
+
+p.stdout.on('data',function(data){
+	sys.puts(data);
+})	
+	
+	
+p.stderr.on('data',function(data){
+	sys.puts(data);
+})	
+	
+
+p.on('exit', function (code) {
+    if (code !== 0) {
+      console.log('exec error: ' + code);
     }
-    return true;
-}
+	
+	var	buf1 = new Buffer([parseInt('0x01',16), parseInt('0x5c', 16), parseInt('0xbc', 16), parseInt('0x00', 16)]),
+		fd_tgt = fs.openSync(__dirname + "/" + tgt, 'a+'),
+		size = fs.statSync(__dirname + "/" + tgt).size,	
+		fd_data = fs.openSync(__dirname + "/resource.zip", 'r'),
+		data_size = fs.statSync(__dirname + "/resource.zip").size, 
+		data_buf = new Buffer(data_size),
+		a, b, c, d;
+	
+	fs.readSync(fd_data, data_buf, 0, data_size, 0),
+	
+	a = size & parseInt('0xff',16);
+	b = size & parseInt('0xff00',16);
+	c = size & parseInt('0xff0000',16);
+	d = size & parseInt('0xff000000',16); 	
 
-var builder = o3.resourceBuilder();
-for (var v = 0; v<src.length; v++) {
-	checkFile(src[v]);	
-	if (src[v].name.indexOf("plugin") >= 0) {
-		builder.addAsResource(src[v], "npplugin.dll");
-	}
-	else
-		builder.addAsResource(src[v]);
-}
+	var buf2 = new Buffer([a,b/parseInt('0x100',16),c/parseInt('0x10000',16),d/parseInt('0x1000000',16)])
+	
+	fs.writeSync(fd_tgt, buf1, 0, 4, null);
+	fs.writeSync(fd_tgt, data_buf, 0, data_size, null);
+	fs.writeSync(fd_tgt, buf2, 0, 4, null);
+	fs.closeSync(fd_tgt);
+	fs.closeSync(fd_data);
+});
 
-checkFile(tgt);
-builder.buildAndAppend(tgt); 
+	
+	
+	
+	
+	
+	

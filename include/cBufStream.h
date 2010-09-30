@@ -23,6 +23,7 @@ struct cBufStream : cStreamBase {
     size_t m_pos;
 
 	cBufStream()
+		: m_pos(0)
 	{
 
 	}
