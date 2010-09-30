@@ -330,7 +330,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F906477612539108004D19A9</string>
+										<string>F90647771253A46E004D19A9</string>
 										<key>history</key>
 										<array>
 											<string>F93DBFAF1250CBE500FACB9B</string>
@@ -614,8 +614,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
@@ -767,7 +765,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>F9064767125390BF004D19A9</string>
 		<string>F90645B412537D04004D19A9</string>
 		<string>F90645B512537D04004D19A9</string>
 		<string>/Users/ejpbruel/Projects/o3/o3.xcodeproj</string>
