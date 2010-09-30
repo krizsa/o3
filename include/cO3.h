@@ -124,8 +124,10 @@ struct cO3 : cScr {
 	siEvent		m_change_event;
 	siMutex		m_mutex;
 
-    siFs    m_plugin;
-    siScr   m_oninstall;
+    siFs            m_plugin;
+    siScr           m_oninstall;
+    siThread        m_thread;
+    siScr           m_onupdate;
 	o3_prop siScr	m_onapprove;
 	o3_prop siScr	m_ondone;
 	o3_prop siScr	m_onprogress;
@@ -147,6 +149,11 @@ struct cO3 : cScr {
 
 		m_change_event = g_sys->createEvent();
 		m_mutex = g_sys->createMutex();
+        if (m_thread) {
+            m_thread->cancel();
+            while (m_thread->running())
+                ;
+        }
 	}
 
     ~cO3()
@@ -634,6 +641,30 @@ error:
         m_plugin = fs->get("/Library/Internet Plug-Ins/npplugin.plugin");
         m_plugin->setOnchange(ctx, Delegate(ctx, oninstall));
         return m_oninstall = oninstall;
+    }
+
+    o3_get siScr onupdate()
+    {
+        return m_onupdate;
+    }
+
+    o3_get siScr setOnupdate(iCtx* ctx, iScr* onupdate)
+    {
+        Lock lock(m_mutex);
+
+        if (!m_thread && onupdate) 
+            m_thread = g_sys->createThread(Delegate(this, &cO3::update));
+        else if (m_thread && !onupdate) {
+            m_thread->cancel();
+            while (m_thread->running())
+                ;
+            m_thread = 0;
+        }
+        return m_onupdate = onupdate;
+    }
+
+    void update(iUnk* unk)
+    {
     }
 };
 
