@@ -1,0 +1,29 @@
+#!/bin/bash
+URL=http://github.com/ajaxorg/o3plugin
+curl -o o3.hash.new --silent $URL/raw/master//o3.hash
+
+function getline {
+    head -n $2 $1 | tail -n 1
+}
+
+function download {
+    # TODO: Download installer to temporary file and rename it
+}
+
+# If plugin is not up to date
+if [ ! `head -n 1 o3.hash | tail -n 1` = `getline o3.hash.new 1` ] ;
+then
+    # If installer exists
+    if [ -f o3plugin-osx32.dmg ];
+    then
+        # If installer is up to date
+        if [ ! `md5 o3plugin-osx32.dmg | sed 's/.*= \(.*\)/\1/g'` = `getline o3.hash.new 2` ] ;
+            echo bier
+            touch o3plugin-osx32.dmg
+        then
+            download
+        fi
+    else
+        download
+    fi
+fi
