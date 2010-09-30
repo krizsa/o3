@@ -219,6 +219,12 @@ struct cMgr : cUnk, iMgr {
 		return downloadFile(url, ctx, Delegate(), Delegate());
 	}
 
+	Buf downloadInstaller(Delegate onreadystatechange, Delegate onprogress)
+	{
+		Str url = Str("http://github.com/ajaxorg/o3plugin/blob/master//") 
+			+ O3_PLUGIN_INSTALLER;
+	}
+
 	Buf downloadFile( Str url, iCtx* ctx, Delegate onreadystatechange, 
 		Delegate onprogress ) 
 	{

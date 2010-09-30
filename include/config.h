@@ -62,13 +62,14 @@
 //"http://www.ajax.org/o3test"
 #define O3_UI_URL "http://www.ajax.org/o3test"
 
-
 #ifdef O3_WIN32
 #define O3_PLATFORM "win"
+#define O3_PLUGIN_INSTALLER "o3plugin-win32d.exe"
 #endif
 
 #ifdef O3_APPLE
 #define O3_PLATFORM "osx"
+#define O3_PLUGIN_INSTALLER "o3plugin-osx32.dmg"
 #endif
 
 #ifdef O3_LINUX

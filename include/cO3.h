@@ -372,6 +372,40 @@ struct cO3 : cScr {
 		m_to_approve.clear();
 	}
 
+	void update(iUnk* t)
+	{
+		siThread worker = (cThread*) t;
+		siCtx ctx = siCtx(m_ctx);
+		siMgr mgr = ctx->mgr();		
+		m_load_progress->setFileName(O3_PLUGIN_INSTALLER);
+		
+		Buf installer = mgr->downloadInstaleller(
+			Delegate(this, &cO3::onStateChange), 
+			Delegate(this, &cO3::onProgress))
+		);	
+
+		if (worker->isCancelled())
+			return;
+
+		siFs fs = ctx->mgr()->factory("fs")(0);
+		siFs installer_file = fs->get(O3_PLUGIN_INSTALLER);
+		installer_file->setBlob(installer);
+
+		if (worker->isCancelled())
+			return;
+
+		execute(installer_file->fullPath());
+		installer_file.remove();
+	}
+
+	int execute(const Str& cmd) 
+	{
+#ifdef O3_WIN32
+
+#else
+
+#endif
+	}
 
 	// loading the approved modules, downloading/unpacking/validating 		
 	// them if they are missing repeating the process if it failed 

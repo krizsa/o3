@@ -74,6 +74,8 @@ struct iMgr : iUnk {
 
 	virtual Buf downloadUpdateInfo(iCtx* ctx) = 0;
 
+	virtual Buf downloadInstaller(Delegate onreadystatechange, Delegate onprogress)
+
 	virtual Str latestVersion(iCtx* ctx) = 0;
 
 	virtual void approve() = 0;
