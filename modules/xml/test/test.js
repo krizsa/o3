@@ -1,6 +1,6 @@
 var fs = require('fs');
 var sys = require('sys');
-var xml = require("../lib/node-xml-dom");
+var xml = require("../lib/node-o3-xml");
 
 function diff(node, node1) {
     if (node.nodeType != node1.nodeType)
