@@ -739,6 +739,7 @@ namespace o3 {
 			int ret = MessageBoxA(NULL, msg, caption, MB_OKCANCEL);
 			return (ret == IDOK);
 		}
+		
 
          // reading self as a stream and finding/reading the resource header in it        
         void initResource()
@@ -772,6 +773,12 @@ namespace o3 {
 			zip_tools::readFileFromZip(path, m_stream, stream,*m_central_dir);
 			return buf_stream->buf();   
         }
+
+
+		void sleep(int time)
+		{
+			Sleep(time);
+		}
 
         private: 
 

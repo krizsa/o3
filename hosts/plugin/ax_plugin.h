@@ -161,6 +161,11 @@ namespace o3 {
 			host->Release();
 
 		}
+
+		virtual bool isIE()
+		{
+			return true;
+		}
     };
 
 

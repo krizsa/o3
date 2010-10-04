@@ -41,9 +41,13 @@
 #include <cStreamBase.h>
 #include <cStream.h>
 
-
+#ifdef O3_UPDATER
+#define O3_PLUGIN_GUID	L"8A66ECAC-63FD-4AFA-9D42-3034D18C88F4"
+#define O3_APP_NAME		L"O3Demo"
+#else
 #define O3_PLUGIN_GUID	L"AAAAAAAA-1111-BBBB-1111-CCCCCCCCCCCC"
 #define O3_APP_NAME		L"O3Stem"
+#endif
 
 namespace o3 {
 
@@ -545,7 +549,43 @@ struct iWindow : iUnk
 				break;
 		return WStr(s,i-s);
 	}
+	
+	Str pluginName() 
+	{
+		return Str("np-") + O3_APP_NAME + "-" +  O3_PLUGIN_GUID + ".dll";
+	}
 
+	//Str pluginPath() 
+	//{
+	//	WStr ret, base = WStr(L"software\\Classes\\CLSID\\{") + stemGUID + L"}";
+	//	ret.reserve(MAX_PATH);
+
+	//	DWORD mp = MAX_PATH, type;
+	//	HKEY hkey = 0, hkey2 = 0;
+	//	RegOpenKeyExW(HKEY_LOCAL_MACHINE, base.ptr(), 0, KEY_READ, &hkey);
+	//	if (hkey){
+	//		RegQueryValueExW( hkey,L"InProcServer32",0,&type, (LPBYTE)ret.ptr(), &mp);
+	//		ret.resize(strLen(ret.ptr()));
+	//		RegCloseKey(hkey);
+	//		return ret;
+	//	}
+
+	//	hkey = 0;            
+	//	RegOpenCurrentUser(KEY_READ, &hkey2);
+	//	RegOpenKeyExW(hkey2, base.ptr(), 0, KEY_READ, &hkey);
+	//	// LONG error; 
+	//	if(hkey && hkey2) {
+	//		RegQueryValueExW( hkey,L"InProcServer32",0,&type, (LPBYTE)ret.ptr(), &mp);
+	//		ret.resize(strLen(ret.ptr()));
+	//	}else ret.resize(0);
+
+	//	if (hkey) 
+	//		RegCloseKey(hkey);
+	//	if (hkey2)
+	//		RegCloseKey(hkey2);   
+
+	//	return ret; 
+	//}
 
     bool checkIfInstalled(const wchar_t* name) {
         WStr base(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\");
@@ -1271,6 +1311,50 @@ struct iWindow : iUnk
             return (S_FALSE);
         }
     };
+
+	bool runElevated( const wchar_t* path, const wchar_t* parameters = NULL, const wchar_t* dir = NULL ) 
+	{
+		SHELLEXECUTEINFOW shex;
+
+		memset( &shex, 0, sizeof( shex) );
+
+		shex.cbSize        = sizeof( SHELLEXECUTEINFOW );
+		shex.fMask        = SEE_MASK_NOCLOSEPROCESS;
+		shex.hwnd        = 0;
+		shex.lpVerb        = L"runas";
+		shex.lpFile        = path;
+		shex.lpParameters  = parameters;
+		shex.lpDirectory    = dir;
+		shex.nShow        = SW_NORMAL;
+
+		::ShellExecuteExW( &shex );
+
+		return (int)shex.hInstApp > 32;
+	} 
+
+	void runSimple(wchar_t* cmd) 
+	{
+		STARTUPINFOW si;
+		PROCESS_INFORMATION pi;
+
+		ZeroMemory( &si, sizeof(si) );
+		si.cb = sizeof(si);
+		ZeroMemory( &pi, sizeof(pi) );
+
+		// Start the child process. 
+		CreateProcessW( NULL,   // No module name (use command line)
+			cmd,        // Command line
+			NULL,           // Process handle not inheritable
+			NULL,           // Thread handle not inheritable
+			FALSE,          // Set handle inheritance to FALSE
+			0,              // No creation flags
+			NULL,           // Use parent's environment block
+			NULL,           // Use parent's starting directory 
+			&si,            // Pointer to STARTUPINFO structure
+			&pi );           // Pointer to PROCESS_INFORMATION structure
+
+		//m_p_info = pi;
+	}
 
 }
 

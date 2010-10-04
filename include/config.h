@@ -65,11 +65,13 @@
 #ifdef O3_WIN32
 #define O3_PLATFORM "win"
 #define O3_PLUGIN_INSTALLER "o3plugin-win32d.exe"
+#define O3_PLUGIN_VERSION "o3plugin-win32d.exe.version"
 #endif
 
 #ifdef O3_APPLE
 #define O3_PLATFORM "osx"
 #define O3_PLUGIN_INSTALLER "o3plugin-osx32.dmg"
+#define O3_PLUGIN_VERSION "o3plugin-osx32.dmg.version"
 #endif
 
 #ifdef O3_LINUX

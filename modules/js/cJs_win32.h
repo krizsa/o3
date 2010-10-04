@@ -451,7 +451,10 @@ namespace o3{
 			return m_error.size() > 0;
 		}
 		
-
+		bool isIE()
+		{
+			return false;
+		}
 
         tMSComPtr<CAScript>         m_ascript;     
         HRESULT                     m_hrInit;

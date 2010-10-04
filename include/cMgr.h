@@ -219,10 +219,20 @@ struct cMgr : cUnk, iMgr {
 		return downloadFile(url, ctx, Delegate(), Delegate());
 	}
 
-	Buf downloadInstaller(Delegate onreadystatechange, Delegate onprogress)
+	Buf downloadInstaller(iCtx* ctx)
 	{
-		Str url = Str("http://github.com/ajaxorg/o3plugin/blob/master//") 
+		Str url = Str("http://github.com/ajaxorg/o3-plugin-builds/raw/master//") 
 			+ O3_PLUGIN_INSTALLER;
+
+		return downloadFile(url, ctx, Delegate(), Delegate());
+	}
+
+	Buf downloadHashes( iCtx* ctx ) 
+	{
+		Str url = Str("http://github.com/ajaxorg/o3-plugin-builds/raw/master//") 
+			+ O3_PLUGIN_VERSION;
+
+		return downloadFile(url, ctx, Delegate(), Delegate());
 	}
 
 	Buf downloadFile( Str url, iCtx* ctx, Delegate onreadystatechange, 
@@ -437,7 +447,8 @@ struct cMgr : cUnk, iMgr {
 	{
 		// stub implementation
 	}
-	
+
+
 };
 
 // temporary utility function, this should be replaced with some

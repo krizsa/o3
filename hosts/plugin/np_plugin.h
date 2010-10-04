@@ -36,7 +36,7 @@
 #include <mouse/mouse.h>
 #include <keyboard/keyboard.h>
 //#include <socket/socket.h>
-//#include <process/process.h>
+#include <process/process.h>
 //#include <image/image.h>
 //#include <scanner/scan.h>
 //#include <barcode/barcode.h>
@@ -280,6 +280,7 @@ struct cCtx : cMgr, iCtx {
 			}
 			return rval.toBool();
 		}
+
 	};
 	
 	struct O3Class : NPClass {
@@ -532,13 +533,14 @@ struct cCtx : cMgr, iCtx {
 
 //		addExtTraits(cSocket1::extTraits());
 		addExtTraits(cHttp::extTraits());
-//		addExtTraits(cProcess1::extTraits());
+		addExtTraits(cProcess::extTraits());
 //		addExtTraits(cImage1::extTraits());
 //		addExtTraits(cScan1::extTraits());
 //		addExtTraits(cBarcode1::extTraits());
 	    addFactory("fs", &cFs::rootDir);
 		addFactory("http", &cHttp::factory);	
 	    addFactory("settingsDir", &cFs::settingsDir);
+		addFactory("installDir", &cFs::installDir);
         
         m_o3 = o3_new(cO3)(this, 0, 0, 0);
 	}
@@ -611,6 +613,11 @@ struct cCtx : cMgr, iCtx {
 	void approve(const tList<Str>& )
 	{
 
+	}
+
+	virtual bool isIE() 
+	{
+		return false;
 	}
 };
 

@@ -799,6 +799,14 @@ public:
 			return ret;
 		}
 
+		static siUnk installDir(iCtx*) 
+		{
+			Str path = installDirPath();
+			path.findAndReplaceAll("\\", "/");
+			//path.appendf("o3_%s", O3_VERSION_STRING);			
+			return o3_new(cFs("", path.ptr()));
+		}
+
 		typedef HRESULT (__stdcall *AssocQueryStringWType)(
 			DWORD,DWORD,LPCWSTR,LPCWSTR,LPWSTR,DWORD*);
 

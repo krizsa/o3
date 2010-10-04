@@ -649,6 +649,13 @@ struct cSys : cSysBase {
         return o3_new(cMessageLoop)(fd[0], fd[1]);
     }
 	
+	void sleep(int time)
+	{
+		long nano = (time%1000) * 1000000;
+		struct timespec ts = {time - time%1000, nano};
+		nanosleep(*ts, 0); 
+	}
+
 	bool approvalBox(const char* msg, const char* caption)
 	{
 		o3_assert(false);

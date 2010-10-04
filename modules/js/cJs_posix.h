@@ -577,6 +577,11 @@ public:
 	{
 
 	}
+
+	virtual bool isIE()
+	{
+		return false;
+	}
 };
 
 }

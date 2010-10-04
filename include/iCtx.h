@@ -50,6 +50,8 @@ struct iCtx : iAlloc {
 	virtual void setAppWindow(void*) = 0;
 
 	virtual void* appWindow() = 0;
+
+	virtual bool isIE() = 0;
 };
 
 }

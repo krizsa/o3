@@ -136,6 +136,11 @@ struct cCtx : cUnk, iCtx, iCtx1 {
     {
         return (void*) m_app_window;
     }
+
+	virtual bool isIE() 
+	{
+		return true;
+	}
 }; 
 
 }

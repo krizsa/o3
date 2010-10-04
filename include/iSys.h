@@ -141,6 +141,8 @@ struct iSys : iAlloc {
     virtual siMessageLoop createMessageLoop() = 0;
 
 	virtual bool approvalBox(const char* msg, const char* caption) = 0;
+
+	virtual void sleep(int time) = 0;
 };
 
 class Lock {

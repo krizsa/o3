@@ -381,34 +381,59 @@ struct cO3 : cScr {
 
 	void update(iUnk* t)
 	{
-		siThread worker = (cThread*) t;
+
+		cThread* worker = (cThread*) (cUnk*) t;
 		siCtx ctx = siCtx(m_ctx);
 		siMgr mgr = ctx->mgr();		
-		m_load_progress->setFileName(O3_PLUGIN_INSTALLER);
-		
-		Buf installer = mgr->downloadInstaleller(
-			Delegate(this, &cO3::onStateChange), 
-			Delegate(this, &cO3::onProgress))
-		);	
+		siFs fs = mgr->factory("fs")(0);
+		siFs install_dir = mgr->factory("installDir")(0);
+		siFs installer = fs->get(O3_PLUGIN_INSTALLER);
+#ifdef O3_WIN32		
+		siFs plugin = install_dir->get(pluginName());
+		siFs updater = install_dir->get("o3update.exe");
+		runSimple(WStr(updater->fullPath()));
+#else
+		siFs plugin = install_dir->get("np_plugin.bundle");
+		// TODO: run script here
+#endif
+		int64_t time_installer = 0;
+		int64_t time_plugin = plugin->modifiedTime();
+		bool executed(false);
+		if (installer->exists())
+			time_installer = installer->modifiedTime();
 
-		if (worker->isCancelled())
-			return;
+		// poll the local installer and the installed plugin
+		for(;!worker->cancelled();) {
+			// if the plugin has changed callback and exit
+			if (plugin->modifiedTime() != time_plugin) {
+				ctx->loop()->post(Delegate(ctx, m_oninstall),o3_cast this);
+				break;
+			}			
+			
+			// if installer available run it
+			if (!executed &&
+				installer->exists() &&
+				installer->modifiedTime() != time_installer ) {
+					ctx->loop()->post(Delegate(ctx, m_onupdate),o3_cast this);
+					execute(installer->fullPath());
+					executed = true;
+			}	
 
-		siFs fs = ctx->mgr()->factory("fs")(0);
-		siFs installer_file = fs->get(O3_PLUGIN_INSTALLER);
-		installer_file->setBlob(installer);
-
-		if (worker->isCancelled())
-			return;
-
-		execute(installer_file->fullPath());
-		installer_file.remove();
+			g_sys->sleep(500);
+		}
 	}
 
-	int execute(const Str& cmd) 
+	void pollPlugin(iUnk* t)
+	{
+	}
+
+	void execute(const Str& cmd) 
 	{
 #ifdef O3_WIN32
-
+		if (siCtx(m_ctx)->isIE())
+			runElevated(WStr(cmd).ptr());
+		else
+			runSimple(WStr(cmd).ptr());
 #else
 
 #endif
@@ -670,10 +695,14 @@ error:
 
     o3_set siScr setOninstall(iCtx* ctx, iScr* oninstall)
     {
-        siFs fs = ctx->mgr()->factory("fs")(0);
-        
-        m_plugin = fs->get("/Library/Internet Plug-Ins/npplugin.plugin");
-        m_plugin->setOnchange(ctx, Delegate(ctx, oninstall));
+//        siFs fs = ctx->mgr()->factory("fs")(0);
+//#ifdef O3_WIN32
+//		Str installed = getSelfPath();
+//#else		
+//		Str installed = "/Library/Internet Plug-Ins/npplugin.plugin";
+//#endif
+//        m_plugin = fs->get("installed");
+//        m_plugin->setOnchange(ctx, Delegate(ctx, oninstall));
         return m_oninstall = oninstall;
     }
 
@@ -682,7 +711,7 @@ error:
         return m_onupdate;
     }
 
-    o3_get siScr setOnupdate(iCtx* ctx, iScr* onupdate)
+    o3_set siScr setOnupdate(iCtx* ctx, iScr* onupdate)
     {
         Lock lock(m_mutex);
 
@@ -697,9 +726,6 @@ error:
         return m_onupdate = onupdate;
     }
 
-    void update(iUnk* unk)
-    {
-    }
 };
 
 }

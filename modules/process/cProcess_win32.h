@@ -106,13 +106,14 @@ namespace o3{
         {
             m_ctx = ctx;			
             WStr wargs = args;
-			runElevated( ctx, getSelfPath(), wargs );
+			runElevated( ctx, wargs );
+			//runElevated( ctx, getSelfPath(), wargs );
         }
 
         o3_fun void runSimple(const char* cmd) 
         {
             WStr wcmd = Str(cmd);
-            runSimple(wcmd);
+			o3::runSimple(wcmd);
         }
 
         o3_get bool valid() 
@@ -281,7 +282,7 @@ namespace o3{
 			return 0; //! is this OK?
 		}
 
-        bool runElevated( iCtx* ctx, const wchar_t* path, const wchar_t* parameters = NULL, const wchar_t* dir = NULL ) 
+        o3_fun bool runElevated( iCtx* ctx, const wchar_t* path, const wchar_t* parameters = NULL, const wchar_t* dir = NULL ) 
         {
             m_name = path;
 
@@ -312,30 +313,6 @@ namespace o3{
             //TODO: process ID? 
             return (int)shex.hInstApp > 32;
         } 
-
-        void runSimple(wchar_t* cmd) 
-        {
-            STARTUPINFOW si;
-            PROCESS_INFORMATION pi;
-
-            ZeroMemory( &si, sizeof(si) );
-            si.cb = sizeof(si);
-            ZeroMemory( &pi, sizeof(pi) );
-
-            // Start the child process. 
-            CreateProcessW( NULL,   // No module name (use command line)
-                cmd,        // Command line
-                NULL,           // Process handle not inheritable
-                NULL,           // Thread handle not inheritable
-                FALSE,          // Set handle inheritance to FALSE
-                0,              // No creation flags
-                NULL,           // Use parent's environment block
-                NULL,           // Use parent's starting directory 
-                &si,            // Pointer to STARTUPINFO structure
-                &pi );           // Pointer to PROCESS_INFORMATION structure
-
-            //m_p_info = pi;
-        }
 
         void closeHandles() 
         {
