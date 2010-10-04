@@ -1,13 +1,18 @@
 #!/bin/bash
+echo "Copying plugin."
 cd hosts/installer/osx
 cp -rf ../../..//build/Release/npplugin.plugin npplugin.plugin
+echo "Archiving plugin."
 pax -wf Archive.pax npplugin.plugin
 gzip -f Archive.pax
+echo "Creating bill-of-materials."
 mkbom npplugin.plugin Archive.bom
+echo "Patching installer."
 mv Archive.bom Archive.pax.gz Installer.mpkg/Contents/Packages/o3.pkg/Contents
 rm -rf npplugin.plugin
+echo "Creating image."
 mkdir temp
 cp -rf Installer.mpkg temp/o3plugin.mpkg
 rm -f o3plugin.dmg
-hdiutil create -fs HFS+ -srcFolder temp o3plugin.dmg
+hdiutil create -fs HFS+ -quiet -srcFolder temp o3plugin.dmg
 rm -rf temp
