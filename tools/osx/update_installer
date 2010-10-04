@@ -1,0 +1,51 @@
+#!/bin/bash
+URL="http://github.com/ajaxorg/o3-plugin-builds/raw/master/"
+DIR="/Library/Internet Plug-Ins/npplugin.plugin/Contents/MacOS/"
+PLUGIN=npplugin
+INSTALLER=o3plugin-osx$1.dmg
+
+mkdir -p /tmp/o3
+cd /tmp/o3
+curl -o $INSTALLER.version.new --silent $URL/$INSTALLER.version
+
+function getline {
+    head -n $2 $1 | tail -n 1
+}
+
+function gen_hash {
+    md5 "$1" | sed 's/.*= \(.*\)/\1/g'
+}
+
+function download {
+    echo "Downloading installer."
+    curl -o $INSTALLER.new --silent $URL/$INSTALLER
+    echo "Updating installer."
+    mv $INSTALLER.new $INSTALLER
+    echo "Installer is up to date."
+}
+
+echo "Checking if plug-in is up to date."
+if [ ! `gen_hash "$DIR/$PLUGIN"` = `getline $INSTALLER.version.new 1` ];
+then
+    echo "Plugin is not up to date."
+    echo "Checking if installer exists."
+    if [ -f $INSTALLER ];
+    then
+        echo "Installer exists."
+        echo "Checking if installer is up to date."
+        if [ `gen_hash "$INSTALLER"` = `getline $INSTALLER.version.new 2` ] ;
+        then
+            touch $INSTALLER
+            echo "Installer is up to date."
+        else
+            echo "Installer is not up to date."
+            download
+        fi
+    else
+        echo "Installer does not exist."
+        download
+    fi
+else
+    echo "Plugin is up to date."
+    echo "Exiting."
+fi
