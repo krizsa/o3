@@ -3,29 +3,29 @@ cd `dirname $0`
 cd ..
 
 #lets copy some stuff
-if [ $# -ne 3 ]
+if [ $# -ne 2 ]
 then
-	echo "Usage: export <ajaxorg reponame> <modulename> <platform>"
+	echo "Usage: export <modulename> <platform>"
 	exit -1
 fi
 
-echo "exporting $2 to ajaxorg/$1 for platform $3 ...."
+echo "exporting $1 to ajaxorg/node-o3-$1 for platform $2 ...."
 
 # lets check out the module
 [ -d "export" ] || mkdir "export"
 cd "export"
-[ -d "$1" ] || git clone "git@github.com:ajaxorg/$1"
-cd "$1"
+[ -d "node-o3-$1" ] || git clone "git@github.com:ajaxorg/node-o3-$1"
+cd "node-o3-$1"
 git pull
 
 mkdir lib || true
-mkdir "lib/$1" || true
-cp "../../modules/$2/index.js" "lib/$1/index.js"
-cp -a "../../modules/$2/node/*" . || true
-cp -a "../../modules/$2/test"  .|| true
-cp -a "../../modules/$2/example" .|| true
-cp "../../build/default/o3.node" "lib/$1/o3-$3.node" 
-cp "../../modules/o3.js" "lib/$1/o3.js"
+mkdir "lib/node-o3-$1" || true
+cp "../../modules/$1/index.js" "lib/node-o3-$1/index.js"
+cp -a "../../modules/$1/node/*" . || true
+cp -a "../../modules/$1/test"  .|| true
+cp -a "../../modules/$1/example" .|| true
+cp "../../build/default/o3.node" "lib/node-o3-$1/o3-$2.node" 
+cp "../../modules/o3.js" "lib/node-o3-$1/o3.js"
 
 #run unittest
 node test/test.js
