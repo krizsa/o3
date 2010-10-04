@@ -1,6 +1,6 @@
 var fs = require('fs');
 var sys = require('sys');
-var fastxml = require("../../fastxml");
+var fastxml = require("../lib/node-fastxml-dom");
 
 function diff(node, node1) {
     if (node.nodeType != node1.nodeType)
