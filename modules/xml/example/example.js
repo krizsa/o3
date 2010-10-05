@@ -1,4 +1,4 @@
-var fastxml = require("../lib/o3-fastxml"),
+var xml = require("../lib/o3-xml"),
 	doc,
 	xmlData = "\
 <?xml version=\"1.0\"?>\n\
@@ -24,7 +24,7 @@ var fastxml = require("../lib/o3-fastxml"),
    </book>\n\
 </catalog>";
 
-doc = fastxml.parseFromString(xmlData);
+doc = xml.parseFromString(xmlData);
 console.log("-parsed document:\n" + doc.xml);
 console.log("\n-traversing document element:");
 var elem = doc.documentElement,
