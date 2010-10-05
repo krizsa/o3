@@ -71,6 +71,7 @@
 #ifdef O3_APPLE
 #define O3_PLATFORM "osx"
 #define O3_PLUGIN_INSTALLER "o3plugin-osx32.dmg"
+#define O3_PLUGIN_BINARY "npplugin"
 #define O3_PLUGIN_VERSION "o3plugin-osx32.dmg.version"
 #endif
 

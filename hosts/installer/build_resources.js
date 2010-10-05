@@ -28,7 +28,10 @@ args.push(
 	"installer.js",
 	"install.ico",
 	"o3settings.crx",
-	"o3.xpi"
+	"o3.xpi",
+	mode ?"../../build/" + mode + "/o3update/o3update.exe"
+		: "../o3update/o3update.exe"
+
 );
 
 var tgt = mode ? "../../build/" + mode + "/installer/o3plugin.exe" 

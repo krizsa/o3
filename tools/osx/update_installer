@@ -13,7 +13,7 @@ function getline {
 }
 
 function gen_hash {
-    ./md5 "$1" | sed 's/.*= \(.*\)/\1/g'
+    /sbin/md5 "$1" | sed 's/.*= \(.*\)/\1/g'
 }
 
 function download {

@@ -541,7 +541,7 @@ struct cCtx : cMgr, iCtx {
 		addFactory("http", &cHttp::factory);	
 	    addFactory("settingsDir", &cFs::settingsDir);
 		addFactory("installDir", &cFs::installDir);
-        
+        addFactory("pluginDir", &cFs::pluginDir);  
         m_o3 = o3_new(cO3)(this, 0, 0, 0);
 	}
 	
@@ -552,7 +552,7 @@ struct cCtx : cMgr, iCtx {
 #endif // O3_APPLE
 #ifdef O3_WIN32
         m_hidden_wnd.destroy();
-#endif // O3_WIN32
+#endif // O3_WIN32c
 		for (tMap<O3Object*, O3Object*>::ConstIter i = m_objects.begin();
 			 i != m_objects.end(); ++i)
 			i->val->m_scr = 0;

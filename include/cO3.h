@@ -124,18 +124,20 @@ struct cO3 : cScr {
 	siEvent		m_change_event;
 	siMutex		m_mutex;
 
-    siFs            m_plugin;
-    siScr           m_oninstall;
     siThread        m_thread;
-    siScr           m_onupdate;
 	o3_prop siScr	m_onapprove;
 	o3_prop siScr	m_ondone;
 	o3_prop siScr	m_onprogress;
 	o3_prop siScr	m_onfail;
 
+    siFs    m_installer;
+    siFs    m_plugin;
+
     cO3(iCtx* ctx, int /*argc*/, char** argv, char** envp)
 		: m_loading(false)
 	{
+        siFs plugin_dir;
+        
         if (argv)
             while (*argv)
                 m_args.push(*argv++);
@@ -149,11 +151,6 @@ struct cO3 : cScr {
 
 		m_change_event = g_sys->createEvent();
 		m_mutex = g_sys->createMutex();
-        if (m_thread) {
-            m_thread->cancel();
-            while (m_thread->running())
-                ;
-        }
 	}
 
     ~cO3()
@@ -165,6 +162,16 @@ struct cO3 : cScr {
 
 	o3_glue_gen()
 
+    o3_fun void doInstall()
+    {
+        if (fork() == 0) {
+            char *cmd[] = { "open", "/tmp/o3/o3plugin-osx32.dmg", 0 };
+            char *env[] = { 0 };
+
+            execve("/usr/bin/open", cmd, env);
+        }
+    }
+    
     o3_get tVec<Str> args()
     {
         return m_args;
@@ -316,11 +323,6 @@ struct cO3 : cScr {
 			siScr(this));	
 	}
 
-    void onInstall(iUnk*)
-    {
-        Delegate(siCtx(m_ctx), m_oninstall)(siScr(this));
-    }
-
 	// read the settings, checks it against m_to_approve
 	// marks the component to be approved in the settings file with '2'
 	// opens a blocking approval box, that let's the user to approve components
@@ -379,52 +381,51 @@ struct cO3 : cScr {
 		m_to_approve.clear();
 	}
 
-	void update(iUnk* t)
+	void update(iUnk* unk)
 	{
-
-		cThread* worker = (cThread*) (cUnk*) t;
-		siCtx ctx = siCtx(m_ctx);
+        /*
+		siThread thread = unk;
+		siCtx ctx = m_ctx;
 		siMgr mgr = ctx->mgr();		
+        siFs installer;
+        int64_t installer_modified_time;
+        siFs plugin;
+        int64_t plugin_modified_time;
+
+        // NOTE: installer may already exist due to a previous update
+        installer = siFs(mgr->factory("installDir")(0))->get(O3_PLUGIN_INSTALLER);
+		installer_modified_time = installer->exists() ? installer->modifiedTime() : 0;
+
+#ifdef O3_WIN32		
+        // TODO: Start update process in background
+		plugin_modified_time = plugin->modifiedTime();
 		siFs fs = mgr->factory("fs")(0);
 		siFs install_dir = mgr->factory("installDir")(0);
-		siFs installer = fs->get(O3_PLUGIN_INSTALLER);
-#ifdef O3_WIN32		
+		siFs installer = fs->get(Str("../") + O3_PLUGIN_INSTALLER);
+
 		siFs plugin = install_dir->get(pluginName());
 		siFs updater = install_dir->get("o3update.exe");
 		runSimple(WStr(updater->fullPath()));
 #else
-		siFs plugin = install_dir->get("np_plugin.bundle");
-		// TODO: run script here
+        // Start updater script in background
+        if (fork() == 0) {
+            char *cmd[] = { "update_installer", "32", 0 };
+            char *env[] = { 0 };
+
+            execve("/Library/Internet Plug-Ins/npplugin.plugin/Contents/MacOS/update_installer", cmd, env);
+        }
 #endif
-		int64_t time_installer = 0;
-		int64_t time_plugin = plugin->modifiedTime();
-		bool executed(false);
-		if (installer->exists())
-			time_installer = installer->modifiedTime();
-
-		// poll the local installer and the installed plugin
-		for(;!worker->cancelled();) {
-			// if the plugin has changed callback and exit
-			if (plugin->modifiedTime() != time_plugin) {
-				ctx->loop()->post(Delegate(ctx, m_oninstall),o3_cast this);
-				break;
-			}			
-			
-			// if installer available run it
-			if (!executed &&
-				installer->exists() &&
-				installer->modifiedTime() != time_installer ) {
-					ctx->loop()->post(Delegate(ctx, m_onupdate),o3_cast this);
-					execute(installer->fullPath());
-					executed = true;
-			}	
-
+		while (!thread->cancelled()) {
+            // Wait until installer is downloaded or touched by updater script,
+            // then schedule call to onupdate
+			if (installer->exists() &&
+				installer->modifiedTime() != installer_modified_time) {
+			    ctx->loop()->post(Delegate(ctx, m_onupdate), o3_cast this);
+                break;
+            }
 			g_sys->sleep(500);
 		}
-	}
-
-	void pollPlugin(iUnk* t)
-	{
+        */
 	}
 
 	void execute(const Str& cmd) 
@@ -687,45 +688,36 @@ error:
 			ctx->loop()->post(Delegate(this, &cO3::onNotification),o3_cast this);
 	}
 
-    
-    o3_get siScr oninstall()
-    {
-        return m_oninstall;
-    }
-
-    o3_set siScr setOninstall(iCtx* ctx, iScr* oninstall)
-    {
-//        siFs fs = ctx->mgr()->factory("fs")(0);
-//#ifdef O3_WIN32
-//		Str installed = getSelfPath();
-//#else		
-//		Str installed = "/Library/Internet Plug-Ins/npplugin.plugin";
-//#endif
-//        m_plugin = fs->get("installed");
-//        m_plugin->setOnchange(ctx, Delegate(ctx, oninstall));
-        return m_oninstall = oninstall;
-    }
-
     o3_get siScr onupdate()
     {
-        return m_onupdate;
+        return m_installer ? m_installer->onchange() : 0;
     }
 
     o3_set siScr setOnupdate(iCtx* ctx, iScr* onupdate)
     {
-        Lock lock(m_mutex);
+        if (!m_installer)
+            m_installer = siFs(ctx->mgr()->factory("installDir")(0))->get(O3_PLUGIN_INSTALLER);
+        m_installer->setOnchange(ctx, onupdate);
+        if (fork() == 0) {
+            char *cmd[] = { "update_installer", "32", 0 };
+            char *env[] = { 0 };
 
-        if (!m_thread && onupdate) 
-            m_thread = g_sys->createThread(Delegate(this, &cO3::update));
-        else if (m_thread && !onupdate) {
-            m_thread->cancel();
-            while (m_thread->running())
-                ;
-            m_thread = 0;
+            execve("/Library/Internet Plug-Ins/npplugin.plugin/Contents/MacOS/update_installer", cmd, env);
         }
-        return m_onupdate = onupdate;
+        return onupdate;
     }
 
+    o3_get siScr oninstall()
+    {
+        return m_plugin ? m_plugin->onchange() : 0;
+    }
+
+    o3_set siScr setOninstall(iCtx* ctx, iScr* oninstall)
+    {
+        if (!m_plugin)
+            m_plugin = siFs(ctx->mgr()->factory("pluginDir")(0))->get(O3_PLUGIN_BINARY);
+        return m_plugin->setOnchange(ctx, oninstall);
+    }
 };
 
 }

@@ -785,7 +785,7 @@ public:
 			Str path = tmpPath();
 			path.findAndReplaceAll("\\", "/");
 			path.appendf("o3_%s", O3_VERSION_STRING);			
-			siFs ret = o3_new(cFs("", path.ptr()));
+			siFs ret = o3_new(cFs(path.ptr(),""));
 			if (!ret->exists()) {
 				// if the root folder does not exists yet, let's
 				// create another node, that is able to create
