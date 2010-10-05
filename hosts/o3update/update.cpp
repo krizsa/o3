@@ -142,7 +142,8 @@ namespace o3 {
 		Buf ih = md.hash(installer);
 		Str blah = Str::fromHex(ih.ptr(), ih.size());
 
-		Str hash(hashes);
+		Str hash1(hashes);
+		Str hash(hash1.ptr(), 32);
 		cBlob* blob = o3_new(cBlob);
 		siScr sblob = blob;
 		Buf hh = blob->fromHex(hash);
