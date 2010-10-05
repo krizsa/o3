@@ -225,7 +225,7 @@ namespace o3 {
 
 			Buf installer_data = m_mgr->downloadInstaller(m_ctx);
 			if (validate(hashes, installer_data))
-				installer->setData(installer_data);
+				installer->setBlob(installer_data);
 
 			m_done = true;
 		}
