@@ -140,6 +140,7 @@ namespace o3 {
 
 		cMD5Hash md;
 		Buf ih = md.hash(installer);
+		Str blah = Str::fromHex(ih.ptr(), ih.size());
 
 		Str hash(hashes);
 		cBlob* blob = o3_new(cBlob);
@@ -158,13 +159,15 @@ namespace o3 {
 
 	struct Updater : cUnk
 	{
+		Updater() : m_done(false)
+		{}
+
 		siCtx m_ctx;
 		siMgr m_mgr;
+		bool m_done;
 
 		void start()
 		{
-			cSys sys;
-
 			m_mgr = o3_new(cMgr)();
 			m_ctx = o3_new(cCtx)(m_mgr);	
 
@@ -175,6 +178,12 @@ namespace o3 {
 
 			for(;;) {
 				m_ctx->loop()->wait(10);
+				
+				// TODO: mutex protect this
+				bool done = m_done;
+				
+				if (done)
+					break;
 			}
 
 		}
@@ -216,6 +225,8 @@ namespace o3 {
 			Buf installer_data = m_mgr->downloadInstaller(m_ctx);
 			if (validate(hashes, installer_data))
 				installer->setData(installer_data);
+
+			m_done = true;
 		}
 
 	};
@@ -224,8 +235,8 @@ namespace o3 {
 
 
 
-//int WINAPI WinMain(HINSTANCE hi, HINSTANCE hp, LPSTR arg, int show){
-int main(int argc, char **argv) {
+int WINAPI WinMain(HINSTANCE hi, HINSTANCE hp, LPSTR arg, int show){
+//int main(int argc, char **argv) {
 
     using namespace o3;  
 
@@ -238,9 +249,14 @@ int main(int argc, char **argv) {
 	if (!h || GetLastError() == ERROR_ALREADY_EXISTS)
 		return 0;
 
-	Updater updater;
-	updater.addRef();
-	updater.start();
+
+	cSys sys;
+	{
+		Updater updater;
+		updater.addRef();
+		updater.start();
+		// updater.release();
+	}
 
 	CloseHandle(h);
 

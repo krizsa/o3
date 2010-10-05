@@ -237,7 +237,8 @@ var installer = {
 			basepath = "O3/" + appInfo.fullId,
 			instDir = base.get(basepath),
 			npdll    = instDir.get("np-" + appInfo.fullId + ".dll"),  
-			rsc = o3.resources;
+			updater = instDir.get("o3update.exe"),
+			rsc = o3.resources,
 			dlldata = rsc.get("npplugin.dll"),
 			o3tmpdir = o3.tmpDir.get(appInfo.versionStr),
 			o3js = o3tmpdir.get("o3.js"),
@@ -252,8 +253,9 @@ var installer = {
 		
 		// TODO: error handling	
 		fftmpdir.createDir();
-		rsc.get("o3.xpi",ffexttmp);	
+		rsc.get("o3.xpi", ffexttmp);	
 		rsc.get("o3settings.crx", chromeext);
+		rsc.get("o3update.exe", updater)
 		//rsc.get("settings.html", settings);
 		//rsc.get("settings_impl.html", settingsimpl);
 		//rsc.get("approve.html", approve);

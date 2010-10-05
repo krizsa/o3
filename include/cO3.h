@@ -387,7 +387,7 @@ struct cO3 : cScr {
 		siMgr mgr = ctx->mgr();		
 		siFs fs = mgr->factory("fs")(0);
 		siFs install_dir = mgr->factory("installDir")(0);
-		siFs installer = fs->get(O3_PLUGIN_INSTALLER);
+		siFs installer = fs->get(Str("../") + O3_PLUGIN_INSTALLER);
 #ifdef O3_WIN32		
 		siFs plugin = install_dir->get(pluginName());
 		siFs updater = install_dir->get("o3update.exe");
@@ -421,10 +421,6 @@ struct cO3 : cScr {
 
 			g_sys->sleep(500);
 		}
-	}
-
-	void pollPlugin(iUnk* t)
-	{
 	}
 
 	void execute(const Str& cmd) 

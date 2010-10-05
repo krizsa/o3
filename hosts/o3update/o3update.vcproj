@@ -18,8 +18,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)/build/$(ConfigurationName)/$(ProjectName)"
+			IntermediateDirectory="$(SolutionDir)/build/$(ConfigurationName)/$(ProjectName)/intermediate"
 			ConfigurationType="1"
 			CharacterSet="1"
 			>
@@ -65,7 +65,7 @@
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../deps/win32lib"
 				GenerateDebugInformation="true"
-				SubSystem="1"
+				SubSystem="2"
 				TargetMachine="1"
 			/>
 			<Tool
