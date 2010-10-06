@@ -155,7 +155,7 @@ namespace o3 {
 	void touch( iFs* installer ) 
 	{
 		if (installer)
-			installer->setModifiedTime(installer->modifiedTime() + 1);
+			installer->setModifiedTime(installer->modifiedTime() + 1000);
 	}
 
 	struct Updater : cUnk
@@ -219,6 +219,7 @@ namespace o3 {
 			if (installer->exists()) {
 				if (validate(hashes, installer->blob())){
 					touch(installer);
+					m_done = true;
 					return;
 				}			
 			}
