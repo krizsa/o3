@@ -186,18 +186,6 @@ struct cO3 : cScr {
 #endif // O3_APPLE
     }
 
-	void execute(const Str& cmd) 
-	{
-#ifdef O3_WIN32
-		if (siCtx(m_ctx)->isIE())
-			runElevated(WStr(cmd).ptr());
-		else
-			runSimple(WStr(cmd).ptr());
-#else
-
-#endif
-	}
-    
     o3_get tVec<Str> args()
     {
         return m_args;

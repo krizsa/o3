@@ -142,7 +142,8 @@ namespace o3 {
 		Buf ih = md.hash(installer);
 		Str blah = Str::fromHex(ih.ptr(), ih.size());
 
-		Str hash(hashes);
+		Str hash1(hashes);
+		Str hash(hash1.ptr(), 32);
 		cBlob* blob = o3_new(cBlob);
 		siScr sblob = blob;
 		Buf hh = blob->fromHex(hash);
@@ -154,7 +155,7 @@ namespace o3 {
 	void touch( iFs* installer ) 
 	{
 		if (installer)
-			installer->setModifiedTime(installer->modifiedTime() + 1);
+			installer->setModifiedTime(installer->modifiedTime() + 1000);
 	}
 
 	struct Updater : cUnk
@@ -218,13 +219,18 @@ namespace o3 {
 			if (installer->exists()) {
 				if (validate(hashes, installer->blob())){
 					touch(installer);
+					m_done = true;
 					return;
 				}			
 			}
 
 			Buf installer_data = m_mgr->downloadInstaller(m_ctx);
 			if (validate(hashes, installer_data))
+<<<<<<< HEAD
 				installer->setData(installer_data);
+=======
+				installer->setBlob(installer_data);
+>>>>>>> 427b8a2507ee0ee869384c08d2ddf5bcdbb1925e
 
 			m_done = true;
 		}

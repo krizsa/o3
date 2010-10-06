@@ -410,7 +410,7 @@ public:
 			ULARGE_INTEGER t;
 			t.QuadPart = time;
 			fa.ftLastWriteTime.dwHighDateTime = t.HighPart;
-			fa.ftLastWriteTime.dwHighDateTime = t.LowPart;
+			fa.ftLastWriteTime.dwLowDateTime = t.LowPart;
 
 			HANDLE h = writeAttribute();
 			if (INVALID_HANDLE_VALUE == h)
@@ -431,7 +431,7 @@ public:
 			ULARGE_INTEGER t;
 			t.QuadPart = time;
 			fa.ftCreationTime.dwHighDateTime = t.HighPart;
-			fa.ftCreationTime.dwHighDateTime = t.LowPart;
+			fa.ftCreationTime.dwLowDateTime = t.LowPart;
 
 			HANDLE h = writeAttribute();
 			if (INVALID_HANDLE_VALUE == h)
