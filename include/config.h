@@ -64,14 +64,17 @@
 
 #ifdef O3_WIN32
 #define O3_PLATFORM "win"
+#define O3_PLUGIN_NAME
+#define O3_PLUGIN_UPDATER "o3update.exe"
 #define O3_PLUGIN_INSTALLER "o3plugin-win32d.exe"
 #define O3_PLUGIN_VERSION "o3plugin-win32d.exe.version"
 #endif
 
 #ifdef O3_APPLE
 #define O3_PLATFORM "osx"
+#define O3_PLUGIN_NAME "npplugin"
+#define O3_PLUGIN_UPDATER "update_installer"
 #define O3_PLUGIN_INSTALLER "o3plugin-osx32.dmg"
-#define O3_PLUGIN_BINARY "npplugin"
 #define O3_PLUGIN_VERSION "o3plugin-osx32.dmg.version"
 #endif
 

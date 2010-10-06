@@ -136,8 +136,6 @@ struct cO3 : cScr {
     cO3(iCtx* ctx, int /*argc*/, char** argv, char** envp)
 		: m_loading(false)
 	{
-        siFs plugin_dir;
-        
         if (argv)
             while (*argv)
                 m_args.push(*argv++);
@@ -164,13 +162,41 @@ struct cO3 : cScr {
 
     o3_fun void doInstall()
     {
+        siCtx ctx = m_ctx;
+
+        if (!m_installer)
+            m_installer = siFs(ctx->mgr()->factory("installerDir")(0))
+                          ->get(O3_PLUGIN_INSTALLER);
+#ifdef O3_WIN32
+        // For Internet Explorer, we need to run the installer with elevated
+        // rights.
+        if (ctx->isIE())
+            runElevated(m_installer->fullPath());
+        else
+            runSimple(m_installer->fullPath());
+#endif // O3_WIN32
+#ifdef O3_APPLE
+        // Start the installer (32-bit only for now)
         if (fork() == 0) {
-            char *cmd[] = { "open", "/tmp/o3/o3plugin-osx32.dmg", 0 };
+            char *cmd[] = { "open", m_installer->fullPath(), 0 };
             char *env[] = { 0 };
 
             execve("/usr/bin/open", cmd, env);
         }
+#endif // O3_APPLE
     }
+
+	void execute(const Str& cmd) 
+	{
+#ifdef O3_WIN32
+		if (siCtx(m_ctx)->isIE())
+			runElevated(WStr(cmd).ptr());
+		else
+			runSimple(WStr(cmd).ptr());
+#else
+
+#endif
+	}
     
     o3_get tVec<Str> args()
     {
@@ -379,65 +405,6 @@ struct cO3 : cScr {
 		}
 
 		m_to_approve.clear();
-	}
-
-	void update(iUnk* unk)
-	{
-        /*
-		siThread thread = unk;
-		siCtx ctx = m_ctx;
-		siMgr mgr = ctx->mgr();		
-        siFs installer;
-        int64_t installer_modified_time;
-        siFs plugin;
-        int64_t plugin_modified_time;
-
-        // NOTE: installer may already exist due to a previous update
-        installer = siFs(mgr->factory("installDir")(0))->get(O3_PLUGIN_INSTALLER);
-		installer_modified_time = installer->exists() ? installer->modifiedTime() : 0;
-
-#ifdef O3_WIN32		
-        // TODO: Start update process in background
-		plugin_modified_time = plugin->modifiedTime();
-		siFs fs = mgr->factory("fs")(0);
-		siFs install_dir = mgr->factory("installDir")(0);
-		siFs installer = fs->get(Str("../") + O3_PLUGIN_INSTALLER);
-
-		siFs plugin = install_dir->get(pluginName());
-		siFs updater = install_dir->get("o3update.exe");
-		runSimple(WStr(updater->fullPath()));
-#else
-        // Start updater script in background
-        if (fork() == 0) {
-            char *cmd[] = { "update_installer", "32", 0 };
-            char *env[] = { 0 };
-
-            execve("/Library/Internet Plug-Ins/npplugin.plugin/Contents/MacOS/update_installer", cmd, env);
-        }
-#endif
-		while (!thread->cancelled()) {
-            // Wait until installer is downloaded or touched by updater script,
-            // then schedule call to onupdate
-			if (installer->exists() &&
-				installer->modifiedTime() != installer_modified_time) {
-			    ctx->loop()->post(Delegate(ctx, m_onupdate), o3_cast this);
-                break;
-            }
-			g_sys->sleep(500);
-		}
-        */
-	}
-
-	void execute(const Str& cmd) 
-	{
-#ifdef O3_WIN32
-		if (siCtx(m_ctx)->isIE())
-			runElevated(WStr(cmd).ptr());
-		else
-			runSimple(WStr(cmd).ptr());
-#else
-
-#endif
 	}
 
 	// loading the approved modules, downloading/unpacking/validating 		
@@ -695,15 +662,24 @@ error:
 
     o3_set siScr setOnupdate(iCtx* ctx, iScr* onupdate)
     {
+        siFs updater = siFs(ctx->mgr()->factory("pluginDir")(0))->get(O3_PLUGIN_UPDATER);
+
         if (!m_installer)
-            m_installer = siFs(ctx->mgr()->factory("installDir")(0))->get(O3_PLUGIN_INSTALLER);
+            m_installer = siFs(ctx->mgr()->factory("installerDir")(0))
+                    ->get(O3_PLUGIN_INSTALLER);
         m_installer->setOnchange(ctx, onupdate);
+#ifdef O3_WIN32
+        runSimple(updater->fullPath());
+#endif // O3_WIN32
+#ifdef O3_APPLE
+        // Start the update script in the background
         if (fork() == 0) {
-            char *cmd[] = { "update_installer", "32", 0 };
+            char *cmd[] = { O3_PLUGIN_UPDATER, "32", 0 };
             char *env[] = { 0 };
 
-            execve("/Library/Internet Plug-Ins/npplugin.plugin/Contents/MacOS/update_installer", cmd, env);
+            execve(updater->fullPath(), cmd, env);
         }
+#endif // O3_APPLE
         return onupdate;
     }
 
@@ -715,7 +691,7 @@ error:
     o3_set siScr setOninstall(iCtx* ctx, iScr* oninstall)
     {
         if (!m_plugin)
-            m_plugin = siFs(ctx->mgr()->factory("pluginDir")(0))->get(O3_PLUGIN_BINARY);
+            m_plugin = siFs(ctx->mgr()->factory("pluginDir")(0))->get(O3_PLUGIN_NAME);
         return m_plugin->setOnchange(ctx, oninstall);
     }
 };

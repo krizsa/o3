@@ -327,7 +327,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F9064AEC125CB177004D19A9</string>
+										<string>F9064AEE125CC349004D19A9</string>
 										<key>history</key>
 										<array>
 											<string>F93DBFAF1250CBE500FACB9B</string>
@@ -720,7 +720,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>F9064AEB125CB168004D19A9</string>
 		<string>F9064AA6125CAC6F004D19A9</string>
 		<string>F9064AA7125CAC6F004D19A9</string>
 		<string>/Users/ejpbruel/Projects/o3/o3.xcodeproj</string>

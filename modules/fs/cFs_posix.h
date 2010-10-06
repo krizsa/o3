@@ -83,7 +83,7 @@ struct cFs : cFsBase {
 		return o3_new(cFs)("/", Str(getenv("HOME")) + "/.o3/" + O3_VERSION_STRING + "/settings");
 	}
 
-    static siUnk installDir(iCtx*)
+    static siUnk installerDir(iCtx*)
     {
         return o3_new(cFs)("/tmp/o3");
     }

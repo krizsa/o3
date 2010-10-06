@@ -225,6 +225,7 @@
 			F9064AE9125CB0E8004D19A9 /* PBXTextBookmark */ = F9064AE9125CB0E8004D19A9 /* PBXTextBookmark */;
 			F9064AEA125CB168004D19A9 /* PBXTextBookmark */ = F9064AEA125CB168004D19A9 /* PBXTextBookmark */;
 			F9064AEC125CB177004D19A9 /* PBXTextBookmark */ = F9064AEC125CB177004D19A9 /* PBXTextBookmark */;
+			F9064AEE125CC349004D19A9 /* PBXTextBookmark */ = F9064AEE125CC349004D19A9 /* PBXTextBookmark */;
 			F93DBFAF1250CBE500FACB9B = F93DBFAF1250CBE500FACB9B /* PBXTextBookmark */;
 			F93DBFB11250CBE500FACB9B = F93DBFB11250CBE500FACB9B /* PBXTextBookmark */;
 			F93DBFB41250CBE500FACB9B = F93DBFB41250CBE500FACB9B /* PBXTextBookmark */;
@@ -1154,9 +1155,9 @@
 		path = /Users/ejpbruel/Projects/o3/modules/fs/cFs_posix.h;
 		sourceTree = "<group>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {638, 6692}}";
-			sepNavSelRange = "{5898, 0}";
-			sepNavVisRange = "{5611, 528}";
+			sepNavIntBoundsRect = "{{0, 0}, {1001, 7182}}";
+			sepNavSelRange = "{7361, 0}";
+			sepNavVisRange = "{7258, 287}";
 		};
 	};
 	F9064A95125CAC5B004D19A9 /* cFs_posix.h:337 */ = {
@@ -1169,11 +1170,11 @@
 		delayBeforeContinue = 0;
 		fileReference = F9064A93125CAC5B004D19A9 /* cFs_posix.h */;
 		functionName = "listen(iUnk*)";
-		hitCount = 1;
+		hitCount = 5;
 		ignoreCount = 0;
 		lineNumber = 337;
 		location = npplugin;
-		modificationTime = 308064629.036801;
+		modificationTime = 308064783.938662;
 		state = 1;
 	};
 	F9064A98125CAC68004D19A9 /* PBXTextBookmark */ = {
@@ -1707,6 +1708,16 @@
 		vrLen = 712;
 		vrLoc = 1834;
 	};
+	F9064AEE125CC349004D19A9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F93DBFC61250CBE500FACB9B /* np_plugin.h */;
+		name = "np_plugin.h: 895";
+		rLen = 0;
+		rLoc = 21731;
+		rType = 0;
+		vrLen = 773;
+		vrLoc = 1883;
+	};
 	F93DBCD512475EC400FACB9B /* Source Control */ = {
 		isa = PBXSourceControlManager;
 		fallbackIsa = XCSourceControlManager;
@@ -1879,9 +1890,9 @@
 		path = /Users/ejpbruel/Projects/o3/hosts/plugin/np_plugin.h;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {638, 12096}}";
-			sepNavSelRange = "{14538, 0}";
-			sepNavVisRange = "{1834, 712}";
+			sepNavIntBoundsRect = "{{0, 0}, {638, 12810}}";
+			sepNavSelRange = "{21731, 0}";
+			sepNavVisRange = "{1883, 773}";
 			sepNavWindowFrame = "{{15, 100}, {842, 1078}}";
 		};
 	};

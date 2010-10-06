@@ -540,7 +540,7 @@ struct cCtx : cMgr, iCtx {
 	    addFactory("fs", &cFs::rootDir);
 		addFactory("http", &cHttp::factory);	
 	    addFactory("settingsDir", &cFs::settingsDir);
-		addFactory("installDir", &cFs::installDir);
+		addFactory("installerDir", &cFs::installerDir);
         addFactory("pluginDir", &cFs::pluginDir);  
         m_o3 = o3_new(cO3)(this, 0, 0, 0);
 	}
