@@ -32,18 +32,7 @@
 #include <o3.h>
 #include <fs/fs.h>
 #include <http/http.h>
-#include <window/window.h>
-#include <mouse/mouse.h>
-#include <keyboard/keyboard.h>
-//#include <socket/socket.h>
-#include <process/process.h>
-//#include <image/image.h>
-//#include <scanner/scan.h>
-//#include <barcode/barcode.h>
-
-//#include <md5/md5.h>
-//#include <rsa/rsa.h>
-//#include <sha1/sha1.h>
+#include <xml/xml.h>
 
 #ifdef O3_WIN32    
     #define O3_STDCALL __stdcall
@@ -523,25 +512,14 @@ struct cCtx : cMgr, iCtx {
 		m_root = path;
 		m_loop = g_sys->createMessageLoop();
 
-        addExtTraits(cFs::extTraits());
+        addStaticExtTraits("xml", cXml::extTraits());
 
-//		addExtTraits(cWindow1::extTraits());
-
-        addExtTraits(cWindow::extTraits());
-        addExtTraits(cMouse::extTraits());
-        addExtTraits(cKeyboard::extTraits());
-
-//		addExtTraits(cSocket1::extTraits());
-		addExtTraits(cHttp::extTraits());
-		addExtTraits(cProcess::extTraits());
-//		addExtTraits(cImage1::extTraits());
-//		addExtTraits(cScan1::extTraits());
-//		addExtTraits(cBarcode1::extTraits());
 	    addFactory("fs", &cFs::rootDir);
-		addFactory("http", &cHttp::factory);	
 	    addFactory("settingsDir", &cFs::settingsDir);
 		addFactory("installerDir", &cFs::installerDir);
         addFactory("pluginDir", &cFs::pluginDir);  
+		addFactory("http", &cHttp::factory);	
+
         m_o3 = o3_new(cO3)(this, 0, 0, 0);
 	}
 	

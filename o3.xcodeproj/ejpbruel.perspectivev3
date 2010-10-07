@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ActivePerspectiveName</key>
-	<string>Debug</string>
+	<string>Project</string>
 	<key>AllowedModules</key>
 	<array>
 		<dict>
@@ -231,6 +231,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -272,19 +274,20 @@
 								<string>089C167CFE841241C02AAC07</string>
 								<string>089C1671FE841209C02AAC07</string>
 								<string>1C37FBAC04509CD000000102</string>
+								<string>F9064A8C125CAC35004D19A9</string>
 								<string>1C37FAAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>4</integer>
+									<integer>54</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {341, 680}}</string>
+							<string>{{0, 765}, {341, 680}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -300,6 +303,8 @@
 							<string>MainColumn</string>
 							<real>341</real>
 						</array>
+						<key>RubberWindowFrame</key>
+						<string>136 319 1062 739 0 0 1920 1178 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -315,7 +320,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>F93DBCCF12475EC400FACB9B</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>np_plugin.h</string>
+								<string>tools_win32.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -323,11 +328,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>F93DBCD012475EC400FACB9B</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>np_plugin.h</string>
+										<string>tools_win32.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F9064AEE125CC349004D19A9</string>
+										<string>F9064AFF125DDEE2004D19A9</string>
 										<key>history</key>
 										<array>
 											<string>F93DBFAF1250CBE500FACB9B</string>
@@ -360,8 +365,9 @@
 											<string>F9064AD9125CAF25004D19A9</string>
 											<string>F9064ADA125CAF25004D19A9</string>
 											<string>F9064ADB125CAF25004D19A9</string>
-											<string>F9064AE3125CB0C7004D19A9</string>
-											<string>F9064AE4125CB0C7004D19A9</string>
+											<string>F9064AF8125DDEB3004D19A9</string>
+											<string>F9064AFC125DDEE2004D19A9</string>
+											<string>F9064AFD125DDEE2004D19A9</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -405,6 +411,7 @@
 											<string>F9064ADE125CAF25004D19A9</string>
 											<string>F9064ADF125CAF25004D19A9</string>
 											<string>F9064AE5125CB0C7004D19A9</string>
+											<string>F9064AFE125DDEE2004D19A9</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -419,6 +426,8 @@
 							<dict>
 								<key>Frame</key>
 								<string>{{0, 0}, {699, 381}}</string>
+								<key>RubberWindowFrame</key>
+								<string>136 319 1062 739 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -442,6 +451,8 @@
 									<dict>
 										<key>Frame</key>
 										<string>{{10, 27}, {699, 285}}</string>
+										<key>RubberWindowFrame</key>
+										<string>136 319 1062 739 0 0 1920 1178 </string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -567,8 +578,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
@@ -580,8 +589,6 @@
 					<dict>
 						<key>Frame</key>
 						<string>{{0, 0}, {1062, 250}}</string>
-						<key>RubberWindowFrame</key>
-						<string>287 215 1062 739 0 0 1920 1178 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXDebugCLIModule</string>
@@ -656,11 +663,7 @@
 							</array>
 							<key>Frame</key>
 							<string>{{518, 0}, {544, 214}}</string>
-							<key>RubberWindowFrame</key>
-							<string>287 215 1062 739 0 0 1920 1178 </string>
 						</dict>
-						<key>RubberWindowFrame</key>
-						<string>287 215 1062 739 0 0 1920 1178 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXDebugSessionModule</string>
@@ -725,7 +728,7 @@
 		<string>/Users/ejpbruel/Projects/o3/o3.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>287 215 1062 739 0 0 1920 1178 </string>
+	<string>136 319 1062 739 0 0 1920 1178 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
