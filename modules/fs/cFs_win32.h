@@ -746,6 +746,8 @@ public:
                 case TYPE_FILE:
                     to_monitor = parent();
                     m_mod_time = modifiedTime();
+					if (m_mod_time == -1)
+						m_mod_time = 0;
 					break;
                 default:
                     // o3_set_ex(ex_invalid_op);
