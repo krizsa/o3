@@ -50,10 +50,10 @@
 -(void)timerDidFire:(NSObject *)object
 {
 	if (ctx) {
+		ctx->loop()->wait(0);
 		[self performSelector:@selector(timerDidFire:)
 				   withObject:nil
 				   afterDelay:(NSTimeInterval) O3_TICK_SIZE / 1000];
-		ctx->loop()->wait(0);
 	}
 }
 

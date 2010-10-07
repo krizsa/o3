@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1445F12F117F354E00C5F36F /* libcurl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1445F12E117F354E00C5F36F /* libcurl.dylib */; };
+		F9064AFB125DDEDD004D19A9 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F9064AFA125DDEDD004D19A9 /* libxml2.dylib */; };
 		F93DBD281250B7EA00FACB9B /* plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = F93DBD271250B7EA00FACB9B /* plugin.mm */; };
 		F93DBFA51250CAB500FACB9B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93DBFA41250CAB500FACB9B /* Cocoa.framework */; };
 		F93DBFFA1250D21C00FACB9B /* plugin.r in Rez */ = {isa = PBXBuildFile; fileRef = F93DBFF91250D21C00FACB9B /* plugin.r */; };
@@ -20,6 +21,8 @@
 		8D01CCD20486CAD60068D4B7 /* npplugin.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = npplugin.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		F90646DB12538CAE004D19A9 /* cFs_posix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cFs_posix.h; path = modules/fs/cFs_posix.h; sourceTree = "<group>"; };
 		F90646EA12538D1E004D19A9 /* cFsBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cFsBase.h; path = modules/fs/cFsBase.h; sourceTree = "<group>"; };
+		F90649DB125C7901004D19A9 /* cO3_glue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cO3_glue.h; path = include/cO3_glue.h; sourceTree = "<group>"; };
+		F9064AFA125DDEDD004D19A9 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		F93DBD271250B7EA00FACB9B /* plugin.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = plugin.mm; path = hosts/plugin/plugin.mm; sourceTree = "<group>"; };
 		F93DBFA41250CAB500FACB9B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F93DBFF91250D21C00FACB9B /* plugin.r */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.rez; name = plugin.r; path = hosts/plugin/plugin.r; sourceTree = "<group>"; };
@@ -95,6 +98,7 @@
 				F93DC00C1250DB5900FACB9B /* AppKit.framework in Frameworks */,
 				F93DBFA51250CAB500FACB9B /* Cocoa.framework in Frameworks */,
 				1445F12F117F354E00C5F36F /* libcurl.dylib in Frameworks */,
+				F9064AFB125DDEDD004D19A9 /* libxml2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +112,7 @@
 				089C167CFE841241C02AAC07 /* Resources */,
 				089C1671FE841209C02AAC07 /* Frameworks */,
 				19C28FB4FE9D528D11CA2CBB /* Products */,
+				F9064AFA125DDEDD004D19A9 /* libxml2.dylib */,
 			);
 			name = npplugin;
 			sourceTree = "<group>";
@@ -143,6 +148,7 @@
 				F93DC10112536D9300FACB9B /* config.h */,
 				F93DC10212536D9300FACB9B /* crypto.h */,
 				F93DC13712536E0600FACB9B /* cO3.h */,
+				F90649DB125C7901004D19A9 /* cO3_glue.h */,
 				F93DC10312536D9300FACB9B /* cScr.h */,
 				F93DC10412536D9300FACB9B /* cScrBuf.h */,
 				F93DC10512536D9300FACB9B /* cScrBuf_glue.h */,

@@ -801,7 +801,12 @@ public:
 			return ret;
 		}
 
-		static siUnk installDir(iCtx*) 
+        static siUnk installerDir(iCtx*)
+        {
+            return fs(ctx)->get("..");
+        }
+
+		static siUnk pluginDir(iCtx*) 
 		{
 			Str path = installDirPath();
 			path.findAndReplaceAll("\\", "/");

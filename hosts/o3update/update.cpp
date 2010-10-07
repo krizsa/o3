@@ -226,7 +226,11 @@ namespace o3 {
 
 			Buf installer_data = m_mgr->downloadInstaller(m_ctx);
 			if (validate(hashes, installer_data))
+<<<<<<< HEAD
+				installer->setData(installer_data);
+=======
 				installer->setBlob(installer_data);
+>>>>>>> 427b8a2507ee0ee869384c08d2ddf5bcdbb1925e
 
 			m_done = true;
 		}

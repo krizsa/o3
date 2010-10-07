@@ -83,6 +83,16 @@ struct cFs : cFsBase {
 		return o3_new(cFs)("/", Str(getenv("HOME")) + "/.o3/" + O3_VERSION_STRING + "/settings");
 	}
 
+    static siUnk installerDir(iCtx*)
+    {
+        return o3_new(cFs)("/tmp/o3");
+    }
+
+    static siUnk pluginDir(iCtx*)
+    {
+        return o3_new(cFs)("/Library/Internet Plug-Ins/npplugin.plugin/Contents/MacOS");
+    }
+
     bool valid()
     {
         o3_trace3 trace;
@@ -310,9 +320,9 @@ struct cFs : cFsBase {
 
     void startListening()
     {
-        m_time = modifiedTime();
+        m_time = exists() ? modifiedTime() : 0;
         m_timer = siCtx(m_ctx)->loop()->createTimer(10,
-                                                    Delegate(this, &cFs::listen));
+                Delegate(this, &cFs::listen));
     }
 
     void stopListening()
@@ -324,7 +334,7 @@ struct cFs : cFsBase {
     {
         int64_t time = modifiedTime();
 
-        if (m_time != time) {
+        if (exists() && m_time != time) {
             m_time = time;
             m_onchange_delegate(this);
         }

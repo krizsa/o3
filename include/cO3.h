@@ -124,14 +124,14 @@ struct cO3 : cScr {
 	siEvent		m_change_event;
 	siMutex		m_mutex;
 
-    siFs            m_plugin;
-    siScr           m_oninstall;
     siThread        m_thread;
-    siScr           m_onupdate;
 	o3_prop siScr	m_onapprove;
 	o3_prop siScr	m_ondone;
 	o3_prop siScr	m_onprogress;
 	o3_prop siScr	m_onfail;
+
+    siFs    m_installer;
+    siFs    m_plugin;
 
     cO3(iCtx* ctx, int /*argc*/, char** argv, char** envp)
 		: m_loading(false)
@@ -149,11 +149,6 @@ struct cO3 : cScr {
 
 		m_change_event = g_sys->createEvent();
 		m_mutex = g_sys->createMutex();
-        if (m_thread) {
-            m_thread->cancel();
-            while (m_thread->running())
-                ;
-        }
 	}
 
     ~cO3()
@@ -164,6 +159,32 @@ struct cO3 : cScr {
     o3_end_class()
 
 	o3_glue_gen()
+
+    o3_fun void doInstall()
+    {
+        siCtx ctx = m_ctx;
+
+        if (!m_installer)
+            m_installer = siFs(ctx->mgr()->factory("installerDir")(0))
+                          ->get(O3_PLUGIN_INSTALLER);
+#ifdef O3_WIN32
+        // For Internet Explorer, we need to run the installer with elevated
+        // rights.
+        if (ctx->isIE())
+            runElevated(m_installer->fullPath());
+        else
+            runSimple(m_installer->fullPath());
+#endif // O3_WIN32
+#ifdef O3_APPLE
+        // Start the installer (32-bit only for now)
+        if (fork() == 0) {
+            char *cmd[] = { "open", m_installer->fullPath(), 0 };
+            char *env[] = { 0 };
+
+            execve("/usr/bin/open", cmd, env);
+        }
+#endif // O3_APPLE
+    }
 
     o3_get tVec<Str> args()
     {
@@ -316,11 +337,6 @@ struct cO3 : cScr {
 			siScr(this));	
 	}
 
-    void onInstall(iUnk*)
-    {
-        Delegate(siCtx(m_ctx), m_oninstall)(siScr(this));
-    }
-
 	// read the settings, checks it against m_to_approve
 	// marks the component to be approved in the settings file with '2'
 	// opens a blocking approval box, that let's the user to approve components
@@ -377,62 +393,6 @@ struct cO3 : cScr {
 		}
 
 		m_to_approve.clear();
-	}
-
-	void update(iUnk* t)
-	{
-
-		cThread* worker = (cThread*) (cUnk*) t;
-		siCtx ctx = siCtx(m_ctx);
-		siMgr mgr = ctx->mgr();		
-		siFs fs = mgr->factory("fs")(0);
-		siFs install_dir = mgr->factory("installDir")(0);
-		siFs installer = fs->get(Str("../") + O3_PLUGIN_INSTALLER);
-#ifdef O3_WIN32		
-		siFs plugin = install_dir->get(pluginName());
-		siFs updater = install_dir->get("o3update.exe");
-		runSimple(WStr(updater->fullPath()));
-#else
-		siFs plugin = install_dir->get("np_plugin.bundle");
-		// TODO: run script here
-#endif
-		int64_t time_installer = 0;
-		int64_t time_plugin = plugin->modifiedTime();
-		bool executed(false);
-		if (installer->exists())
-			time_installer = installer->modifiedTime();
-
-		// poll the local installer and the installed plugin
-		for(;!worker->cancelled();) {
-			// if the plugin has changed callback and exit
-			if (plugin->modifiedTime() != time_plugin) {
-				ctx->loop()->post(Delegate(ctx, m_oninstall),o3_cast this);
-				break;
-			}			
-			
-			// if installer available run it
-			if (!executed &&
-				installer->exists() &&
-				installer->modifiedTime() != time_installer ) {
-					ctx->loop()->post(Delegate(ctx, m_onupdate),o3_cast this);
-					execute(installer->fullPath());
-					executed = true;
-			}	
-
-			g_sys->sleep(500);
-		}
-	}
-
-	void execute(const Str& cmd) 
-	{
-#ifdef O3_WIN32
-		if (siCtx(m_ctx)->isIE())
-			runElevated(WStr(cmd).ptr());
-		else
-			runSimple(WStr(cmd).ptr());
-#else
-
-#endif
 	}
 
 	// loading the approved modules, downloading/unpacking/validating 		
@@ -683,45 +643,45 @@ error:
 			ctx->loop()->post(Delegate(this, &cO3::onNotification),o3_cast this);
 	}
 
-    
-    o3_get siScr oninstall()
-    {
-        return m_oninstall;
-    }
-
-    o3_set siScr setOninstall(iCtx* ctx, iScr* oninstall)
-    {
-//        siFs fs = ctx->mgr()->factory("fs")(0);
-//#ifdef O3_WIN32
-//		Str installed = getSelfPath();
-//#else		
-//		Str installed = "/Library/Internet Plug-Ins/npplugin.plugin";
-//#endif
-//        m_plugin = fs->get("installed");
-//        m_plugin->setOnchange(ctx, Delegate(ctx, oninstall));
-        return m_oninstall = oninstall;
-    }
-
     o3_get siScr onupdate()
     {
-        return m_onupdate;
+        return m_installer ? m_installer->onchange() : 0;
     }
 
     o3_set siScr setOnupdate(iCtx* ctx, iScr* onupdate)
     {
-        Lock lock(m_mutex);
+        siFs updater = siFs(ctx->mgr()->factory("pluginDir")(0))->get(O3_PLUGIN_UPDATER);
 
-        if (!m_thread && onupdate) 
-            m_thread = g_sys->createThread(Delegate(this, &cO3::update));
-        else if (m_thread && !onupdate) {
-            m_thread->cancel();
-            while (m_thread->running())
-                ;
-            m_thread = 0;
+        if (!m_installer)
+            m_installer = siFs(ctx->mgr()->factory("installerDir")(0))
+                    ->get(O3_PLUGIN_INSTALLER);
+        m_installer->setOnchange(ctx, onupdate);
+#ifdef O3_WIN32
+        runSimple(updater->fullPath());
+#endif // O3_WIN32
+#ifdef O3_APPLE
+        // Start the update script in the background
+        if (fork() == 0) {
+            char *cmd[] = { O3_PLUGIN_UPDATER, "32", 0 };
+            char *env[] = { 0 };
+
+            execve(updater->fullPath(), cmd, env);
         }
-        return m_onupdate = onupdate;
+#endif // O3_APPLE
+        return onupdate;
     }
 
+    o3_get siScr oninstall()
+    {
+        return m_plugin ? m_plugin->onchange() : 0;
+    }
+
+    o3_set siScr setOninstall(iCtx* ctx, iScr* oninstall)
+    {
+        if (!m_plugin)
+            m_plugin = siFs(ctx->mgr()->factory("pluginDir")(0))->get(O3_PLUGIN_NAME);
+        return m_plugin->setOnchange(ctx, oninstall);
+    }
 };
 
 }

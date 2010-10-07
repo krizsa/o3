@@ -118,26 +118,22 @@ struct cMgr : cUnk, iMgr {
 		return traits;
     }
 
+    tMap<Str, Trait* > m_static_ext_traits;
+
     bool loadModule(const char* name)
     {
-        typedef void (*o3_reg_t)(iMgr*);
+        Trait* traits;
 
-        o3_trace2   trace;
-        siModule    module;
-        o3_reg_t    o3_reg;
+        if (traits = m_static_ext_traits[name]) {
+            addExtTraits(traits);
+            return true;
+        } else
+            return false;
+    }
 
-        module = g_sys->loadModule(name);
-        if (!module) 
-            return false;
-        o3_reg = (o3_reg_t) module->symbol("o3_reg");
-        if (!o3_reg)
-            return false;
-        o3_reg(this);
-		{
-			Lock lock(m_mutex);
-			m_modules[name] = module;
-		}
-        return true;
+    void addStaticExtTraits(const char* name, Trait* traits)
+    {
+        m_static_ext_traits[name] = traits;
     }
 
     void addExtTraits(Trait* traits)

@@ -651,14 +651,15 @@ struct cSys : cSysBase {
 	
 	void sleep(int time)
 	{
-		long nano = (time%1000) * 1000000;
-		struct timespec ts = {time - time%1000, nano};
-		nanosleep(*ts, 0); 
+        struct timespec ts;
+
+        ts.tv_sec = time / 1000;
+        ts.tv_nsec = time % 1000 * 1000;
+        nanosleep(&ts, 0);
 	}
 
 	bool approvalBox(const char* msg, const char* caption)
 	{
-		o3_assert(false);
 #ifdef O3_OSX
 		MessageBox( char* header, char* msg, unsigned long msg_type )
 		{
