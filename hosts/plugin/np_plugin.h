@@ -513,6 +513,7 @@ struct cCtx : cMgr, iCtx {
 		m_loop = g_sys->createMessageLoop();
 
         addStaticExtTraits("xml", cXml::extTraits());
+		addStaticExtTraits("fs", cFs::extTraits());
 
 	    addFactory("fs", &cFs::rootDir);
 	    addFactory("settingsDir", &cFs::settingsDir);

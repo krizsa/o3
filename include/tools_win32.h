@@ -1312,8 +1312,9 @@ struct iWindow : iUnk
         }
     };
 
-	bool runElevated( const wchar_t* path, const wchar_t* parameters = NULL, const wchar_t* dir = NULL ) 
+	bool runElevated( const char* cpath, const char* cparameters = NULL, const char* cdir = NULL ) 
 	{
+		WStr path(cpath), parameters(cparameters), dir(cdir);
 		SHELLEXECUTEINFOW shex;
 
 		memset( &shex, 0, sizeof( shex) );
@@ -1332,8 +1333,9 @@ struct iWindow : iUnk
 		return (int)shex.hInstApp > 32;
 	} 
 
-	void runSimple(wchar_t* cmd) 
+	void runSimple(const char* ccmd) 
 	{
+		WStr cmd(ccmd);
 		STARTUPINFOW si;
 		PROCESS_INFORMATION pi;
 

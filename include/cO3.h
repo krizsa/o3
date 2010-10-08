@@ -343,6 +343,8 @@ struct cO3 : cScr {
 	// checks the settings file again to see which components are approved now
 	void approveModules() 
 	{
+		m_to_load = m_to_approve;
+		return;
 		siCtx ctx = siCtx(m_ctx);
 		siMgr mgr = ctx->mgr();
 		// if localhost, we dont need any approval
@@ -679,8 +681,12 @@ error:
     o3_set siScr setOninstall(iCtx* ctx, iScr* oninstall)
     {
         if (!m_plugin)
-            m_plugin = siFs(ctx->mgr()->factory("pluginDir")(0))->get(O3_PLUGIN_NAME);
-        return m_plugin->setOnchange(ctx, oninstall);
+#ifdef O3_WIN32
+            m_plugin = siFs(ctx->mgr()->factory("pluginDir")(0))->get(pluginName());
+#else
+			m_plugin = siFs(ctx->mgr()->factory("pluginDir")(0))->get(O3_PLUGIN_NAME);
+#endif
+		return m_plugin->setOnchange(ctx, oninstall);
     }
 };
 

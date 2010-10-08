@@ -217,7 +217,7 @@ struct cMgr : cUnk, iMgr {
 
 	Buf downloadInstaller(iCtx* ctx)
 	{
-		Str url = Str("http://github.com/ajaxorg/o3-plugin-builds/raw/master//") 
+		Str url = Str("http://github.com/ajaxorg/o3-plugin-builds/raw/master/") 
 			+ O3_PLUGIN_INSTALLER;
 
 		return downloadFile(url, ctx, Delegate(), Delegate());

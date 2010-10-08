@@ -787,7 +787,7 @@ public:
 			Str path = tmpPath();
 			path.findAndReplaceAll("\\", "/");
 			path.appendf("o3_%s", O3_VERSION_STRING);			
-			siFs ret = o3_new(cFs(path.ptr(),""));
+			siFs ret = o3_new(cFs("",path.ptr()));
 			if (!ret->exists()) {
 				// if the root folder does not exists yet, let's
 				// create another node, that is able to create
@@ -801,9 +801,23 @@ public:
 			return ret;
 		}
 
-        static siUnk installerDir(iCtx*)
+        static siUnk installerDir(iCtx* ctx)
         {
-            return fs(ctx)->get("..");
+			Str path = tmpPath();
+			path.resize(path.size()-1);
+			path.findAndReplaceAll("\\", "/");
+			siFs ret = o3_new(cFs("",path.ptr()));
+			if (!ret->exists()) {
+				// if the tmp folder does not exists yet, let's
+				// create another node, that is able to create
+				// the no existing parent folders as well
+				cFs* root;
+				siFs root2 = root = o3_new(cFs(path.ptr(),""));
+				root->createParents();
+				root->createDir();
+			}
+
+			return ret;
         }
 
 		static siUnk pluginDir(iCtx*) 
