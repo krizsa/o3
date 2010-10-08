@@ -274,12 +274,11 @@ struct cO3 : cScr {
         // Check if there are any components that are currently not approved. If
         // there are, set approval state of these components to 'to be approved'
 		for (tList<Str>::Iter it = m_to_approve.begin();
-             it != m_to_approve.end(); ++it) {
-			if (settings[*it] != 1) {
+             it != m_to_approve.end(); ++it) 
+			if (settings[*it] != 1) 
 				settings[*it] = 2;
                 to_approve = true;
             }
-		}
 
         // If there is at least one component to be approved, we write the 
         // settings file, set up a file listener for it, and schedule a
@@ -298,6 +297,9 @@ struct cO3 : cScr {
                 m_settings_file->setModifiedTime(time - 1);
             m_settings_file->setOnchange(ctx, Delegate(this, &cO3::onchange));
 			ctx->loop()->post(Delegate(ctx, m_onapprove), o3_cast this);
+        } else {
+            m_to_load = m_to_approve;
+            finish(ctx);
         }
     }
 
@@ -318,6 +320,11 @@ struct cO3 : cScr {
 
         // Schedule another callback to onapprove to close the approval dialog
         ctx->loop()->post(Delegate(ctx, m_onapprove), o3_cast this);
+        finish(ctx);
+    }
+
+    void finish(iCtx* ctx) {
+        siMgr mgr = ctx->mgr();
 
         // Load the components to be loaded
         for (tList<Str>::Iter it = m_to_load.begin(); it != m_to_load.end();
