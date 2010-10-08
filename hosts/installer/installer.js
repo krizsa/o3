@@ -4,7 +4,7 @@ var appInfo = {
     CHROMEGUID 	: "npaodepeeohfoeeglfcafddnjhejcgeg",	
 	ffExtName	: "o3@ajax.org",
 	URL			: "http://www.ajax.org/o3test/win/v0_9/",
-	baseApp 	: "O3Demo",
+	baseApp 	: "o3",
     version 	: "0.9",
 	versionStr 	: "o3_v0_9",
     locale  	: "en_US"

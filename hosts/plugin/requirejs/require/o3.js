@@ -12,8 +12,8 @@
 	var o3 = 0;
 	var bEmbed;	
 	var version;
-	var id = "O3Demo";
-	var name = "O3Demo-8A66ECAC-63FD-4AFA-9D42-3034D18C88F4";
+	var id = "o3";
+	var name = "o3-8a66ecac-63fd-4afa-9d42-3034d18c88f4";
 	var approvalDiv;
     //A place to hold callback functions
     require._jsonp = {};
