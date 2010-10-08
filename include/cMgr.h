@@ -125,6 +125,7 @@ struct cMgr : cUnk, iMgr {
         Trait* traits;
 
         if (traits = m_static_ext_traits[name]) {
+            // 
             addExtTraits(traits);
             return true;
         } else
@@ -247,7 +248,7 @@ struct cMgr : cUnk, iMgr {
 		return m_current_url;
 	}	
 
-	void setCurrentUrl(const Str& url)
+	void setCurrentUrl(const char* url)
 	{
 		m_current_url = url;
 	}

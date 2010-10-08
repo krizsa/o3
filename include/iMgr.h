@@ -59,7 +59,7 @@ struct iMgr : iUnk {
 
 	virtual Str currentUrl() = 0;
 
-	virtual void setCurrentUrl(const Str& url) = 0;
+	virtual void setCurrentUrl(const char* url) = 0;
 
 	virtual tMap<Str, int> readSettings() = 0;
 
@@ -87,7 +87,6 @@ struct iMgr : iUnk {
 	virtual void settings() = 0;
 
 	virtual bool safeLocation() = 0;
-
 };
 
 }

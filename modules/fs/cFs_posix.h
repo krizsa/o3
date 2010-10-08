@@ -75,12 +75,12 @@ struct cFs : cFsBase {
 
 	static siUnk rootDir(iCtx*) 
 	{	
-		return o3_new(cFs)("/", Str(getenv("HOME")) + "/.o3/" + O3_VERSION_STRING);
+		return o3_new(cFs)("/tmp/o3");
 	}
 
 	static siUnk settingsDir(iCtx*) 
 	{	
-		return o3_new(cFs)("/", Str(getenv("HOME")) + "/.o3/" + O3_VERSION_STRING + "/settings");
+        return o3_new(cFs)("/tmp/o3");
 	}
 
     static siUnk installerDir(iCtx*)
