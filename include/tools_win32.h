@@ -1314,7 +1314,7 @@ struct iWindow : iUnk
 
 	bool runElevated( const char* cpath, const char* cparameters = NULL, const char* cdir = NULL ) 
 	{
-		WStr path(cpath), parameters(cparameters), dir(cdir);
+		WStr path(cpath), parameters(cparameters ? cparameters : ""), dir(cdir ? cdir : "");
 		SHELLEXECUTEINFOW shex;
 
 		memset( &shex, 0, sizeof( shex) );
@@ -1324,8 +1324,8 @@ struct iWindow : iUnk
 		shex.hwnd        = 0;
 		shex.lpVerb        = L"runas";
 		shex.lpFile        = path;
-		shex.lpParameters  = parameters;
-		shex.lpDirectory    = dir;
+		shex.lpParameters  = parameters.size() ? parameters.ptr() : NULL;
+		shex.lpDirectory    = dir.size() ? dir.ptr() : NULL;
 		shex.nShow        = SW_NORMAL;
 
 		::ShellExecuteExW( &shex );
@@ -1335,7 +1335,7 @@ struct iWindow : iUnk
 
 	void runSimple(const char* ccmd) 
 	{
-		WStr cmd(ccmd);
+		WStr cmd(ccmd ? ccmd : "");
 		STARTUPINFOW si;
 		PROCESS_INFORMATION pi;
 

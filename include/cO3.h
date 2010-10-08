@@ -280,6 +280,7 @@ struct cO3 : cScr {
 					to_approve = true;
 				}
 
+
         // If there is at least one component to be approved, we write the 
         // settings file, set up a file listener for it, and schedule a
         // callback to onapprove to open the approval dialog.

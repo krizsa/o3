@@ -723,6 +723,13 @@ public:
                      break;
                  case TYPE_FILE:					
                     int64_t modt = modifiedTime();                                             
+					if (modt == -1)
+						for (int i=0; i<10; i++) {
+							modt = modifiedTime();
+							if(modt != -1)
+								break;
+						}
+
 					if (modt != -1 && m_mod_time != modt){
 						m_mod_time = modt;                   
                         m_onchange_delegate(this);
@@ -733,7 +740,7 @@ public:
 
         void startListening() 
         {
-            if (!exists()) {
+            if (!valid()) {
                 // o3_set_ex(ex_file_not_found);
                 return;
             }
@@ -744,14 +751,12 @@ public:
 			        to_monitor = this;
                     break;
                 case TYPE_FILE:
-                    to_monitor = parent();
+				default:                
+					to_monitor = parent();
                     m_mod_time = modifiedTime();
 					if (m_mod_time == -1)
 						m_mod_time = 0;
 					break;
-                default:
-                    // o3_set_ex(ex_invalid_op);
-                    return;        
             }
 
             DWORD f = FILE_NOTIFY_CHANGE_LAST_WRITE 
