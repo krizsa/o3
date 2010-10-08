@@ -740,6 +740,9 @@ NPError NPP_Destroy(NPP npp, NPSavedData** pdata)
 #ifdef O3_WIN32 
     ctx->m_hidden_wnd.destroy();
 #endif
+#ifdef O3_APPLE
+    [ctx->m_timer invalidate];
+#endif // O3_APPLE
 	ctx->release();
     return NPERR_NO_ERROR;
 }

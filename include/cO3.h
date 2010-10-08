@@ -245,7 +245,7 @@ struct cO3 : cScr {
 		return Str(O3_UI_URL) + "/" + O3_VERSION_STRING + "/settings.html";
 	}
 
-	o3_fun void require(iCtx* ctx, const Str& module)
+	o3_fun void require(iCtx* ctx, const char* module)
 	{
 		m_to_approve.pushBack(module);
 	}
@@ -299,7 +299,7 @@ struct cO3 : cScr {
 			ctx->loop()->post(Delegate(ctx, m_onapprove), o3_cast this);
         } else {
             m_to_load = m_to_approve;
-            finish(ctx);
+            finish(ctx, mgr);
         }
     }
 
@@ -317,15 +317,14 @@ struct cO3 : cScr {
 	        if (settings[*it] == 1)
 			    m_to_load.append(*it);
 		m_to_approve.clear();
+        m_settings_file = 0;
 
         // Schedule another callback to onapprove to close the approval dialog
         ctx->loop()->post(Delegate(ctx, m_onapprove), o3_cast this);
-        finish(ctx);
+        finish(ctx, mgr);
     }
 
-    void finish(iCtx* ctx) {
-        siMgr mgr = ctx->mgr();
-
+    void finish(iCtx* ctx, iMgr* mgr) {
         // Load the components to be loaded
         for (tList<Str>::Iter it = m_to_load.begin(); it != m_to_load.end();
              ++it)
