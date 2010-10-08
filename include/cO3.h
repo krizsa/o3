@@ -245,32 +245,91 @@ struct cO3 : cScr {
 		return Str(O3_UI_URL) + "/" + O3_VERSION_STRING + "/settings.html";
 	}
 
-    o3_fun bool loadModule(iCtx* ctx, const char* name) 
-    {
-        o3_trace3 trace;
-
-        return ctx->mgr()->loadModule(name);
-    }
-
 	o3_fun void require(iCtx* ctx, const Str& module)
 	{
-#ifdef O3_PLUGIN
 		m_to_approve.pushBack(module);
-#else
-		ctx->mgr()->loadModule(module);
-#endif
 	}
+
+    siFs m_settings_file;
 
 	o3_fun void loadModules(iCtx* ctx) 
 	{
-		o3_trace3 trace;
-		// if a load is in progress the second call should fail
-		if (m_loading)
-			return;
+        m_ctx = ctx;
+		siMgr mgr = ctx->mgr();
 
-		m_ctx = ctx;
-		ctx->mgr()->pool()->post(Delegate(this, &cO3::moduleLoading),
-			o3_cast this);
+        Str host = hostFromURL(mgr->currentUrl());
+
+        // No approval needed for localhost	(disabled for testing)
+        /*
+	    if (strEquals(host.ptr(), "localhost")) {
+			m_to_load = m_to_approve;
+			m_to_approve.clear();
+			return;
+		}
+        */
+
+		tMap<Str, int> settings = mgr->readSettings();
+        bool to_approve = false;
+
+        // Check if there are any components that are currently not approved. If
+        // there are, set approval state of these components to 'to be approved'
+		for (tList<Str>::Iter it = m_to_approve.begin();
+             it != m_to_approve.end(); ++it) {
+			if (settings[*it] != 1) {
+				settings[*it] = 2;
+                to_approve = true;
+            }
+		}
+
+        // If there is at least one component to be approved, we write the 
+        // settings file, set up a file listener for it, and schedule a
+        // callback to onapprove to open the approval dialog.
+		if (to_approve) {		
+            Str path = "settings/";
+            siFs root = mgr->factory("fs")(0);
+            int64_t time;
+
+            path.append(host);
+            m_settings_file = root->get(path);
+
+			mgr->writeSettings(settings);
+            time = m_settings_file->modifiedTime();
+		    if (time > 0) 
+                m_settings_file->setModifiedTime(time - 1);
+            m_settings_file->setOnchange(ctx, Delegate(this, &cO3::onchange));
+			ctx->loop()->post(Delegate(ctx, m_onapprove), o3_cast this);
+        }
+    }
+
+    void onchange(iUnk*)
+    {
+        siCtx ctx = m_ctx;
+        siMgr mgr = ctx->mgr();
+
+		tMap<Str, int> settings = mgr->readSettings();
+
+        // Add the approved components to the list of components to be
+        // loaded		
+        for (tList<Str>::Iter it = m_to_approve.begin(); 
+			 it != m_to_approve.end(); ++it) 
+	        if (settings[*it] == 1)
+			    m_to_load.append(*it);
+		m_to_approve.clear();
+
+        // Schedule another callback to onapprove to close the approval dialog
+        ctx->loop()->post(Delegate(ctx, m_onapprove), o3_cast this);
+
+        // Load the components to be loaded
+        for (tList<Str>::Iter it = m_to_load.begin(); it != m_to_load.end();
+             ++it)
+            if (!mgr->loadModule(*it)) {
+                // Schedule a callback to onfail if a module failed to load
+                ctx->loop()->post(Delegate(this, &cO3::onFail),o3_cast this);
+                break;
+            }
+
+        // Schedule a callback to ondone if all modules did load succesfully
+        ctx->loop()->post(Delegate(this, &cO3::onDone),o3_cast this);
 	}
 
 	o3_set siScr setOnUpdateNotification(iCtx* ctx, iScr* scr)
@@ -335,104 +394,6 @@ struct cO3 : cScr {
 	{
 		Delegate(siCtx(m_ctx), m_onfail)(
 			siScr(this));	
-	}
-
-	// read the settings, checks it against m_to_approve
-	// marks the component to be approved in the settings file with '2'
-	// opens a blocking approval box, that let's the user to approve components
-	// checks the settings file again to see which components are approved now
-	void approveModules() 
-	{
-		siCtx ctx = siCtx(m_ctx);
-		siMgr mgr = ctx->mgr();
-		// if localhost, we dont need any approval
-		Str host = hostFromURL(mgr->currentUrl());
-		/*if (strEquals(host.ptr(), "localhost")) {
-			m_to_load = m_to_approve;
-			m_to_approve.clear();
-			return;
-		}*/
-
-		// read settings
-		tMap<Str, int> settings = mgr->readSettings();
-
-		// approval
-		Str name;
-		size_t to_approve_no = 0;
-		tList<Str>::Iter it;
-		for (it = m_to_approve.begin(); 
-			it != m_to_approve.end(); ++it) 
-		{
-			// if not yet approved set it to be approved in the
-			// settings file
-			if ( settings[*it] != 1) {				
-				settings[*it] = 2;
-				to_approve_no++;
-			}
-		}
-
-		if (to_approve_no) {		
-			// update settings file
-			mgr->writeSettings(settings);
-			// set up files listener on the setting file
-			// show the message box and wait untill the setting file
-			// is changed
-			mgr->monitorSettings(ctx, m_change_event);
-			ctx->loop()->post(Delegate(ctx, m_onapprove),o3_cast this);
-			m_change_event->wait(m_mutex);
-			ctx->loop()->post(Delegate(ctx, m_onapprove),o3_cast this);
-			// update settings data from file
-			settings = mgr->readSettings();
-		}
-		// fill the m_to_load list
-		for (it = m_to_approve.begin(); 
-			it != m_to_approve.end(); ++it) 
-		{
-			if (settings[*it] == 1)
-			 m_to_load.append(*it);
-		}
-
-		m_to_approve.clear();
-	}
-
-	// loading the approved modules, downloading/unpacking/validating 		
-	// them if they are missing repeating the process if it failed 
-	// and the user selected retry in the pop-up warning window
-	// NOTE: this method is executed from a worker thread async
-	// NOTE2: after it has finished it will launch the updating asynch
-	void moduleLoading(iUnk*)
-	{
-		approveModules();
-
-		siCtx ctx = siCtx(m_ctx);
-		siMgr mgr = ctx->mgr();		
-		tList<Str>::Iter
-			it = m_to_load.begin(),
-			end = m_to_load.end();	
-		
-		bool success = true;
-		for (; it != end; ++it) {
-			if ( ! mgr->loadModule(*it)) {					
-				m_load_progress->setFileName(*it);
-				Buf downloaded = mgr->downloadComponent(ctx,*it,
-					Delegate(this, &cO3::onStateChange), 
-					Delegate(this, &cO3::onProgress));
-				siStream stream = o3_new(cBufStream)(downloaded);
-				if (!unpackModule(*it, stream) 
-					|| !mgr->loadModule(*it))
-						success = false;
-			}
-		}
-
-		if (success) {			
-			m_to_load.clear();
-			ctx->loop()->post(Delegate(this, &cO3::onDone),o3_cast this);
-		} else
-			ctx->loop()->post(Delegate(this, &cO3::onFail),o3_cast this);
-
-		// starting the component update in the bg... 
-		ctx->mgr()->pool()->post(Delegate(this, &cO3::moduleUpdating),
-			o3_cast this);		
 	}
 
 	// unzip the downloaded module, validates it and put the dll in place
