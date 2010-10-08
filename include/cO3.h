@@ -275,10 +275,11 @@ struct cO3 : cScr {
         // there are, set approval state of these components to 'to be approved'
 		for (tList<Str>::Iter it = m_to_approve.begin();
              it != m_to_approve.end(); ++it) 
-			if (settings[*it] != 1) {
-				settings[*it] = 2;
-                to_approve = true;
-            }
+				if (settings[*it] != 1) {
+					settings[*it] = 2;
+					to_approve = true;
+				}
+
 
         // If there is at least one component to be approved, we write the 
         // settings file, set up a file listener for it, and schedule a
@@ -401,6 +402,7 @@ struct cO3 : cScr {
 		Delegate(siCtx(m_ctx), m_onfail)(
 			siScr(this));	
 	}
+
 
 	// unzip the downloaded module, validates it and put the dll in place
 	bool unpackModule(const Str& name, iStream* zipped, bool update=false ) 
@@ -646,8 +648,12 @@ error:
     o3_set siScr setOninstall(iCtx* ctx, iScr* oninstall)
     {
         if (!m_plugin)
-            m_plugin = siFs(ctx->mgr()->factory("pluginDir")(0))->get(O3_PLUGIN_NAME);
-        return m_plugin->setOnchange(ctx, oninstall);
+#ifdef O3_WIN32
+            m_plugin = siFs(ctx->mgr()->factory("pluginDir")(0))->get(pluginName());
+#else
+			m_plugin = siFs(ctx->mgr()->factory("pluginDir")(0))->get(O3_PLUGIN_NAME);
+#endif
+		return m_plugin->setOnchange(ctx, oninstall);
     }
 };
 

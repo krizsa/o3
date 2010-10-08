@@ -723,6 +723,13 @@ public:
                      break;
                  case TYPE_FILE:					
                     int64_t modt = modifiedTime();                                             
+					if (modt == -1)
+						for (int i=0; i<10; i++) {
+							modt = modifiedTime();
+							if(modt != -1)
+								break;
+						}
+
 					if (modt != -1 && m_mod_time != modt){
 						m_mod_time = modt;                   
                         m_onchange_delegate(this);
@@ -733,7 +740,7 @@ public:
 
         void startListening() 
         {
-            if (!exists()) {
+            if (!valid()) {
                 // o3_set_ex(ex_file_not_found);
                 return;
             }
@@ -744,12 +751,12 @@ public:
 			        to_monitor = this;
                     break;
                 case TYPE_FILE:
-                    to_monitor = parent();
+				default:                
+					to_monitor = parent();
                     m_mod_time = modifiedTime();
+					if (m_mod_time == -1)
+						m_mod_time = 0;
 					break;
-                default:
-                    // o3_set_ex(ex_invalid_op);
-                    return;        
             }
 
             DWORD f = FILE_NOTIFY_CHANGE_LAST_WRITE 
@@ -785,7 +792,7 @@ public:
 			Str path = tmpPath();
 			path.findAndReplaceAll("\\", "/");
 			path.appendf("o3_%s", O3_VERSION_STRING);			
-			siFs ret = o3_new(cFs(path.ptr(),""));
+			siFs ret = o3_new(cFs("",path.ptr()));
 			if (!ret->exists()) {
 				// if the root folder does not exists yet, let's
 				// create another node, that is able to create
@@ -799,9 +806,23 @@ public:
 			return ret;
 		}
 
-        static siUnk installerDir(iCtx*)
+        static siUnk installerDir(iCtx* ctx)
         {
-            return fs(ctx)->get("..");
+			Str path = tmpPath();
+			path.resize(path.size()-1);
+			path.findAndReplaceAll("\\", "/");
+			siFs ret = o3_new(cFs("",path.ptr()));
+			if (!ret->exists()) {
+				// if the tmp folder does not exists yet, let's
+				// create another node, that is able to create
+				// the no existing parent folders as well
+				cFs* root;
+				siFs root2 = root = o3_new(cFs(path.ptr(),""));
+				root->createParents();
+				root->createDir();
+			}
+
+			return ret;
         }
 
 		static siUnk pluginDir(iCtx*) 

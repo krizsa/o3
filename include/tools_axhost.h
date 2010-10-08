@@ -294,7 +294,7 @@ namespace o3 {
             
             // Create a window. NOTE: We embed the browser object duing our WM_CREATE handling for
 		    // this window.
-		    m_hwnd = CreateWindowExW(0, o3_wnd_class_name, L"Is this the caption string?", 
+		    m_hwnd = CreateWindowExW(0, o3_wnd_class_name, L"O3 Settings", 
                                 WS_OVERLAPPED|WS_CAPTION|WS_SYSMENU|WS_THICKFRAME|WS_MINIMIZEBOX
                                 |WS_MAXIMIZEBOX,
 							    0, 0, 640, 480,

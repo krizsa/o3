@@ -400,7 +400,10 @@ var installer = {
             //uninstall failed and the user gave up retrying it...
             if (proc.exitCode < 0)
                 cancel = true;
+			if (uninargs.indexOf("-a")!=-1)	
+				return true;
         }
+		return false;
     },
 	    
     patchFile: function(data) {
@@ -831,7 +834,7 @@ else if (alluser) {
 else {
     //Before running the installer let's see if a previous version of onedit has been already installed
     if (o3.checkIfInstalled(appInfo.fullId)) {
-        var cancel = false;
+        var cancel = false, all_usr, update = false;
         if (!o3.alertBox(appInfo.fancyName, _("update"))) {
             //if the user choose to leave...
             cancel = true;
@@ -839,24 +842,38 @@ else {
         else {
             //if the user wants to update let's uninstall the previous version
             //note: this function call will set the cancel flag internally if needed:
-            installer.runPrevious();
+            all_usr = installer.runPrevious();
+			update = true;
         }
     }
     if (!cancel) {
         //Installation dialog
-        var inst = installer.showWelcomePage();
-        if (installer.result != -1) {
-            //Install button was pressed
-            error = installer.start(installer.result);
-            if (error < 0) {
-                //An error occured during installation, so warn the user again and say goodbye
-                installer.showErrorPage(error);
-            }
-            else {
-                //installation finished succesfully, show last page
-                installer.showSuccessPage();
-            }
-        }
-        inst.reset();
+        if (update) {
+			error = installer.start(all_usr);
+			if (error < 0) {
+				//An error occured during installation, so warn the user again and say goodbye
+				installer.showErrorPage(error);
+			}
+			else {
+				//installation finished succesfully, show last page
+				installer.showSuccessPage();
+			}		
+		}
+		else {
+			var inst = installer.showWelcomePage();
+			if (installer.result != -1) {
+				//Install button was pressed
+				error = installer.start(installer.result);
+				if (error < 0) {
+					//An error occured during installation, so warn the user again and say goodbye
+					installer.showErrorPage(error);
+				}
+				else {
+					//installation finished succesfully, show last page
+					installer.showSuccessPage();
+				}
+			}
+			inst.reset();
+		}	
     }
 }

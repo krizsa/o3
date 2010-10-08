@@ -14,9 +14,10 @@
 		var o3obj;
         // creating an o3 instance, we need the UID and the name of the product
         // the o3.js file will take care of all the details
-        o3obj = o3.create("AAAAAAAA-1111-BBBB-1111-CCCCCCCCCCCC", { 
-            oninstallprompt : function(){ alert("can't find o3 plugin");}    
-        } );
+        o3obj = o3.create("8A66ECAC-63FD-4AFA-9D42-3034D18C88F4", { 
+            oninstallprompt : function(){ alert("can't find o3 plugin");},    
+			product : 'O3Demo'
+		} );
 
 		var settings = o3obj.settings,
 			elems = settings.match(/[\w\.]+\([\w\=\,]+\);/g),

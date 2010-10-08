@@ -112,8 +112,8 @@ namespace o3{
 
         o3_fun void runSimple(const char* cmd) 
         {
-            WStr wcmd = Str(cmd);
-			o3::runSimple(wcmd);
+            
+			o3::runSimple(cmd);
         }
 
         o3_get bool valid() 
