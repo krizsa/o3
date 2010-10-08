@@ -275,7 +275,7 @@ struct cO3 : cScr {
         // there are, set approval state of these components to 'to be approved'
 		for (tList<Str>::Iter it = m_to_approve.begin();
              it != m_to_approve.end(); ++it) 
-			if (settings[*it] != 1) 
+			if (settings[*it] != 1) {
 				settings[*it] = 2;
                 to_approve = true;
             }
