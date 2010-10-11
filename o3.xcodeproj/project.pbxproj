@@ -23,6 +23,7 @@
 		F90646EA12538D1E004D19A9 /* cFsBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cFsBase.h; path = modules/fs/cFsBase.h; sourceTree = "<group>"; };
 		F90649DB125C7901004D19A9 /* cO3_glue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cO3_glue.h; path = include/cO3_glue.h; sourceTree = "<group>"; };
 		F9064AFA125DDEDD004D19A9 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		F90FFBAB126305B400F47507 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = hosts/plugin/Info.plist; sourceTree = "<group>"; };
 		F93DBD271250B7EA00FACB9B /* plugin.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = plugin.mm; path = hosts/plugin/plugin.mm; sourceTree = "<group>"; };
 		F93DBFA41250CAB500FACB9B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F93DBFF91250D21C00FACB9B /* plugin.r */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.rez; name = plugin.r; path = hosts/plugin/plugin.r; sourceTree = "<group>"; };
@@ -139,6 +140,7 @@
 		08FB77ADFE841716C02AAC07 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				F90FFBAB126305B400F47507 /* Info.plist */,
 				F90646EA12538D1E004D19A9 /* cFsBase.h */,
 				F90646DB12538CAE004D19A9 /* cFs_posix.h */,
 				F93DC1751253797B00FACB9B /* np_plugin.h */,
