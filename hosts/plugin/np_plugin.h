@@ -831,9 +831,9 @@ NPError NPP_SetValue(NPP npp, NPNVariable variable, void *value)
 
 extern "C" {
 
-const char* NP_GetMIMEDescription()
+char* NP_GetMIMEDescription()
 {
-    return (const char*)"application/basic-plugin:bsc:Basic plugin";
+    return (char*)"application/basic-plugin:bsc:Basic plugin";
 }
 
 NPError O3_STDCALL NP_Initialize(NPNetscapeFuncs* funcs)
