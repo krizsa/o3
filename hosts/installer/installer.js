@@ -1,10 +1,10 @@
 var appInfo = {
-    GUID    	: "8A66ECAC-63FD-4AFA-9D42-3034D18C88F4",
+    GUID    	: "8a66ecac-63fd-4afa-9d42-3034d18c88f4",
 	IEEXTGUID	: "218BAC91-2A05-4372-BD7F-5AE59C149D3E",
     CHROMEGUID 	: "npaodepeeohfoeeglfcafddnjhejcgeg",	
 	ffExtName	: "o3@ajax.org",
 	URL			: "http://www.ajax.org/o3test/win/v0_9/",
-	baseApp 	: "O3Demo",
+	baseApp 	: "o3",
     version 	: "0.9",
 	versionStr 	: "o3_v0_9",
     locale  	: "en_US"
@@ -278,7 +278,7 @@ var installer = {
 		//ffexttmp.remove();
 
 		//patch:    
-        installer.patchFile(dlldata);
+        //installer.patchFile(dlldata);
         while (true) {
             try {npdll.blob = dlldata; break;}                
             catch(e){ if (!o3.alertBox(appInfo.fancyName, getErrMsg(-1), "retrycancel"))  return -1;}               

@@ -12,9 +12,12 @@
 	var o3 = 0;
 	var bEmbed;	
 	var version;
-	var id = "O3Demo";
-	var name = "O3Demo-8A66ECAC-63FD-4AFA-9D42-3034D18C88F4";
+	var id = "o3";
+	var clsid = "8a66ecac-63fd-4afa-9d42-3034d18c88f4";
+	var name = id + "-" + clsid;
 	var approvalDiv;
+	var platform="";
+	var downloading = false;
     //A place to hold callback functions
     require._jsonp = {};
 
@@ -41,9 +44,9 @@
 			}
 			else {           
 				// try sniffing the mimeTypes
-				name = "application/" + name;
+				var mime = "application/" + name;
 				for (var i = 0, l = navigator.mimeTypes.length; i < l; ++i) {
-					if (navigator.mimeTypes[i].type == name)
+					if (navigator.mimeTypes[i].type == mime)
 						version = "0.9";
 				}
 			}
@@ -53,6 +56,7 @@
 	};
 	
 	function sniff() {
+		// Browser:
 		var sAgent = navigator.userAgent.toLowerCase();
 		var is_opera     = sAgent.indexOf("opera") !== -1;
 		var is_konqueror = sAgent.indexOf("konqueror") != -1;
@@ -61,14 +65,52 @@
 				|| sAgent.indexOf("safari") != -1 || is_konqueror);
 		var is_ie        = (document.all && !is_opera && !is_safari);
 		bEmbed           = !(is_ie && !is_opera);
+	
+		// OS:
+		    // OS sniffing:
+
+		// windows...
+		if (sAgent.indexOf("win") != -1 || sAgent.indexOf("16bit") != -1) {
+			sPlatform = "win";
+			if (sAgent.indexOf("win16") != -1
+			  || sAgent.indexOf("16bit") != -1
+			  || sAgent.indexOf("windows 3.1") != -1
+			  || sAgent.indexOf("windows 16-bit") != -1)
+				sPlatform += "16";
+			else if (sAgent.indexOf("win32") != -1
+			  || sAgent.indexOf("32bit") != -1)
+				sPlatform += "32";
+			else if (sAgent.indexOf("win32") != -1
+			  || sAgent.indexOf("32bit") != -1)
+				sPlatform += "64";
+		}
+		// mac...
+		if (sAgent.indexOf("mac") != -1) {
+			sPlatform = "mac";
+			if (sAgent.indexOf("ppc") != -1 || sAgent.indexOf("powerpc") != -1)
+				sPlatform += "ppc";
+			else if (sAgent.indexOf("os x") != -1)
+				sPlatform += "osx";
+		}
+		// linux...
+		if (sAgent.indexOf("inux") != -1) {
+			sPlatform = "linux";
+			if (sAgent.indexOf("i686") > -1 || sAgent.indexOf("i386") > -1)
+				sPlatform += "32";
+			else if (sAgent.indexOf("86_64"))
+				sPlatform += "64";
+			else if (sAgent.indexOf("arm"))
+				sPlatform += "arm";
+		}
+		
+		platform = sPlatform;
 	};
 	
 	function createHtml(options) {
 		sniff();
 		var out = [],
 			width = 0,
-			height = 0
-			clsid = '8A66ECAC-63FD-4AFA-9D42-3034D18C88F4';
+			height = 0;
 			
 			
 			
@@ -85,6 +127,20 @@
 			
 		return out.join("");
 	};	
+	
+	function createLinkHtml() {
+		var url;
+		if (platform.indexOf("win")) {
+			url = "http://github.com/ajaxorg/o3-plugin-builds/raw/master/o3plugin-win32d.exe";
+		} 
+		else if (platform.indexOf("mac")) {
+			url = "http://github.com/ajaxorg/o3-plugin-builds/raw/master/o3plugin-osx32.dmg";
+		}
+		else {
+			return "Sorry, your operating system is not supported by the o3 plugin." 
+		}
+		return '<a href="' + url + '">Download o3 plugin installer</a>';		
+	}; 
 	
     require.plugin({
 		prefix: "o3",
@@ -116,8 +172,15 @@
 			require.ready(function() {
 				if (!o3){
 					version = detect();
-					if (version == "none")
+					if (version == "none") {
+						if (!downloading) {
+							downloading = true;
+							dlHtml = createLinkHtml();
+							document.body.appendChild(
+							 document.createElement("div")).innerHTML = dlHtml;
+						}
 						return; 
+					}
 					
 					var objHtml = createHtml();
 					document.body.appendChild(

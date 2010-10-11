@@ -41,13 +41,13 @@
 #include <cStreamBase.h>
 #include <cStream.h>
 
-#ifdef O3_UPDATER
-#define O3_PLUGIN_GUID	L"8A66ECAC-63FD-4AFA-9D42-3034D18C88F4"
-#define O3_APP_NAME		L"O3Demo"
-#else
-#define O3_PLUGIN_GUID	L"AAAAAAAA-1111-BBBB-1111-CCCCCCCCCCCC"
-#define O3_APP_NAME		L"O3Stem"
-#endif
+//#ifdef O3_UPDATER
+#define O3_PLUGIN_GUID	L"8a66ecac-63fd-4afa-9d42-3034d18c88f4"
+#define O3_APP_NAME		L"o3"
+//#else
+//#define O3_PLUGIN_GUID	L"AAAAAAAA-1111-BBBB-1111-CCCCCCCCCCCC"
+//#define O3_APP_NAME		L"O3Stem"
+//#endif
 
 namespace o3 {
 
