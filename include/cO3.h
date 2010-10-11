@@ -286,13 +286,10 @@ struct cO3 : cScr {
         // settings file, set up a file listener for it, and schedule a
         // callback to onapprove to open the approval dialog.
 		if (to_approve) {		
-            Str path = "settings/";
-            siFs root = mgr->factory("fs")(0);
+            siFs root = mgr->factory("settingsDir")(0);
             int64_t time;
 
-            path.append(host);
-            m_settings_file = root->get(path);
-
+            m_settings_file = root->get(host);
 			mgr->writeSettings(settings);
             time = m_settings_file->modifiedTime();
 		    if (time > 0) 

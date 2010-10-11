@@ -70,6 +70,7 @@
 		    // OS sniffing:
 
 		// windows...
+        alert(sAgent);
 		if (sAgent.indexOf("win") != -1 || sAgent.indexOf("16bit") != -1) {
 			sPlatform = "win";
 			if (sAgent.indexOf("win16") != -1
@@ -129,8 +130,10 @@
 	};	
 	
 	function createLinkHtml() {
+        alert("test");
+        sniff();
+
 		var url;
-		if (platform.indexOf("win")) {
 			url = "http://github.com/ajaxorg/o3-plugin-builds/raw/master/o3plugin-win32d.exe";
 		} 
 		else if (platform.indexOf("mac")) {
