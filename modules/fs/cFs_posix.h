@@ -258,7 +258,10 @@ struct cFs : cFsBase {
     bool createDir()
     {
         o3_trace trace;
-		
+
+		if(!m_valid)
+			return false;
+
         if (!exists()) 
             if ( ! ((cFs*) parent().ptr())->createDir())
 				return false;
