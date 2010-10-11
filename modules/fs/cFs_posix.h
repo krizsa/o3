@@ -259,10 +259,14 @@ struct cFs : cFsBase {
     {
         o3_trace trace;
 		
-        if (!exists()) 
-            if ( ! ((cFs*) parent().ptr())->createDir())
-				return false;
-        mkdir(localPath(), 0777);
+        if (!exists()) {
+            siFs dir = parent();
+
+            if (dir->valid())
+                if (!dir->createDir())
+				    return false;
+            mkdir(localPath(), 0777);
+        }
         return isDir();
     }
 
