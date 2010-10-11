@@ -19,18 +19,7 @@
 #define O3_DEBUG_H
 
 #ifdef O3_TRACE
-#define o3_trace \
-struct Trace { \
-    Trace() \
-    { \
-        o3::traceEnter(__FILE__, __LINE__); \
-    } \
-    \
-    ~Trace() \
-    { \
-        o3::traceLeave(); \
-    } \
-}
+#define o3_trace struct
 #else
 #define o3_trace struct
 #endif // O3_TRACE

@@ -41,15 +41,11 @@ typedef tSc<T> s##T
     \
     virtual uint32_t addRef() \
     { \
-        o3_trace2 trace; \
-        \
         return cUnk::addRef(); \
     } \
     \
     virtual uint32_t release() \
     { \
-        o3_trace2 trace; \
-        \
         return cUnk::release(); \
     }
 
