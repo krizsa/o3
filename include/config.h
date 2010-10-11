@@ -45,8 +45,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #endif
 
-#define O3_LOG
-#define O3_ASSERT
+#define O3_DEBUG
 
 #if defined(O3_DEBUG)
 #define O3_TRACE    0
@@ -81,7 +80,6 @@
 #ifdef O3_LINUX
 #define O3_PLATFORM "linux"
 #endif
-
 
 #ifdef O3_POSIX
 #define O3_PATH_TMP "/usr/tmp/o3"

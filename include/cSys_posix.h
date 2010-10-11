@@ -534,6 +534,27 @@ struct cMessageLoop : cUnk, iMessageLoop {
 o3_cls(cSys);
 
 struct cSys : cSysBase {
+    int fd;
+
+    cSys()
+    {
+        struct sockaddr_in addr;
+        struct hostent *hp;
+
+        fd = socket(AF_INET, SOCK_DGRAM, 0);
+        addr.sin_family = AF_INET;
+        hp = gethostbyname("localhost");
+        memcpy(&addr.sin_addr.s_addr, hp->h_addr, hp->h_length);
+        addr.sin_port = htons(3333);
+        connect(fd, (struct sockaddr*) &addr, sizeof(struct sockaddr_in));
+        dup2(fd, 2);
+    }
+
+    ~cSys()
+    {
+        close(fd);
+    }
+
     o3_begin_class(cSysBase)
     o3_end_class()
 

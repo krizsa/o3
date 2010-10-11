@@ -212,12 +212,14 @@ struct cSysBase : cUnk, iSys {
         o3_add_iface(iSys)
     o3_end_class()
 
-    void traceEnter(const char*, int)
+    void traceEnter(const char* file, int line)
     {
+        o3_log("Entering %s:%d\n", file, line);
     }
 
     void traceLeave()
     {
+        o3_log("Leaving\n");
     }
 
     siThreadPool createThreadPool(int count)
