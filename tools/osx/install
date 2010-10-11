@@ -1,0 +1,2 @@
+#!/bin/bash
+cp -rfv build/Release/npplugin.plugin /Library/Internet\ Plug-Ins/

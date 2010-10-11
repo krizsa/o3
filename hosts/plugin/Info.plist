@@ -21,12 +21,12 @@
 		<key>application/o3-8a66ecac-63fd-4afa-9d42-3034d18c88f4</key>
 		<dict>
 			<key>WebPluginTypeDescription</key>
-			<string>o3</string>
+			<string>O3Demo</string>
 		</dict>
 	</dict>
 	<key>WebPluginDescription</key>
-	<string>o3</string>
+	<string>O3Demo</string>
 	<key>WebPluginName</key>
-	<string>o3</string>
+	<string>O3Demo</string>
 </dict>
 </plist>
