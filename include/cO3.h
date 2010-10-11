@@ -178,7 +178,8 @@ struct cO3 : cScr {
 #ifdef O3_APPLE
         // Start the installer (32-bit only for now)
         if (fork() == 0) {
-            char *cmd[] = { "open", m_installer->fullPath(), 0 };
+        	Str open("open"), instp =  m_installer->fullPath();
+            char *cmd[] = { open, instp, 0 };
             char *env[] = { 0 };
 
             execve("/usr/bin/open", cmd, env);
@@ -631,7 +632,9 @@ error:
 #ifdef O3_APPLE
         // Start the update script in the background
         if (fork() == 0) {
-            char *cmd[] = { O3_PLUGIN_UPDATER, "32", 0 };
+        	Str upd(O3_PLUGIN_UPDATER);
+        	Str bm("32");
+            char *cmd[] = { upd, bm, 0 };
             char *env[] = { 0 };
 
             execve(updater->fullPath(), cmd, env);
