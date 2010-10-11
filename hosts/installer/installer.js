@@ -167,9 +167,9 @@ var installer = {
                     sep    : p.createSeparator(0, 315, 500),
                     tb1    : p.createTextbox(_("instWelcome"), 166, 24, 315, 40, 16, p.BOLD),
                     tb2    : p.createTextbox(_("instStory"), 166, 66, 315, 100, 13),
-                    tb3    : p.createTextbox(_("instUsage"), 166, 168, 315, 20, 13, p.BOLD),
-                    rb1    : p.createRButton(_("allusers"), 166, 190, 315, 20, 13),
-                    rb2    : p.createRButton(_("justforme"), 166, 212, 315, 20, 13),
+                    //tb3    : p.createTextbox(_("instUsage"), 166, 168, 315, 20, 13, p.BOLD),
+                    //rb1    : p.createRButton(_("allusers"), 166, 190, 315, 20, 13),
+                    //rb2    : p.createRButton(_("justforme"), 166, 212, 315, 20, 13),
                     bt1    : p.createButton(_("install"), 300, 330, 90, 20, 13),
                     bt2    : p.createButton(_("cancel"), 395, 330, 90, 20, 13)
                 },
@@ -203,14 +203,14 @@ var installer = {
         o.page1.bt2.onclick = function(){
             dialogRunning = o3.alertBox(appInfo.fancyName, _("exitwarning")) != 1;
         };
-        o.page1.rb1.onclick = function(){
-            o.page1.bt1.enabled = true;
+        /*o.page1.rb1.onclick = function(){
+            o.page1.bt1.enabled = false;
 			all = true;
         };
         o.page1.rb2.onclick = function(){
             o.page1.bt1.enabled = true;
             all = false;
-        };
+        };*/
         o.page2.bt1.onclick = function(){
             dialogRunning = false;
         };
@@ -220,8 +220,6 @@ var installer = {
         o.reset = function(){
             o.page1.bt1.onclick =
             o.page1.bt2.onclick =
-            o.page1.rb1.onclick =
-            o.page1.rb2.onclick =
             o.page2.bt1.onclick =
             o.page3.bt.onclick  = 0;
         };
@@ -453,7 +451,7 @@ var installer = {
         inst.page2.wnd.visible = false;
         inst.page3.wnd.visible = false;
 
-        inst.page1.rb2.checked = true;
+        //inst.page1.rb2.checked = true;
         //inst.wnd.doModal();
         dialogStart();
         return inst;
@@ -641,8 +639,7 @@ var uninstaller = {
 							} catch(e){succeded = false;}
 						}		
 						
-						if (succeded)
-							break;
+						break;
 					}
 							
                     if (!o3.alertBox(appInfo.fancyName, getErrMsg(-2), "retrycancel"))

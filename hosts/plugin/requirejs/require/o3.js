@@ -237,6 +237,16 @@
 				    var name = context.o3Waiting[i].name;
 					context.defined[name] = o3[name];
 				}
+				
+				o3.onupdate = function() { 
+					// TODO: prompt the user about the new available installer that can be started here, then:
+					o3.doInstall();
+				};
+				
+				o3.oninstall = function() { 
+					alert("New o3 plugin has been installed please refresh this site.") ;
+				};
+			
                 cb();
 			}
 					
