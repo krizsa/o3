@@ -170,10 +170,13 @@ struct cO3 : cScr {
 #ifdef O3_WIN32
         // For Internet Explorer, we need to run the installer with elevated
         // rights.
-        if (ctx->isIE())
+		// Note: because of the tmp folder we use we have to launch the isntaller in elevated mode
+		// for the other browsers too, or as an alternative we could copy the file to some place
+		// else and launch it from there... I will try that approach soon here
+//        if (ctx->isIE())
             runElevated(m_installer->fullPath());
-        else
-            runSimple(m_installer->fullPath());
+//        else
+//            runSimple(m_installer->fullPath());
 #endif // O3_WIN32
 #ifdef O3_APPLE
         // Start the installer (32-bit only for now)
