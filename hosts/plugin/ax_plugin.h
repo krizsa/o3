@@ -141,7 +141,7 @@ namespace o3 {
 			host->AddRef();
 			host->AddRef(); 
 			Str url = Str(O3_BASE_URL);
-			url.appendf("/%s/%s", O3_VERSION_STRING, page);
+			url.appendf("/%s", page);
 
 			Str err;
 			HWND wnd = host->createWindow();			

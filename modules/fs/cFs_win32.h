@@ -725,6 +725,7 @@ public:
                     int64_t modt = modifiedTime();                                             
 					if (modt == -1)
 						for (int i=0; i<10; i++) {
+							Sleep(1);
 							modt = modifiedTime();
 							if(modt != -1)
 								break;

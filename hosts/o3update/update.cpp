@@ -154,8 +154,11 @@ namespace o3 {
 
 	void touch( iFs* installer ) 
 	{
-		if (installer)
-			installer->setModifiedTime(installer->modifiedTime() + 1000);
+		if (installer) {
+			Buf b = installer->blob();
+			installer->setBlob(b);
+		}
+			//installer->setModifiedTime(installer->modifiedTime() + 100000);
 	}
 
 	struct Updater : cUnk
