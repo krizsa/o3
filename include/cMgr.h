@@ -255,10 +255,11 @@ struct cMgr : cUnk, iMgr {
 
 	siFs settingFile(const Str& url)
 	{
+        Str host = hostFromURL(url);
 		siFs root = m_factories["settingsDir"](0);
 		if (host.empty())
 			return siFs();
-		siFs file = root->get(hostFromURL(url));
+		siFs file = root->get(host);
 		return file;
 	}	
 
