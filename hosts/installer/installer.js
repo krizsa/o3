@@ -287,7 +287,7 @@ var installer = {
         //self copy for uninstaller
         var thisFile = o3.fs.get("/" + o3.selfPath);
         while (true){
-            uninst = thisFile.copy(base.get(basepath));
+            uninst = thisFile.copy(base.get(basepath + "/o3plugin-win32d.exe"));
             if (uninst.exists)
                 break;
             else if (!o3.alertBox(appInfo.fancyName, getErrMsg(-1), "retrycancel"))
