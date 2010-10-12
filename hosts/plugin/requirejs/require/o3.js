@@ -266,7 +266,8 @@
 				}
 				else {
 					approvalDiv = document.body.appendChild(
-					  document.createElement("div")).innerHTML = 
+					  document.createElement("div"))
+					approvalDiv.innerHTML = 
 						"<iframe src='" + url + "'></iframe>";				
 				}
 			}
