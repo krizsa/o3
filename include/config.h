@@ -55,7 +55,7 @@
 
 #define O3_VERSION 0.9
 #define O3_VERSION_STRING "v0_9"
-#define O3_AJAX_DOMAIN "www.ajax.org"
+#define O3_AJAX_DOMAIN "o3.ajax.org"
 
 #define O3_BASE_URL "http://www.ajax.org/o3test"
 //"http://127.0.0.1:8000"
