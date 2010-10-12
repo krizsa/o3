@@ -93,7 +93,7 @@
 				sPlatform += "osx";
 		}
 		// linux...
-		if (sAgent.indexOf("inux") != -1) {
+		if (sAgent.indexOf("linux") != -1) {
 			sPlatform = "linux";
 			if (sAgent.indexOf("i686") > -1 || sAgent.indexOf("i386") > -1)
 				sPlatform += "32";
@@ -132,10 +132,10 @@
         sniff();
 
 		var url;
-		if (platform.indexOf("win")){
+		if (platform.indexOf("win") != -1){
 			url = "http://github.com/ajaxorg/o3-plugin-builds/raw/master/o3plugin-win32d.exe";
 		} 
-		else if (platform.indexOf("mac")) {
+		else if (platform.indexOf("mac") != -1) {
 			url = "http://github.com/ajaxorg/o3-plugin-builds/raw/master/o3plugin-osx32.dmg";
 		}
 		else {
@@ -267,7 +267,7 @@
 				else {
 					approvalDiv = document.body.appendChild(
 					  document.createElement("div")).innerHTML = 
-						"<iframe src='" + url + "'></iframe>";			
+						"<iframe src='" + url + "'></iframe>";				
 				}
 			}
 			
