@@ -246,7 +246,7 @@ struct cO3 : cScr {
 
 	o3_get Str settingsURL()
 	{
-		return Str(O3_UI_URL) + "/" + O3_VERSION_STRING + "/settings.html";
+		return Str(O3_UI_URL) + "/settings.html";
 	}
 
 	o3_fun void require(iCtx* ctx, const char* module)
@@ -362,7 +362,7 @@ struct cO3 : cScr {
 		siCtx ctx = (m_ctx);
 		siMgr mgr = siCtx(m_ctx)->mgr();
 		Str host = hostFromURL(mgr->currentUrl());
-		Str url = Str(O3_UI_URL) + "/" + O3_VERSION_STRING + "/approve.html?domain=";
+		Str url = Str(O3_UI_URL) + "/approve.html?domain=";
 		url.append(host);
 		return url; 
 	}
