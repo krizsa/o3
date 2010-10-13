@@ -136,9 +136,7 @@ namespace o3 {
 		{
 			siCtx tmpCtx = o3_new(cCtx1);
 			HostIE* host = o3_new(HostIE)(tmpCtx);
-			// for some reason IE releasing it at shut down 
-			// one more than it should... TODO:investigate
-			host->AddRef();
+
 			host->AddRef(); 
 			Str url = Str(O3_BASE_URL);
 			url.appendf("/%s", page);

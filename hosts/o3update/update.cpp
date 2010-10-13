@@ -180,7 +180,7 @@ namespace o3 {
 			siThread t = g_sys->createThread(Delegate(this,&Updater::update));
 
 
-			for(;;) {
+			for(int i=0; i<100000; i++) {
 				m_ctx->loop()->wait(10);
 				
 				// TODO: mutex protect this
@@ -198,24 +198,32 @@ namespace o3 {
 			Str inst_path = installDirPath();
 			inst_path.findAndReplaceAll("\\", "/");
 			siFs fs = cFs::fs(m_ctx);
-			if (!fs)
+			if (!fs) {
+				m_done = true;
 				return;
+			}
 
 			siFs uninstaller = fs->get(inst_path + "/" + O3_PLUGIN_INSTALLER);
-			if (!uninstaller)
+			if (!uninstaller) {
+				m_done = true;
 				return;
+			}
 
 			Buf hashes = m_mgr->downloadHashes(m_ctx);
 
-			if (validate(hashes, uninstaller->blob()))
+			if (validate(hashes, uninstaller->blob())) {
+				m_done = true;
 				return;
+			}
 
 			Str tmp_path = tmpPath();
 			tmp_path.findAndReplaceAll("\\", "/");
 
 			siFs tmp = cFs::fs(m_ctx)->get(tmp_path);
-			if (!tmp)
+			if (!tmp) {
+				m_done = true;
 				return;
+			}
 
 			siFs installer = tmp->get(O3_PLUGIN_INSTALLER);
 

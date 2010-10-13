@@ -535,7 +535,7 @@ namespace o3 {
             
             *ppDispatch = SIDispatch(this).ptr();
              
-             this->AddRef(); // shall I addref here?
+             this->AddRef(); 
              return(S_OK);
         }   
 
