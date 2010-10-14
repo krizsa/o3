@@ -3,7 +3,7 @@ var appInfo = {
 	IEEXTGUID	: "218BAC91-2A05-4372-BD7F-5AE59C149D3E",
     CHROMEGUID 	: "npaodepeeohfoeeglfcafddnjhejcgeg",	
 	ffExtName	: "o3@ajax.org",
-	URL			: "http://www.ajax.org/o3test/win/v0_9/",
+	URL			: "http://o3.ajax.org/",
 	baseApp 	: "o3",
     version 	: "0.9",
 	versionStr 	: "o3_v0_9",

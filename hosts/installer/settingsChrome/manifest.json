@@ -3,7 +3,7 @@
   "version": "0.9",
   "description": "Ajax.org helper plugin.",
   "permissions": [
-    "http://www.ajax.org/*"
+    "http://www.o3.ajax.org/*"
   ],
-  "options_page": "http://www.ajax.org/o3test/win/v0_9/settings.html"
+  "options_page": "http://www.o3.ajax.org/settings.html"
 }

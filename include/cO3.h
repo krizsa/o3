@@ -213,14 +213,14 @@ struct cO3 : cScr {
 
 	o3_fun void exit(int status = 0)
 	{
-		status;
-		o3_trace3 trace;
-#ifdef O3_WIN32
-		//SendMessage((HWND) siCtx(m_ctx)->appWindow(), WM_DESTROY, 0 , 0 );
-		::DestroyWindow((HWND) siCtx(m_ctx)->appWindow());
-#else
-		::exit(status);
-#endif		
+//		status;
+//		o3_trace3 trace;
+//#ifdef O3_WIN32
+//		//SendMessage((HWND) siCtx(m_ctx)->appWindow(), WM_DESTROY, 0 , 0 );
+//		::DestroyWindow((HWND) siCtx(m_ctx)->appWindow());
+//#else
+//		::exit(status);
+//#endif		
 	}
 
 	o3_get Str versionInfo()
