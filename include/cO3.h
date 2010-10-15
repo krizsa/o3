@@ -20,7 +20,10 @@
 
 #include "pub_key.h"
 #include "crypto.h"
+
+#ifdef O3_PLUGIN
 #include <tools_zip.h>
+#endif
 
 #ifdef O3_WITH_LIBEVENT
 	#include<event.h>    
@@ -408,8 +411,9 @@ struct cO3 : cScr {
 	// unzip the downloaded module, validates it and put the dll in place
 	bool unpackModule(const Str& name, iStream* zipped, bool update=false ) 
 	{
-		using namespace zip_tools;
 		bool ret = false;
+#ifdef O3_PLUGIN
+		using namespace zip_tools;		
 		siCtx ctx(m_ctx);		
 		if (!ctx || !zipped)
 			return false;		
@@ -480,6 +484,7 @@ error:
 		if (sign_stream)
 			sign_stream->close();
 		fs->get("tmp")->remove(true);
+#endif
 		return ret;
 	
 	}
@@ -522,7 +527,7 @@ error:
 	// we check the local versions hash against these values and update the component if needed
 	void moduleUpdating(iUnk*)
 	{
-	
+#ifdef O3_PLUGIN	
 		using namespace zip_tools;
 		siCtx ctx = siCtx(m_ctx);
 		siMgr mgr = ctx->mgr();
@@ -585,7 +590,7 @@ error:
 					updateComponent(name);
 			}
 		}
-	
+#endif	
 	}
 
 	// if we already know that a component should be updated..,
