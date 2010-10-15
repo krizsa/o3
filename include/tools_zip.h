@@ -180,7 +180,7 @@ namespace o3 {
 					return o3_new(cEx)("zip version not supported");
 				o3_zip_read(&ch.bit_flag,2);
 				o3_zip_read(&ch.method,2);
-				if (ch.method != 8)
+				if (ch.method != 8 && ch.method != 0)
 					return o3_new(cEx)("zip compression method not supported");
 				o3_zip_read(&ch.last_mod_time,2);
 				o3_zip_read(&ch.last_mod_date,2);
@@ -270,7 +270,7 @@ namespace o3 {
 				return o3_new(cEx)("zip mode not supported");
 			 
 			o3_zip_read(&lh.comp_method,2);
-			if (lh.comp_method != 8)
+			if (lh.comp_method != 8 && lh.comp_method != 0)
 				return o3_new(cEx)("compression algorithm not supported (only inflate/deflate)");
 			 
 			o3_zip_read(&lh.last_mod_time,2);
@@ -286,12 +286,18 @@ namespace o3 {
 			src->setPos(src->pos()+lh.extra_field_length);
 			 
 			uint32_t crc;
-			size_t unzipped_size = ZLib::unzip(src, dest, &crc);
-			if (-1 == unzipped_size)
-				return o3_new(cEx)("unzip algorithm failed.");
-			if (lh.crc32 != crc)
-				return o3_new(cEx)("crc32 check sum mismatch.");
-			 
+			if (lh.comp_method == 8) {
+				size_t unzipped_size = ZLib::unzip(src, dest, &crc);
+				if (-1 == unzipped_size)
+					return o3_new(cEx)("unzip algorithm failed.");
+				if (lh.crc32 != crc)
+					return o3_new(cEx)("crc32 check sum mismatch.");
+				}
+			else {
+				Buf data(src, (size_t) lh.size_compressed);
+				dest->write(data.ptr(), data.size());
+			}
+
 			return siEx();
 		}
  

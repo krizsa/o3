@@ -23,6 +23,7 @@
 #include "http/http.h"
 #include "md5/md5.h"
 #include "blob/blob.h"
+#include "cCtx.h"
 
 namespace o3 {
 
@@ -35,103 +36,6 @@ namespace o3 {
 	int decWrapperCount() {
 		return atomicDec(g_outerComponents);
 	} 
-
-	struct cCtx : cUnk, iCtx, iCtx1 {
-
-		cCtx(iMgr* mgr) 
-			: m_mgr(mgr)
-			, m_track(0)
-			, m_loop(g_sys->createMessageLoop())
-		{        
-		}
-
-		virtual ~cCtx()
-		{        
-		}
-
-		o3_begin_class(cUnk)
-			o3_add_iface(iAlloc)
-			o3_add_iface(iCtx)
-			o3_add_iface(iCtx1)
-			o3_end_class()
-
-		siMgr                       m_mgr;
-		ComTrack*                   m_track;
-		siMessageLoop               m_loop;
-		tMap<Str, Var>              m_values;
-		HANDLE                      m_app_window;
-
-		// iAlloc
-		void* alloc(size_t size)
-		{
-			return g_sys->alloc(size);
-		}
-
-		void free(void* ptr)
-		{
-			return g_sys->free(ptr);
-		}
-
-		// iCtx
-		siMgr mgr()
-		{
-			return m_mgr;
-		}
-
-		virtual ComTrack** track() 
-		{
-			return &m_track;
-		}
-
-		virtual siMessageLoop loop()
-		{
-			return m_loop;
-		}
-
-		virtual Var value(const char* key) 
-		{
-			return m_values[key];
-		}
-
-		virtual Var setValue(const char* key, const Var& val)
-		{
-			return m_values[key] = val;
-		}
-
-		virtual void tear() 
-		{
-			for (ComTrack *i = m_track, *j = 0; i; i = j) {
-				j = i->m_next;
-				i->m_phead = 0;
-				i->tear();
-			}
-		}
-
-		virtual Str fsRoot()
-		{
-			return Str();
-		}
-
-		virtual Var eval(const char* name, siEx* ex = 0)
-		{
-			return Var();    
-		}
-
-		virtual void setAppWindow(void* handle)
-		{
-			m_app_window = handle;
-		}
-
-		virtual void* appWindow() 
-		{
-			return (void*) m_app_window;
-		}
-
-		virtual bool isIE()
-		{
-			return false;
-		}
-	}; 
 
 	bool validate(const Buf& hashes, const Buf& installer ) 
 	{

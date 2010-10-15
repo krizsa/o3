@@ -9,24 +9,24 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleVersion</key>
-	<string>0.9</string>
+	<string>#VERSION#</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.ajax.o3-plugin</string>
+	<string>#IDENTIFIER#</string>
 	<key>CFBundleName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>WebPluginMIMETypes</key>
 	<dict>
-		<key>application/o3-8a66ecac-63fd-4afa-9d42-3034d18c88f4</key>
+		<key>application/#FULLNAME#</key>
 		<dict>
 			<key>WebPluginTypeDescription</key>
-			<string>Ajax.org o3 plugin</string>
+			<string>#TYPEDESCRIPTION#</string>
 		</dict>
 	</dict>
 	<key>WebPluginDescription</key>
-	<string>Ajax.org o3 plugin</string>
+	<string>#DESCRIPTION#</string>
 	<key>WebPluginName</key>
-	<string>o3</string>
+	<string>#BASENAME#</string>
 </dict>
 </plist>

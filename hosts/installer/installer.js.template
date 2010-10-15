@@ -1,11 +1,11 @@
 var appInfo = {
-    GUID    	: "8a66ecac-63fd-4afa-9d42-3034d18c88f4",
-	IEEXTGUID	: "218BAC91-2A05-4372-BD7F-5AE59C149D3E",
-    CHROMEGUID 	: "npaodepeeohfoeeglfcafddnjhejcgeg",	
-	ffExtName	: "o3@ajax.org",
-	URL			: "http://o3.ajax.org",
-	baseApp 	: "o3",
-    version 	: "0.9",
+    GUID    	: "#GUID#",
+	IEEXTGUID	: "#IEEXTGUID#",
+    CHROMEGUID 	: "#CHROMEGUID#",	
+	ffExtName	: "#FFEXTGUID#",
+	URL			: "#URL#",
+	baseApp 	: "#BASENAME#",
+    version 	: "#VERSION#",
     locale  	: "en_US"
 };
 
@@ -264,7 +264,7 @@ var installer = {
         //self copy for uninstaller
         var thisFile = o3.fs.get("/" + o3.selfPath);
         while (true){
-            uninst = thisFile.copy(base.get(basepath + "/o3plugin-win32.exe"));
+            uninst = thisFile.copy(base.get(basepath + "/#WININSTALLER#"));
             if (uninst.exists)
                 break;
             else if (!o3.alertBox(appInfo.fancyName, getErrMsg(-1), "retrycancel"))

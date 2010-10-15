@@ -13,7 +13,7 @@ var o3 = {
     document.getElementById("context-o3").hidden = gContextMenu.onImage;
   },
   onMenuItemCommand: function(e) {
-	window.open("http://www.o3.ajax.org/settings.html");
+	window.open("http://o3.ajax.org/settings.html");
   },
 
 };

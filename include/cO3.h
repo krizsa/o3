@@ -19,11 +19,8 @@
 #define O3_C_O3_H
 
 #include "pub_key.h"
-
-#ifdef O3_PLUGIN
 #include "crypto.h"
 #include <tools_zip.h>
-#endif
 
 #ifdef O3_WITH_LIBEVENT
 	#include<event.h>    
@@ -167,13 +164,31 @@ struct cO3 : cScr {
     {
         siCtx ctx = m_ctx;
 
-        if (!m_installer)
-            m_installer = siFs(ctx->mgr()->factory("installerDir")(0))
-                          ->get(O3_PLUGIN_INSTALLER);
+		siFs dir_of_installer = ctx->mgr()->factory("installerDir")(0);
+		if (!m_installer)
+            m_installer = dir_of_installer->get(O3_PLUGIN_INSTALLER);
+		
+		Str version_name(O3_PLUGIN_INSTALLER);
+		version_name.append(".version");
+
+		siFs version_file = dir_of_installer->get(version_name);
+		if (!version_file->exists())
+			return;
+
+		Str data = version_file->data();
+		size_t eol = data.find("\n");
+		if (eol == NOT_FOUND
+			|| data.size() < eol + 1 + 128);
+				return;
+		Str signature(data.ptr()+eol+1, 128);
+		siStream installer_stream = m_installer->open("r");
+		if (!validateModule(installer_stream, signature))
+			return;
+
 #ifdef O3_WIN32
         // For Internet Explorer, we need to run the installer with elevated
         // rights.
-		// Note: because of the tmp folder we use we have to launch the isntaller in elevated mode
+		// Note: because of the tmp folder we use we have to launch the installer in elevated mode
 		// for the other browsers too, or as an alternative we could copy the file to some place
 		// else and launch it from there... I will try that approach soon here
 //        if (ctx->isIE())
@@ -411,9 +426,8 @@ struct cO3 : cScr {
 	// unzip the downloaded module, validates it and put the dll in place
 	bool unpackModule(const Str& name, iStream* zipped, bool update=false ) 
 	{
+		using namespace zip_tools;
 		bool ret = false;
-#ifdef O3_PLUGIN
-		using namespace zip_tools;		
 		siCtx ctx(m_ctx);		
 		if (!ctx || !zipped)
 			return false;		
@@ -434,6 +448,8 @@ struct cO3 : cScr {
 			tmpFolder = fs->get(path),
 			unzipped = tmpFolder->get(fileName),
 			signature = tmpFolder->get("signature");
+
+		Buf signature_buf;
 
 		if (!components->exists())
 			components->createDir();
@@ -457,7 +473,9 @@ struct cO3 : cScr {
 		// validating
 		unz_stream = unzipped->open("r");
 		sign_stream = signature->open("r");
-		if (!validateModule(unz_stream,sign_stream))
+		signature_buf = Buf(sign_stream);
+
+		if (!validateModule(unz_stream,signature_buf))
 			goto error;		
 
 		if (update) {
@@ -484,34 +502,28 @@ error:
 		if (sign_stream)
 			sign_stream->close();
 		fs->get("tmp")->remove(true);
-#endif
 		return ret;
 	
 	}
 
 	// checks the signiture comes with the dll for validation
-	bool validateModule(iStream* data, iStream* signature)
+	bool validateModule(iStream* data, Str sign_b64)
 	{
-#ifdef O3_PLUGIN
 		using namespace Crypto;
-		if (!data || !signature)
+		if (!data || sign_b64.size()<128)
 			return false;
+
+		Buf signature = Buf::fromBase64(sign_b64.ptr());
 
 		Buf hash(SHA1_SIZE),encrypted,decrypted;
 		if (!hashSHA1(data, (uint8_t*) hash.ptr())) 
 			return false;
 
 		hash.resize(SHA1_SIZE);
-		size_t enc_size = signature->size();
-		encrypted.reserve(enc_size);
-		if (enc_size != signature->read(encrypted.ptr(), enc_size))
-			return false;
-
-		encrypted.resize(enc_size);
 				
-		size_t size = (encrypted.size() / mod_size + 1) * mod_size;
+		size_t size = (signature.size() / mod_size + 1) * mod_size;
 		decrypted.reserve(size);
-		size = decryptRSA((const uint8_t*) encrypted.ptr(), enc_size, 
+		size = decryptRSA((const uint8_t*) signature.ptr(), signature.size(), 
 			(uint8_t*) decrypted.ptr(), (uint8_t*) &mod, mod_size,
 			(const uint8_t*) &pub_exp, pub_exp_size, true);
 		
@@ -521,9 +533,6 @@ error:
 		decrypted.resize(size);
 		return (size == hash.size() &&
 			memEquals(decrypted.ptr(), hash.ptr(), size));
-#else
-		return false;
-#endif
 	}
 
 	// checks if there is a new root available, then for the modules
@@ -531,7 +540,7 @@ error:
 	// we check the local versions hash against these values and update the component if needed
 	void moduleUpdating(iUnk*)
 	{
-#ifdef O3_PLUGIN	
+	
 		using namespace zip_tools;
 		siCtx ctx = siCtx(m_ctx);
 		siMgr mgr = ctx->mgr();
@@ -594,7 +603,7 @@ error:
 					updateComponent(name);
 			}
 		}
-#endif	
+	
 	}
 
 	// if we already know that a component should be updated..,

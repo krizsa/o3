@@ -1,0 +1,3 @@
+GUID CLSID_IJAxCtrl ={#GUIDDEF#};
+#define O3_PLUGIN_GUID	L"#GUID#"
+#define O3_APP_NAME		L"#BASENAME#"

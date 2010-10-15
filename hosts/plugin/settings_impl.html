@@ -12,12 +12,19 @@
 	</body>
 	<script>
 		var o3obj;
-        // creating an o3 instance, we need the UID and the name of the product
-        // the o3.js file will take care of all the details
-        o3obj = o3.create("8a66ecac-63fd-4afa-9d42-3034d18c88f4", { 
-            oninstallprompt : function(){ alert("can't find o3 plugin");},    
-			product : 'o3'
+		var params = getParams();
+		var o3id = '8a66ecac-63fd-4afa-9d42-3034d18c88f4';
+		
+		if (params && params['o3id']) {
+			o3id = params['o3id'];
+		}	
+		
+		// creating an o3 instance, we need the UID and the name of the product
+		// the o3.js file will take care of all the details
+		o3obj = o3.create(o3id, { 
+			oninstallprompt : function(){ alert("can't find o3 plugin");}
 		} );
+		
 
 		var settings = o3obj.settings,
 			elems = settings.match(/[\w\.]+\([\w\=\,]+\);/g),
@@ -50,7 +57,9 @@
 			var newSettings = {}, f, s=[];
 			for (var i=0; i<form.length; i++){
 				f = form[i];
-				(newSettings[f.fileName] ? newSettings[f.fileName] : newSettings[f.fileName] = []).push(f.name + '=' + (f.checked ? 1 : 0));
+				var fname = f.getAttribute("fileName"),
+				    name = f.getAttribute("name");		
+				(newSettings[fname] ? newSettings[fname] : newSettings[fname] = []).push(name + '=' + (f.checked ? 1 : 0));
 			}
 			for (var v in newSettings)
 				s.push(v,'(',newSettings[v].join(','),',);');
@@ -59,6 +68,18 @@
 			o3obj.exit();
 		}		
 					
+		function getParams() {
+			var idx = document.URL.indexOf('?');
+			if (idx != -1) {
+				var tempParams = new Object();
+				var pairs = document.URL.substring(idx+1,document.URL.length).split('&');
+				for (var i=0; i<pairs.length; i++) {
+					nameVal = pairs[i].split('=');
+					tempParams[nameVal[0]] = nameVal[1];		
+				}
+				return tempParams;
+			}
+		}			
 		//o3obj.settings = settings;				
 		//var chkbox = document.getElementById('settings').fs;	
 	

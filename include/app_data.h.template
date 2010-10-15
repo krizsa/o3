@@ -1,0 +1,33 @@
+#define O3_VERSION "#VERSION#"
+#define O3_VERSION_STRING "#VERSIONSTRING#"
+#define O3_AJAX_DOMAIN "#DOMAIN#"
+
+#define O3_BASE_URL "#URL#"
+
+#define O3_UI_URL "#URL#"
+
+#ifdef O3_WIN32
+#define O3_PLATFORM "win"
+#define O3_PLUGIN_NAME
+#define O3_PLUGIN_UPDATER "#WINUPDATER#"
+#define O3_PLUGIN_INSTALLER "#WININSTALLER#"
+#define O3_PLUGIN_VERSION "#WINVERSION#"
+#endif
+
+#ifdef O3_APPLE
+#define O3_PLATFORM "osx"
+#define O3_PLUGIN_NAME "#BASENAME#"
+#define O3_PLUGIN_UPDATER "#OSXUPDATER#"
+#define O3_PLUGIN_INSTALLER "#OSXINSTALLER#"
+#define O3_PLUGIN_VERSION "#OSXVERSION#"
+#endif
+
+#ifdef O3_LINUX
+#define O3_PLATFORM "linux"
+#endif
+
+#ifdef O3_POSIX
+#define O3_PATH_TMP "/usr/tmp/o3"
+#define O3_PATH_LIB "/usr/lib/o3"
+#define O3_PATH_ETC "/etc/o3"
+#endif

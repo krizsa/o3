@@ -5,6 +5,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{475BCB3E-D
 	ProjectSection(SolutionItems) = preProject
 		include\Buf.h = include\Buf.h
 		include\cBufStream.h = include\cBufStream.h
+		include\cCtx.h = include\cCtx.h
 		include\cMgr.h = include\cMgr.h
 		include\cO3.h = include\cO3.h
 		include\config.h = include\config.h
@@ -292,6 +293,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fastxml", "fastxml", "{FB7D
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "o3update", "hosts\o3update\o3update.vcproj", "{5B2EB164-4F88-47A5-B5AD-5B17890856E7}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "signer", "hosts\signer\signer.vcproj", "{8E745FD3-4F20-4EB9-9F45-C86EED26DBC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -318,6 +321,10 @@ Global
 		{5B2EB164-4F88-47A5-B5AD-5B17890856E7}.Debug|Win32.Build.0 = Debug|Win32
 		{5B2EB164-4F88-47A5-B5AD-5B17890856E7}.Release|Win32.ActiveCfg = Release|Win32
 		{5B2EB164-4F88-47A5-B5AD-5B17890856E7}.Release|Win32.Build.0 = Release|Win32
+		{8E745FD3-4F20-4EB9-9F45-C86EED26DBC3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8E745FD3-4F20-4EB9-9F45-C86EED26DBC3}.Debug|Win32.Build.0 = Debug|Win32
+		{8E745FD3-4F20-4EB9-9F45-C86EED26DBC3}.Release|Win32.ActiveCfg = Release|Win32
+		{8E745FD3-4F20-4EB9-9F45-C86EED26DBC3}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

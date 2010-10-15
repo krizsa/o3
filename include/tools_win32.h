@@ -40,14 +40,8 @@
 #include <cScrBuf.h>
 #include <cStreamBase.h>
 #include <cStream.h>
+#include <guid.h>
 
-//#ifdef O3_UPDATER
-#define O3_PLUGIN_GUID	L"8a66ecac-63fd-4afa-9d42-3034d18c88f4"
-#define O3_APP_NAME		L"o3"
-//#else
-//#define O3_PLUGIN_GUID	L"AAAAAAAA-1111-BBBB-1111-CCCCCCCCCCCC"
-//#define O3_APP_NAME		L"O3Stem"
-//#endif
 
 namespace o3 {
 

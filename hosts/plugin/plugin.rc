@@ -44,15 +44,15 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "Ajax.org"
-            VALUE "FileDescription", "Ajax.org O3Stem - v0.9"
+            VALUE "FileDescription", "Ajax.org o3 plugin"
             VALUE "FileExtents", "o3"
-            VALUE "FileOpenName", "o3-8a66ecac-63fd-4afa-9d42-3034d18c88f4"
+            VALUE "FileOpenName", "Ajax.org o3 plugin"
             VALUE "FileVersion", "1, 0, 0, 1"
-            VALUE "InternalName", "o3-8a66ecac-63fd-4afa-9d42-3034d18c88f4"
-            VALUE "LegalCopyright", "Copyright © 2008-2010 Ajax.org (http://www.ajax.org)"
+            VALUE "InternalName", "Ajax.org o3 plugin"
+            VALUE "LegalCopyright", "Copyright Â© 2008-2010 Ajax.org (http://www.ajax.org)"
             VALUE "MIMEType", "application/o3-8a66ecac-63fd-4afa-9d42-3034d18c88f4"
             VALUE "OriginalFilename", "np-o3-8a66ecac-63fd-4afa-9d42-3034d18c88f4.dll"
-            VALUE "ProductName", "o3-8a66ecac-63fd-4afa-9d42-3034d18c88f4"
+            VALUE "ProductName", "o3"
             VALUE "ProductVersion", "1, 0, 0, 1"
         END
     END
@@ -102,4 +102,4 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
-
+

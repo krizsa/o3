@@ -24,10 +24,6 @@
 #include <fcntl.h>
 #include <sys/select.h>
 #include <sys/time.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <resolv.h>
-#include <netdb.h>
 #include <unistd.h>
 #ifdef O3_NODE
 #include <v8.h>

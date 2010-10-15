@@ -13,13 +13,16 @@
 	</body>
 	<script>
 		var o3obj;
+		var params = getParams();
 		
-		// creating an o3 instance, we need the UID and the name of the product
-        // the o3.js file will take care of all the details
-        o3obj = o3.create("8A66ECAC-63FD-4AFA-9D42-3034D18C88F4", { 
-            oninstallprompt : function(){ alert("can't find o3 plugin");},    
-			product : 'o3'
-		} );
+		if (params && params['o3id']) {
+			var o3id = params['o3id'];
+			// creating an o3 instance, we need the UID and the name of the product
+			// the o3.js file will take care of all the details
+			o3obj = o3.create(o3id, { 
+				oninstallprompt : function(){ alert("can't find o3 plugin");}
+			} );
+		}
 		
 		function parseSettings(str) {
 
@@ -39,8 +42,8 @@
 		function settingsFile() {
 				var url = '',
 					m,					
-					dname,
-					params = getParams();
+					dname;
+					
 				
 				if (params && params['domain'])
 					dname = params['domain'];

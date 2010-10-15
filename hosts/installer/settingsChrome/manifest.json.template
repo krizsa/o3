@@ -1,0 +1,9 @@
+{
+  "name": "#BASENAME#",
+  "version": "#VERSION#",
+  "description": "#DESCRIPTION#",
+  "permissions": [
+    "#URL#/*"
+  ],
+  "options_page": "#URL#/settings.html"
+}

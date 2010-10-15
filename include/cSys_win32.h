@@ -187,7 +187,9 @@ namespace o3 {
                         FindCloseChangeNotification(m_handle);
                         break;
                     case TYPE_SOCKET:
-                        WSACloseEvent(m_handle);
+#ifdef O3_PLUGIN
+						WSACloseEvent(m_handle);
+#endif
 						break;
                     default:
                         //db_assert(false);

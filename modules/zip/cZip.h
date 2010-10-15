@@ -175,6 +175,11 @@ namespace o3 {
 			// unzip and write files one by one
 			tVec<Str> files = listFiles();
 			for (size_t i=0; i<files.size(); i++) {
+				if (files[i].size() && files[i].ptr()[files[i].size()-1] == '/') {
+					to->get(files[i])->createDir();
+					continue;
+				}
+
 				siFs dest_file = to->get(files[i]);
 				siStream dest_stream = dest_file->open("w");
 				if (!dest_stream || !get(files[i],dest_stream,ex))
