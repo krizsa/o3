@@ -19,8 +19,11 @@
 #define O3_C_O3_H
 
 #include "pub_key.h"
+
+#ifdef O3_PLUGIN
 #include "crypto.h"
 #include <tools_zip.h>
+#endif
 
 #ifdef O3_WITH_LIBEVENT
 	#include<event.h>    
@@ -426,8 +429,9 @@ struct cO3 : cScr {
 	// unzip the downloaded module, validates it and put the dll in place
 	bool unpackModule(const Str& name, iStream* zipped, bool update=false ) 
 	{
-		using namespace zip_tools;
 		bool ret = false;
+#ifdef O3_PLUGIN
+		using namespace zip_tools;		
 		siCtx ctx(m_ctx);		
 		if (!ctx || !zipped)
 			return false;		
@@ -448,8 +452,6 @@ struct cO3 : cScr {
 			tmpFolder = fs->get(path),
 			unzipped = tmpFolder->get(fileName),
 			signature = tmpFolder->get("signature");
-
-		Buf signature_buf;
 
 		if (!components->exists())
 			components->createDir();
@@ -473,9 +475,7 @@ struct cO3 : cScr {
 		// validating
 		unz_stream = unzipped->open("r");
 		sign_stream = signature->open("r");
-		signature_buf = Buf(sign_stream);
-
-		if (!validateModule(unz_stream,signature_buf))
+		if (!validateModule(unz_stream,sign_stream))
 			goto error;		
 
 		if (update) {
@@ -502,6 +502,7 @@ error:
 		if (sign_stream)
 			sign_stream->close();
 		fs->get("tmp")->remove(true);
+#endif
 		return ret;
 	
 	}
@@ -509,6 +510,7 @@ error:
 	// checks the signiture comes with the dll for validation
 	bool validateModule(iStream* data, Str sign_b64)
 	{
+#ifdef O3_PLUGIN
 		using namespace Crypto;
 		if (!data || sign_b64.size()<128)
 			return false;
@@ -533,6 +535,9 @@ error:
 		decrypted.resize(size);
 		return (size == hash.size() &&
 			memEquals(decrypted.ptr(), hash.ptr(), size));
+#else
+		return false;
+#endif
 	}
 
 	// checks if there is a new root available, then for the modules
@@ -540,7 +545,7 @@ error:
 	// we check the local versions hash against these values and update the component if needed
 	void moduleUpdating(iUnk*)
 	{
-	
+#ifdef O3_PLUGIN	
 		using namespace zip_tools;
 		siCtx ctx = siCtx(m_ctx);
 		siMgr mgr = ctx->mgr();
@@ -603,7 +608,7 @@ error:
 					updateComponent(name);
 			}
 		}
-	
+#endif	
 	}
 
 	// if we already know that a component should be updated..,
