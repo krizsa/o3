@@ -19,9 +19,9 @@
 #define O3_C_O3_H
 
 #include "pub_key.h"
-#include "crypto.h"
 
 #ifdef O3_PLUGIN
+#include "crypto.h"
 #include <tools_zip.h>
 #endif
 
@@ -492,6 +492,7 @@ error:
 	// checks the signiture comes with the dll for validation
 	bool validateModule(iStream* data, iStream* signature)
 	{
+#ifdef O3_PLUGIN
 		using namespace Crypto;
 		if (!data || !signature)
 			return false;
@@ -520,6 +521,9 @@ error:
 		decrypted.resize(size);
 		return (size == hash.size() &&
 			memEquals(decrypted.ptr(), hash.ptr(), size));
+#else
+		return false;
+#endif
 	}
 
 	// checks if there is a new root available, then for the modules
