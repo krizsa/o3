@@ -80,6 +80,10 @@
 
 #ifdef O3_LINUX
 #define O3_PLATFORM "linux"
+#define O3_PLUGIN_NAME ""
+#define O3_PLUGIN_UPDATER ""
+#define O3_PLUGIN_INSTALLER ""
+#define O3_PLUGIN_VERSION ""
 #endif
 
 #ifdef O3_POSIX
