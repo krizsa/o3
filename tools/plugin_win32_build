@@ -1,0 +1,20 @@
+cd `dirname $0`
+cd ..
+
+echo "------------------------ generate glue ------------------------"
+node tools/gluegen.js
+
+echo "------------------------ generate manifest ------------------------"
+node tools/create_manifest.js
+
+echo "------------------------ build extensions manifest ------------------------"
+cd hosts/installer 
+cmd /c packChrome.bat
+cmd /c packFF.bat
+cd ../..
+
+echo "------------------------ build plugin and installers ------------------------"
+cmd /c msbuild o3.sln /target:plugin
+cmd /c msbuild o3.sln /target:o3update
+cmd /c msbuild o3.sln /target:installer
+cd ..

@@ -1,1 +1,0 @@
-call chrome.exe --pack-extension=settingsChrome --pack-extension-key=o3settings.pem
