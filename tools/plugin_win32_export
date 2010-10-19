@@ -13,5 +13,5 @@ md5sum o3plugin-win32d.exe >> o3plugin-win32d.exe.version
 git add o3plugin-win32d.exe || true
 git add o3plugin-win32d.exe.version || true
 git commit -m "automated build" || true
-
+git push origin master
 cd ..
