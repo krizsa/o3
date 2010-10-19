@@ -458,6 +458,7 @@ struct cO3 : cScr {
 
 		siStream unz_stream = unzipped->open("w");
 		siStream sign_stream = signature->open("w");
+		Buf sign_data;
 		if (!unz_stream || !sign_stream)
 			return false;	
 		// unzipping
@@ -475,7 +476,8 @@ struct cO3 : cScr {
 		// validating
 		unz_stream = unzipped->open("r");
 		sign_stream = signature->open("r");
-		if (!validateModule(unz_stream,sign_stream))
+		sign_data = Buf(sign_stream);
+		if (!validateModule(unz_stream,sign_data))
 			goto error;		
 
 		if (update) {
