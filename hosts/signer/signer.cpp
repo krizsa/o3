@@ -56,7 +56,7 @@ int main(int argc, char **argv) {
 	if (!sign_file->exists())
 		sign_file->setData(Str::fromBase64(signature.ptr(), signature.size()));
 	else {
-		Str data = src_file->data();
+		Str data = sign_file->data();
 		data.append("\n");
 		data.append(Str::fromBase64(signature.ptr(), signature.size()));
 		sign_file->setData(data);
