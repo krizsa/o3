@@ -1,17 +1,17 @@
 cd `dirname $0`
-cd ..
+cd ../..
 
 echo "------------------------ push plugin to git ------------------------"
 
 [ -d o3-plugin-builds ] || git clone git@github.com:ajaxorg/o3-plugin-builds.git --depth 1
 cd o3-plugin-builds
 git pull
-cp ../build/Debug/installer/o3plugin.exe o3plugin-win32d.exe
+cp ../o3/build/Debug/installer/o3plugin.exe o3plugin-win32d.exe
 rm ./o3plugin-win32d.exe.version
 md5sum o3plugin-win32d.exe >> o3plugin-win32d.exe.version
-../../signer o3plugin-win32d.exe o3plugin-win32d.exe.version
+../signer o3plugin-win32d.exe o3plugin-win32d.exe.version
 git add o3plugin-win32d.exe || true
 git add o3plugin-win32d.exe.version || true
 git commit -m "automated build" || true
-git push origin master
+
 cd ..
