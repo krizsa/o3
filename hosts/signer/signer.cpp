@@ -50,7 +50,7 @@ int main(int argc, char **argv) {
 	siScr sharef(sha);
 	siScr rsaref(rsa);
 
-	Str hash = sha->hash(src_file->data());
+	Buf hash = sha->hash(src_file->blob());
 	Buf signature = rsa->encrypt(hash, Buf(prv_mod,prv_mod_size), Buf(prv_exp, prv_exp_size));
 
 	if (!sign_file->exists())

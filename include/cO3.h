@@ -180,10 +180,9 @@ struct cO3 : cScr {
 
 		Str data = version_file->data();
 		size_t eol = data.find("\n");
-		if (eol == NOT_FOUND
-			|| data.size() < eol + 1 + 128)
-				return;
-		Str signature(data.ptr()+eol+1, 128);
+		if (eol == NOT_FOUND)
+			return;
+		Str signature(data.ptr()+eol+1, data.size()-eol-1);
 		siStream installer_stream = m_installer->open("r");
 		if (!validateModule(installer_stream, signature))
 			return;

@@ -23,7 +23,7 @@ OSXUPDATER = 'update_installer',
 OSXINSTALLER = BASENAME + 'plugin-osx32.dmg', 
 OSXVERSION = OSXINSTALLER + '.version', 
 WINUPDATER = BASENAME + 'update.exe',
-WININSTALLER = BASENAME + 'plugin-win32.exe',
+WININSTALLER = BASENAME + 'plugin-win32d.exe',
 WINVERSION = WININSTALLER + '.version',
 GUIDDEF = '0x' + GUID.substring(0,8) + ',0x' + GUID.substring(9,13) 
      + ',0x' + GUID.substring(14,18) + ',{0x' + GUID.substring(19,21)
