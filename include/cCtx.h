@@ -38,7 +38,7 @@ namespace o3 {
 		siMgr                       m_mgr;
 		siMessageLoop               m_loop;
 		tMap<Str, Var>              m_values;
-		HANDLE                      m_app_window;
+		void*                       m_app_window;
 
 		// iAlloc
 		void* alloc(size_t size)

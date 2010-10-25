@@ -65,6 +65,16 @@ struct cFs : cFsBase {
         }
         return cwd.toScr();
     }
+	
+	static siScr cwd()
+    {
+        o3_trace3 trace;
+		char* buf = getcwd(0, 0);
+
+		siFs ret = o3_new(cFs)("/", buf);
+		free(buf);
+		return ret;
+    }
 
 	static o3_ext("cO3") o3_get siFs fsSafe(iCtx* ctx) 
 	{     
