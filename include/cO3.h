@@ -182,6 +182,11 @@ struct cO3 : cScr {
 		size_t eol = data.find("\n");
 		if (eol == NOT_FOUND)
 			return;
+#ifdef O3_APPLE
+		eol = data.find(eol+1, "\n");
+		if (eol == NOT_FOUND)
+			return;
+#endif
 		Str signature(data.ptr()+eol+1, data.size()-eol-1);
 		siStream installer_stream = m_installer->open("r");
 		if (!validateModule(installer_stream, signature))

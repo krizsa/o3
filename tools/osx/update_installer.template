@@ -1,0 +1,51 @@
+#!/bin/bash
+URL="#GITHUB#"
+PLUGIN_DIR="/Library/Internet Plug-Ins/npplugin.plugin/Contents/MacOS/"
+PLUGIN=#BASENAME#
+INSTALLER_DIR="/tmp/o3"
+INSTALLER=#OSXINSTALLERBASE#$1.dmg
+
+mkdir -p $INSTALLER_DIR
+curl -o $INSTALLER_DIR/$INSTALLER.version.new --silent $URL/$INSTALLER.version
+
+function getline {
+    head -n $2 $1 | tail -n 1
+}
+
+function gen_hash {
+    /sbin/md5 "$1" | sed 's/.*= \(.*\)/\1/g'
+}
+
+function download {
+    echo "Downloading installer."
+    curl -o $INSTALLER_DIR/$INSTALLER.new --silent $URL/$INSTALLER
+    echo "Updating installer."
+    mv $INSTALLER_DIR/$INSTALLER.new $INSTALLER_DIR/$INSTALLER
+    echo "Installer is up to date."
+}
+
+echo "Checking if plug-in is up to date."
+if [ ! `gen_hash "$PLUGIN_DIR/$PLUGIN"` = `getline "$INSTALLER_DIR/$INSTALLER.version.new" 1` ];
+then
+    echo "Plugin is not up to date."
+    echo "Checking if installer exists."
+    if [ -f $INSTALLER_DIR/$INSTALLER ];
+    then
+        echo "Installer exists."
+        echo "Checking if installer is up to date."
+        if [ `gen_hash "$INSTALLER_DIR/$INSTALLER"` = `getline $INSTALLER_DIR/$INSTALLER.version.new 2` ] ;
+        then
+            touch $INSTALLER_DIR/$INSTALLER
+            echo "Installer is up to date."
+        else
+            echo "Installer is not up to date."
+            download
+        fi
+    else
+        echo "Installer does not exist."
+        download
+    fi
+else
+    echo "Plugin is up to date."
+    echo "Exiting."
+fi

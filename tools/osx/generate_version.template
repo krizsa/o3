@@ -1,0 +1,9 @@
+#!/bin/bash
+function gen_hash {
+    tools/osx/md5 "$1" | sed 's/.*= \(.*\)/\1/g'
+}
+
+rm -f o3plugin.version
+gen_hash build/#BUILDMODE#/npplugin.plugin/Contents/MacOS/npplugin >> o3plugin.dmg.version
+gen_hash hosts/installer/osx/o3plugin.dmg >> o3plugin.dmg.version
+../signer hosts/installer/osx/o3plugin.dmg o3plugin.dmg.version

@@ -2,7 +2,8 @@
 	sys = require('sys');
 
 
-var GUID = '8a66ecac-63fd-4afa-9d42-3034d18c88f4',  
+var BUILDMODE = 'Release',
+GUID = '8a66ecac-63fd-4afa-9d42-3034d18c88f4',  
 BASENAME = 'o3', 
 FULLNAME = BASENAME + '-' + GUID,
 IEEXTGUID = '218BAC91-2A05-4372-BD7F-5AE59C149D3E',
@@ -10,6 +11,7 @@ CHROMEGUID = 'npaodepeeohfoeeglfcafddnjhejcgeg',
 FFEXTGUID = BASENAME + '@ajax.org',
 DOMAIN = 'o3.ajax.org',
 URL = 'http://' + DOMAIN,
+GITHUB = 'http://github.com/ajaxorg/o3-plugin-builds/raw/master/',
 VERSION = '0.9', 
 VERSIONSTRING = 'v' + VERSION.replace('.','_'),
 DESCRIPTION = 'Ajax.org o3 plugin', 
@@ -20,7 +22,8 @@ FILEDESCRIPTION = 'Ajax.org o3 plugin',
 IDENTIFIER = 'org.ajax.o3-plugin',
 LEGALCOPYRIGHT = 'Copyright © 2008-2010 Ajax.org (http://www.ajax.org)',
 OSXUPDATER = 'update_installer',
-OSXINSTALLER = BASENAME + 'plugin-osx32.dmg', 
+OSXINSTALLERBASE = BASENAME + 'plugin-osx',
+OSXINSTALLER = OSXINSTALLERBASE +'32.dmg', 
 OSXVERSION = OSXINSTALLER + '.version', 
 WINUPDATER = BASENAME + 'update.exe',
 WININSTALLER = BASENAME + 'plugin-win32d.exe',
@@ -33,6 +36,7 @@ GUIDDEF = '0x' + GUID.substring(0,8) + ',0x' + GUID.substring(9,13)
      + ',0x' + GUID.substring(34,36) + '}'; 
 
 RegexpMap = [
+[/#BUILDMODE#/g, BUILDMODE],
 [/#GUID#/g,GUID],  
 [/#BASENAME#/g,BASENAME], 
 [/#FULLNAME#/g,FULLNAME],
@@ -41,6 +45,7 @@ RegexpMap = [
 [/#FFEXTGUID#/g,FFEXTGUID],
 [/#DOMAIN#/g,DOMAIN],
 [/#URL#/g,URL],
+[/#GITHUB#/g,GITHUB],
 [/#VERSION#/g,VERSION], 
 [/#VERSIONSTRING#/g,VERSIONSTRING],
 [/#DESCRIPTION#/g,DESCRIPTION], 
@@ -52,6 +57,7 @@ RegexpMap = [
 [/#IDENTIFIER#/g,IDENTIFIER],
 [/#OSXUPDATER#/g,OSXUPDATER],
 [/#OSXINSTALLER#/g,OSXINSTALLER],
+[/#OSXINSTALLERBASE#/g,OSXINSTALLERBASE],
 [/#OSXVERSION#/g,OSXVERSION],
 [/#WINUPDATER#/g,WINUPDATER],
 [/#WININSTALLER#/g,WININSTALLER],
@@ -66,7 +72,10 @@ files = [
 	'hosts/plugin/plugin.rc',
 	'include/guid.h',
 	'include/app_data.h',	
-	'hosts/installer/osx/distribution.dist'
+	'hosts/installer/osx/distribution.dist',
+	'tools/osx/build_installer',
+	'tools/osx/build_plugin',
+	'tools/osx/generate_version'
 ];
 
 function readFile(file) {

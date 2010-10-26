@@ -1,0 +1,6 @@
+#!/bin/bash
+echo "Building plugin."
+xcodebuild
+echo "Copying scripts."
+cp tools/osx/update_installer build/#BUILDMODE#/npplugin.plugin/Contents/MacOS
+cp tools/osx/md5 build/#BUILDMODE#/npplugin.plugin/Contents/MacOS

@@ -1,0 +1,14 @@
+#/bin/bash
+cd `dirname $0`
+cd ..
+
+echo "------------------------ generate glue ------------------------"
+node tools/gluegen.js
+
+echo "------------------------ generate manifest ------------------------"
+node tools/create_manifest.js
+
+echo "------------------------ build plugin and installers ------------------------"
+tools/osx/build_plugin
+tools/osx/build_installer
+tools/osx/generate_version
