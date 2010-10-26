@@ -6,6 +6,6 @@ mv ../hosts/installer/osx/o3plugin.dmg o3plugin-osx32.dmg
 git add o3plugin-osx32.dmg || true
 mv ../o3plugin.dmg.version o3plugin-osx32.dmg.version
 git add o3plugin-osx32.dmg.version || true
-#git commit -m "automated build" || true
-#git push origin master
+git commit -m "automated build" || true
+git push origin master
 cd ..
