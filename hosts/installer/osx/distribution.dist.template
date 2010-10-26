@@ -6,7 +6,7 @@
     <choices-outline>
         <line choice="choice0"/>
     </choices-outline>
-    <choice id="choice0" title=#BASENAME# customLocation="/Library/Internet Plug-Ins/">
+    <choice id="choice0" title="#BASENAME#" customLocation="/Library/Internet Plug-Ins/">
         <pkg-ref id="org.ajax.ajaxorgO3.o3.pkg"/>
     </choice>
     <pkg-ref id="org.ajax.ajaxorgO3.o3.pkg" installKBytes="340" version="0.9" auth="Root">file:./Contents/Packages/o3.pkg</pkg-ref>

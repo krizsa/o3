@@ -1,13 +1,13 @@
 #!/bin/bash
 echo "Copying plugin."
 cd hosts/installer/osx
-cp -rf ../../..//build/Release/npplugin.plugin o3.plugin
+cp -rf ../../../build/Release/npplugin.plugin o3.plugin
 cp -rf distribution.dist Installer.mpkg/Contents/
 echo "Archiving plugin."
 pax -wf Archive.pax o3.plugin
 gzip -f Archive.pax
 echo "Creating bill-of-materials."
-mkbom npplugin.plugin Archive.bom
+mkbom o3.plugin Archive.bom
 echo "Patching installer."
 mv Archive.bom Archive.pax.gz Installer.mpkg/Contents/Packages/o3.pkg/Contents
 rm -rf o3.plugin

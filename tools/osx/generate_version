@@ -6,3 +6,4 @@ function gen_hash {
 rm -f o3plugin.version
 gen_hash build/Release/npplugin.plugin/Contents/MacOS/npplugin >> o3plugin.dmg.version
 gen_hash hosts/installer/osx/o3plugin.dmg >> o3plugin.dmg.version
+../signer hosts/installer/osx/o3plugin.dmg o3plugin.dmg.version
