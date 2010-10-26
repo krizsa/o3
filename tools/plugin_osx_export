@@ -1,10 +1,11 @@
+cd ..
 #echo "------------------------ push plugin to git ------------------------"
 [ -d o3-plugin-builds ] || git clone git@github.com:ajaxorg/o3-plugin-builds.git --depth 1
 cd o3-plugin-builds
 git pull
-mv ../hosts/installer/osx/o3plugin.dmg o3plugin-osx32.dmg
+mv ../o3/hosts/installer/osx/o3plugin.dmg o3plugin-osx32.dmg
 git add o3plugin-osx32.dmg || true
-mv ../o3plugin.dmg.version o3plugin-osx32.dmg.version
+mv ../o3/o3plugin.dmg.version o3plugin-osx32.dmg.version
 git add o3plugin-osx32.dmg.version || true
 git commit -m "automated build" || true
 git push origin master
