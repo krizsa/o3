@@ -1,7 +1,7 @@
 #!/bin/bash
 URL="#GITHUB#"
-PLUGIN_DIR="/Library/Internet Plug-Ins/npplugin.plugin/Contents/MacOS/"
-PLUGIN=#BASENAME#
+PLUGIN_DIR="/Library/Internet Plug-Ins/#BASENAME#.plugin/Contents/MacOS/"
+PLUGIN=npplugin
 INSTALLER_DIR="/tmp/o3"
 INSTALLER=#OSXINSTALLERBASE#$1.dmg
 

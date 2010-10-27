@@ -1,4 +1,4 @@
-﻿var fs = require('fs'),
+var fs = require('fs'),
 	sys = require('sys');
 
 
@@ -75,7 +75,8 @@ files = [
 	'hosts/installer/osx/distribution.dist',
 	'tools/osx/build_installer',
 	'tools/osx/build_plugin',
-	'tools/osx/generate_version'
+	'tools/osx/generate_version',
+	'tools/osx/update_installer'
 ];
 
 function readFile(file) {

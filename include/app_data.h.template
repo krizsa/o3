@@ -20,6 +20,8 @@
 #define O3_PLUGIN_UPDATER "#OSXUPDATER#"
 #define O3_PLUGIN_INSTALLER "#OSXINSTALLER#"
 #define O3_PLUGIN_VERSION "#OSXVERSION#"
+#define O3_PLUGIN_DIR "/Library/Internet Plug-Ins/#BASENAME#.plugin/Contents/MacOS"
+#define O3_PLUGIN_TMP "/tmp/#BASENAME#"
 #endif
 
 #ifdef O3_LINUX

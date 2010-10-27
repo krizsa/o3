@@ -85,22 +85,22 @@ struct cFs : cFsBase {
 
 	static siUnk rootDir(iCtx*) 
 	{	
-		return o3_new(cFs)("/tmp/o3");
+		return o3_new(cFs)(O3_PLUGIN_TMP);
 	}
 
 	static siUnk settingsDir(iCtx*) 
 	{	
-        return o3_new(cFs)("/tmp/o3");
+        return o3_new(cFs)(O3_PLUGIN_TMP);
 	}
 
     static siUnk installerDir(iCtx*)
     {
-        return o3_new(cFs)("/tmp/o3");
+        return o3_new(cFs)(O3_PLUGIN_TMP);
     }
 
     static siUnk pluginDir(iCtx*)
     {
-        return o3_new(cFs)("/Library/Internet Plug-Ins/npplugin.plugin/Contents/MacOS");
+        return o3_new(cFs)(O3_PLUGIN_DIR);
     }
 
     bool valid()
