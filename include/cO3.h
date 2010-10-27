@@ -173,6 +173,9 @@ struct cO3 : cScr {
 		
 		Str version_name(O3_PLUGIN_INSTALLER);
 		version_name.append(".version");
+#ifdef O3_APPLE
+		version_name.append(".new");
+#endif
 
 		siFs version_file = dir_of_installer->get(version_name);
 		if (!version_file->exists())
