@@ -22,12 +22,6 @@
 #include <Carbon/Carbon.h>
 #endif
 
-#ifndef O3_WIN32
-#include <netdb.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#endif // O3_WIN32
 
 #include <o3.h>
 #include <fs/fs.h>

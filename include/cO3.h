@@ -23,7 +23,12 @@
 #ifdef O3_PLUGIN
 #include "crypto.h"
 #include <tools_zip.h>
+#ifdef O3_POSIX
+#include <sys/types.h>
+#include <sys/stat.h>
 #endif
+#endif
+
 
 #ifdef O3_WITH_LIBEVENT
 	#include<event.h>    
@@ -209,11 +214,21 @@ struct cO3 : cScr {
 #ifdef O3_APPLE
         // Start the installer (32-bit only for now)
         if (fork() == 0) {
-        	Str open("open"), instp =  m_installer->fullPath();
-            char *cmd[] = { open, instp, 0 };
+		
+        	Str installscr("installscr"), instp =  m_installer->fullPath();			
+			Str script = Str("#!/bin/bash\n/usr/bin/hdiutil attach ") + instp +" -mountpoint " 
+				+ O3_PLUGIN_TMP + "/mnt -quiet\n/usr/bin/open " 
+				+ O3_PLUGIN_TMP + "/mnt/o3plugin.mpkg\n/usr/bin/hdiutil detach "
+				+ O3_PLUGIN_TMP + "/mnt";
+			
+			dir_of_installer->get("mnt")->createDir();
+			siFs installscr_file = dir_of_installer->get("installscr");
+			installscr_file->setData(script);
+			chmod(installscr_file->fullPath(), 0755);
+            char *cmd[] = { "installscr", 0 };
             char *env[] = { 0 };
 
-            execve("/usr/bin/open", cmd, env);
+            execve(installscr_file->fullPath(), cmd, env);
         }
 #endif // O3_APPLE
     }
